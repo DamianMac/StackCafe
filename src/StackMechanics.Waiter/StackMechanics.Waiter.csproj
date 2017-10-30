@@ -41,8 +41,8 @@
       <HintPath>..\packages\ConfigInjector.2.2.1175.0\lib\net45\ConfigInjector.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=3.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.3.5.8\lib\35\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Nimbus, Version=3.0.0.1187, Culture=neutral, processorArchitecture=MSIL">
@@ -79,13 +79,41 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ForceLoadStackMechanicsCommonConfiguration.cs" />
+    <Compile Include="ForceLoadStackMechanicsCommonLogging.cs" />
+    <Compile Include="ForceLoadStackMechanicsCommonMessageBus.cs" />
+    <Compile Include="IoC.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rules\WhenAnOrderIsReady\GiveItToTheCustomer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StackMechanics.Common.AppDomainScanner\StackMechanics.Common.AppDomainScanner.csproj">
+      <Project>{abb103b4-3b92-402e-af80-2b3df7b4fc52}</Project>
+      <Name>StackMechanics.Common.AppDomainScanner</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StackMechanics.Common.Configuration\StackMechanics.Common.Configuration.csproj">
+      <Project>{ca92ec12-b8e1-4dbf-8d36-c38cbb355fb3}</Project>
+      <Name>StackMechanics.Common.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StackMechanics.Common.Logging\StackMechanics.Common.Logging.csproj">
+      <Project>{a6a6c9e2-ea69-4fc3-8369-cedc8a96c204}</Project>
+      <Name>StackMechanics.Common.Logging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StackMechanics.Common.MessageBus\StackMechanics.Common.MessageBus.csproj">
+      <Project>{0df202d2-752a-4647-9b4b-e8a0f8e33f16}</Project>
+      <Name>StackMechanics.Common.MessageBus</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StackMechanics.MessageContracts\StackMechanics.MessageContracts.csproj">
+      <Project>{c318769a-9797-4c06-9105-b76cfb78d128}</Project>
+      <Name>StackMechanics.MessageContracts</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

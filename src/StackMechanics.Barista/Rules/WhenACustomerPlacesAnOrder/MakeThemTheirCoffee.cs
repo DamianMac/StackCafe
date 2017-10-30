@@ -24,7 +24,7 @@ namespace StackMechanics.Barista.Rules.WhenACustomerPlacesAnOrder
             await Task.Delay(TimeSpan.FromSeconds(1));
             _logger.Information("{OrderStatus} {Coffee} for {Customer}", "Made", busEvent.CoffeeType, busEvent.CustomerName);
 
-            await _bus.Publish(new OrderIsReadyEvent());
+            await _bus.Publish(new OrderIsReadyEvent(busEvent.OrderId, busEvent.CoffeeType, busEvent.CustomerName));
         }
     }
 }

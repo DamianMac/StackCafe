@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Nimbus;
 using Nimbus.Handlers;
 using StackMechanics.MessageContracts.Commands;
@@ -26,7 +25,7 @@ namespace StackMechanics.Cashier.CommandHandlers
             await _bus.Publish(new OrderPaidForEvent(busCommand.OrderId));
 
             _logger.Information("{Customer} would like a {CoffeeType}", busCommand.CustomerName, busCommand.CoffeeType);
-            await _bus.Publish(new OrderPlacedEvent(busCommand.CoffeeType, busCommand.CustomerName));
+            await _bus.Publish(new OrderPlacedEvent(busCommand.OrderId, busCommand.CoffeeType, busCommand.CustomerName));
         }
     }
 }
