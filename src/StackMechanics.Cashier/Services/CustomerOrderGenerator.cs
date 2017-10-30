@@ -49,7 +49,7 @@ namespace StackMechanics.Cashier.Services
         {
             var customer = _customerNames[_random.Next(_customerNames.Length)];
             var coffee = _coffeeOrders[_random.Next(_coffeeOrders.Length)];
-            var command = new PlaceOrderCommand(customer, coffee);
+            var command = new PlaceOrderCommand(Guid.NewGuid(), customer, coffee);
             await _bus.Send(command);
         }
     }

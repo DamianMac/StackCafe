@@ -1,4 +1,5 @@
-﻿using Nimbus.MessageContracts;
+﻿using System;
+using Nimbus.MessageContracts;
 
 namespace StackMechanics.MessageContracts.Commands
 {
@@ -8,12 +9,14 @@ namespace StackMechanics.MessageContracts.Commands
         {
         }
 
-        public PlaceOrderCommand(string customerName, string coffeeType)
+        public PlaceOrderCommand(Guid orderId, string customerName, string coffeeType)
         {
+            OrderId = orderId;
             CustomerName = customerName;
             CoffeeType = coffeeType;
         }
 
+        public Guid OrderId { get; set; }
         public string CustomerName { get; set; }
         public string CoffeeType { get; set; }
     }
