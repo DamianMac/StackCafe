@@ -3,12 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackMechanics.StackCafe", "StackMechanics.StackCafe\StackMechanics.StackCafe.csproj", "{7324B52F-BA8C-475D-A292-7CFBCB945CD7}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackMechanics.StackCafe.Tests.Unit", "StackMechanics.StackCafe.Tests.Unit\StackMechanics.StackCafe.Tests.Unit.csproj", "{08AD484A-CEE1-444D-AD97-541184BB7FFA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackMechanics.StackCafe.Tests.Integration", "StackMechanics.StackCafe.Tests.Integration\StackMechanics.StackCafe.Tests.Integration.csproj", "{66009EC3-F697-4B32-893D-B0161CD1F59F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackMechanics.MessageContracts", "StackMechanics.MessageContracts\StackMechanics.MessageContracts.csproj", "{C318769A-9797-4C06-9105-B76CFB78D128}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackMechanics.Barista", "StackMechanics.Barista\StackMechanics.Barista.csproj", "{94DBDCEB-FA39-42B1-83EE-7A575C96C981}"
@@ -31,18 +25,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7324B52F-BA8C-475D-A292-7CFBCB945CD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7324B52F-BA8C-475D-A292-7CFBCB945CD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7324B52F-BA8C-475D-A292-7CFBCB945CD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7324B52F-BA8C-475D-A292-7CFBCB945CD7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{08AD484A-CEE1-444D-AD97-541184BB7FFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{08AD484A-CEE1-444D-AD97-541184BB7FFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{08AD484A-CEE1-444D-AD97-541184BB7FFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{08AD484A-CEE1-444D-AD97-541184BB7FFA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{66009EC3-F697-4B32-893D-B0161CD1F59F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{66009EC3-F697-4B32-893D-B0161CD1F59F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{66009EC3-F697-4B32-893D-B0161CD1F59F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{66009EC3-F697-4B32-893D-B0161CD1F59F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C318769A-9797-4C06-9105-B76CFB78D128}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C318769A-9797-4C06-9105-B76CFB78D128}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C318769A-9797-4C06-9105-B76CFB78D128}.Release|Any CPU.ActiveCfg = Release|Any CPU
