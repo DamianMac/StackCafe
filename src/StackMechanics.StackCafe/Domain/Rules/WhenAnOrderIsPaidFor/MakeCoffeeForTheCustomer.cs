@@ -4,7 +4,7 @@ using StackMechanics.StackCafe.Infrastructure;
 
 namespace StackMechanics.StackCafe.Domain.Rules.WhenAnOrderIsPaidFor
 {
-    public class MakeCoffeeForTheCustomer: IHandleEvent<OrderPaidForEvent>
+    public class MakeCoffeeForTheCustomer : IHandleEvent<OrderPaidForEvent>
     {
         private readonly IBarista _barista;
 

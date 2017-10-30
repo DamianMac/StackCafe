@@ -7,7 +7,7 @@ namespace StackMechanics.StackCafe.Domain.Aggregates.CustomerAggregate
 {
     public class Customer : AggregateRoot
     {
-        private Customer(Guid id, string name): base(id)
+        private Customer(Guid id, string name) : base(id)
         {
             Name = name;
 
@@ -15,7 +15,7 @@ namespace StackMechanics.StackCafe.Domain.Aggregates.CustomerAggregate
         }
 
         public string Name { get; }
-        public bool IsCaffeinated { get; set; } = false;
+        public bool IsCaffeinated { get; set; }
 
         public ICollection<Order> Orders { get; set; }
 

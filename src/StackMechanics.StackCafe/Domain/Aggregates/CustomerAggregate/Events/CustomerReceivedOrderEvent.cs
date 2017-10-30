@@ -4,11 +4,11 @@ namespace StackMechanics.StackCafe.Domain.Aggregates.CustomerAggregate.Events
 {
     public class CustomerReceivedOrderEvent : IDomainEvent
     {
-        public Order Order { get; }
-
         public CustomerReceivedOrderEvent(Order order)
         {
             Order = order;
         }
+
+        public Order Order { get; }
     }
 }

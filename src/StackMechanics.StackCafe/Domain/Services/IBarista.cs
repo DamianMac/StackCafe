@@ -2,7 +2,7 @@
 
 namespace StackMechanics.StackCafe.Domain.Services
 {
-    public interface IBarista: IDomainService
+    public interface IBarista : IDomainService
     {
         void MakeOrder(Order order);
     }

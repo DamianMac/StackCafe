@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using StackMechanics.StackCafe.Domain;
 using StackMechanics.StackCafe.Domain.Aggregates.CustomerAggregate;
 using StackMechanics.StackCafe.Domain.Aggregates.CustomerAggregate.Commands;
 using StackMechanics.StackCafe.Infrastructure;

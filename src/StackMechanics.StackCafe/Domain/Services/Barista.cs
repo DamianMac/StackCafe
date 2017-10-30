@@ -2,7 +2,7 @@
 
 namespace StackMechanics.StackCafe.Domain.Services
 {
-    class Barista : IBarista
+    internal class Barista : IBarista
     {
         public void MakeOrder(Order order)
         {

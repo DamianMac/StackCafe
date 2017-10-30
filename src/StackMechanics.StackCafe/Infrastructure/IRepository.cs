@@ -1,6 +1,4 @@
 ﻿using System;
-using StackMechanics.StackCafe.CommandHandlers;
-using StackMechanics.StackCafe.Domain;
 using StackMechanics.StackCafe.Domain.Infrastructure;
 
 namespace StackMechanics.StackCafe.Infrastructure

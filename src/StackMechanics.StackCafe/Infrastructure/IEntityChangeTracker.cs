@@ -5,7 +5,7 @@ namespace StackMechanics.StackCafe.Infrastructure
 {
     public interface IEntityChangeTracker
     {
-        void Track(IEntity entity);
         IEnumerable<IEntity> TrackedEntities { get; }
+        void Track(IEntity entity);
     }
 }

@@ -1,17 +1,16 @@
 ﻿using System;
 using NUnit.Framework;
 using Shouldly;
-using StackMechanics.StackCafe.Domain;
 using StackMechanics.StackCafe.Domain.Aggregates.CustomerAggregate;
 
 namespace StackMechanics.StackCafe.Tests.Unit
 {
     public class GivenASignedUpCustomer_WhenACustomerPlacesAnOrder : BddTest
     {
-        private Customer _customer;
         private readonly Guid _customerId = Guid.NewGuid();
-        private Order _order;
         private readonly Guid _orderId = Guid.NewGuid();
+        private Customer _customer;
+        private Order _order;
         private OrderItem[] _orderItems;
 
         protected override void Given()
