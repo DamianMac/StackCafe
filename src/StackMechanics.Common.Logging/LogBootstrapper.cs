@@ -16,6 +16,10 @@ namespace StackMechanics.Common.Logging
                 .MinimumLevel.ControlledBy(logLevelSwitch)
                 .WriteTo.Console()
                 .WriteTo.Seq(DefaultSettingsReader.Get<SeqServerUrl>().ToString(), controlLevelSwitch: logLevelSwitch)
+                .Enrich.WithProcessName()
+                .Enrich.WithProcessId()
+                .Enrich.WithMachineName()
+                .Enrich.WithEnvironmentUserName()
                 .Enrich.WithProperty(nameof(ApplicationName), DefaultSettingsReader.Get<ApplicationName>())
                 .CreateLogger();
         }
