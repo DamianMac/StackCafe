@@ -3,6 +3,7 @@ using Serilog;
 using Serilog.Core;
 using StackMechanics.Common.Configuration.Configuration;
 using StackMechanics.Common.Logging.Configuration;
+using StackMechanics.Common.Logging.Enrichers;
 
 namespace StackMechanics.Common.Logging
 {
@@ -21,6 +22,7 @@ namespace StackMechanics.Common.Logging
                 .Enrich.WithMachineName()
                 .Enrich.WithEnvironmentUserName()
                 .Enrich.WithProperty(nameof(ApplicationName), DefaultSettingsReader.Get<ApplicationName>())
+                .Enrich.With<CorrelationIdEnricher>()
                 .CreateLogger();
         }
     }

@@ -95,6 +95,7 @@
     <Compile Include="AssemblyMarker.cs" />
     <Compile Include="AutofacModules\LoggerModule.cs" />
     <Compile Include="Configuration\SeqServerUrl.cs" />
+    <Compile Include="Enrichers\CorrelationIdEnricher.cs" />
     <Compile Include="LogBootstrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

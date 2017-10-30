@@ -6,6 +6,7 @@ using Nimbus.Infrastructure;
 using Nimbus.Transports.Redis;
 using StackMechanics.Common.Configuration.Configuration;
 using StackMechanics.Common.MessageBus.Configuration;
+using StackMechanics.Common.MessageBus.Interceptors;
 
 namespace StackMechanics.Common.MessageBus.AutofacModules
 {
@@ -29,6 +30,7 @@ namespace StackMechanics.Common.MessageBus.AutofacModules
                 .WithSerilogLogger()
                 .WithJsonSerializer()
                 .WithGlobalPrefix(componentContext.Resolve<BusGlobalPrefix>())
+                .WithGlobalInboundInterceptorTypes(typeof(CorrelationIdInterceptor))
                 .Build())
                 .As<IBus>()
                 .AutoActivate()

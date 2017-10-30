@@ -100,6 +100,7 @@
     <Compile Include="AutofacModules\BusModule.cs" />
     <Compile Include="Configuration\BusConnectionString.cs" />
     <Compile Include="Configuration\BusGlobalPrefix.cs" />
+    <Compile Include="Interceptors\CorrelationIdInterceptor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
