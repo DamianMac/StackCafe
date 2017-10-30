@@ -79,13 +79,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Rules\WhenAnOrderIsPaidFor\CheckWhetherItHasAlreadyBeenMade.cs" />
+    <Compile Include="Services\IOrderDeliveryService.cs" />
+    <Compile Include="Services\OrderDeliveryService.cs" />
+    <Compile Include="AutofacModules\ServicesModule.cs" />
     <Compile Include="ForceLoadStackMechanicsCommonConfiguration.cs" />
     <Compile Include="ForceLoadStackMechanicsCommonLogging.cs" />
     <Compile Include="ForceLoadStackMechanicsCommonMessageBus.cs" />
     <Compile Include="IoC.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Rules\WhenAnOrderIsReady\GiveItToTheCustomer.cs" />
+    <Compile Include="Rules\WhenAnOrderIsReady\CheckWhetherItHasBeenPaidFor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
