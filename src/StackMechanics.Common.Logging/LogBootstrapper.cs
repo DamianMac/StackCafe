@@ -1,9 +1,10 @@
 ﻿using ConfigInjector.QuickAndDirty;
 using Serilog;
 using Serilog.Core;
-using StackMechanics.Barista.Configuration;
+using StackMechanics.Common.Configuration.Configuration;
+using StackMechanics.Common.Logging.Configuration;
 
-namespace StackMechanics.Barista
+namespace StackMechanics.Common.Logging
 {
     public static class LogBootstrapper
     {
@@ -15,6 +16,7 @@ namespace StackMechanics.Barista
                 .MinimumLevel.ControlledBy(logLevelSwitch)
                 .WriteTo.Console()
                 .WriteTo.Seq(DefaultSettingsReader.Get<SeqServerUrl>().ToString(), controlLevelSwitch: logLevelSwitch)
+                .Enrich.WithProperty(nameof(ApplicationName), DefaultSettingsReader.Get<ApplicationName>())
                 .CreateLogger();
         }
     }

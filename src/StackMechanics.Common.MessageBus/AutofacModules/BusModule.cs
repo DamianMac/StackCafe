@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Reflection;
 using Autofac;
 using Nimbus;
 using Nimbus.Configuration;
 using Nimbus.Infrastructure;
 using Nimbus.Transports.Redis;
-using StackMechanics.Barista.Configuration;
-using Module = Autofac.Module;
+using StackMechanics.Common.Configuration.Configuration;
+using StackMechanics.Common.MessageBus.Configuration;
 
-namespace StackMechanics.Barista.AutofacModules
+namespace StackMechanics.Common.MessageBus.AutofacModules
 {
     public class BusModule : Module
     {
@@ -16,7 +15,7 @@ namespace StackMechanics.Barista.AutofacModules
         {
             base.Load(builder);
 
-            var handlerTypesProvider = new AssemblyScanningTypeProvider(Assembly.GetExecutingAssembly());
+            var handlerTypesProvider = new AssemblyScanningTypeProvider(AppDomainScanner.AppDomainScanner.MyAssemblies);
 
             builder.RegisterNimbus(handlerTypesProvider);
             builder.Register(componentContext => new BusBuilder()
@@ -24,7 +23,7 @@ namespace StackMechanics.Barista.AutofacModules
                 .WithTransport(new RedisTransportConfiguration()
                     .WithConnectionString(componentContext.Resolve<BusConnectionString>())
                 )
-                .WithNames(ThisAssembly.FullName, Environment.MachineName)
+                .WithNames(componentContext.Resolve<ApplicationName>(), Environment.MachineName)
                 .WithTypesFrom(handlerTypesProvider)
                 .WithAutofacDefaults(componentContext)
                 .WithSerilogLogger()

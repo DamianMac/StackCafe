@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Autofac.Builder;
+using StackMechanics.Common.AppDomainScanner;
 
 namespace StackMechanics.Barista
 {
@@ -7,10 +8,8 @@ namespace StackMechanics.Barista
     {
         public static IContainer LetThereBeIoC(ContainerBuildOptions containerBuildOptions = ContainerBuildOptions.None)
         {
-            var thisAssembly = typeof(IoC).Assembly;
-
             var builder = new ContainerBuilder();
-            builder.RegisterAssemblyModules(thisAssembly);
+            builder.RegisterAssemblyModules(AppDomainScanner.MyAssemblies);
             return builder.Build(containerBuildOptions);
         }
     }

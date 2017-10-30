@@ -1,7 +1,7 @@
 ﻿using System;
 using ConfigInjector;
 
-namespace StackMechanics.Barista.Configuration
+namespace StackMechanics.Common.Logging.Configuration
 {
     public class SeqServerUrl : ConfigurationSetting<Uri>
     {

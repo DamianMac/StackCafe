@@ -17,6 +17,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackMechanics.Waiter", "St
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackMechanics.Cashier", "StackMechanics.Cashier\StackMechanics.Cashier.csproj", "{DBBFCA6E-7F0F-439D-AA50-57D49ED6A7F2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackMechanics.Common.Logging", "StackMechanics.Common.Logging\StackMechanics.Common.Logging.csproj", "{A6A6C9E2-EA69-4FC3-8369-CEDC8A96C204}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackMechanics.Common.MessageBus", "StackMechanics.Common.MessageBus\StackMechanics.Common.MessageBus.csproj", "{0DF202D2-752A-4647-9B4B-E8A0F8E33F16}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackMechanics.Common.Configuration", "StackMechanics.Common.Configuration\StackMechanics.Common.Configuration.csproj", "{CA92EC12-B8E1-4DBF-8D36-C38CBB355FB3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackMechanics.Common.AppDomainScanner", "StackMechanics.Common.AppDomainScanner\StackMechanics.Common.AppDomainScanner.csproj", "{ABB103B4-3B92-402E-AF80-2B3DF7B4FC52}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +59,22 @@ Global
 		{DBBFCA6E-7F0F-439D-AA50-57D49ED6A7F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DBBFCA6E-7F0F-439D-AA50-57D49ED6A7F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DBBFCA6E-7F0F-439D-AA50-57D49ED6A7F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6A6C9E2-EA69-4FC3-8369-CEDC8A96C204}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6A6C9E2-EA69-4FC3-8369-CEDC8A96C204}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6A6C9E2-EA69-4FC3-8369-CEDC8A96C204}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6A6C9E2-EA69-4FC3-8369-CEDC8A96C204}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DF202D2-752A-4647-9B4B-E8A0F8E33F16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DF202D2-752A-4647-9B4B-E8A0F8E33F16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DF202D2-752A-4647-9B4B-E8A0F8E33F16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DF202D2-752A-4647-9B4B-E8A0F8E33F16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA92EC12-B8E1-4DBF-8D36-C38CBB355FB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA92EC12-B8E1-4DBF-8D36-C38CBB355FB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA92EC12-B8E1-4DBF-8D36-C38CBB355FB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA92EC12-B8E1-4DBF-8D36-C38CBB355FB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABB103B4-3B92-402E-AF80-2B3DF7B4FC52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABB103B4-3B92-402E-AF80-2B3DF7B4FC52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABB103B4-3B92-402E-AF80-2B3DF7B4FC52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABB103B4-3B92-402E-AF80-2B3DF7B4FC52}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

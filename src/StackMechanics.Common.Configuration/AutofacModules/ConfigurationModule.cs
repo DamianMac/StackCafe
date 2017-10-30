@@ -1,7 +1,7 @@
 ﻿using Autofac;
 using ConfigInjector.Configuration;
 
-namespace StackMechanics.Barista.AutofacModules
+namespace StackMechanics.Common.Configuration.AutofacModules
 {
     public class ConfigurationModule : Module
     {
@@ -10,7 +10,7 @@ namespace StackMechanics.Barista.AutofacModules
             base.Load(builder);
 
             ConfigurationConfigurator.RegisterConfigurationSettings()
-                .FromAssemblies(ThisAssembly)
+                .FromAssemblies(AppDomainScanner.AppDomainScanner.MyAssemblies)
                 .RegisterWithContainer(configSetting => builder.RegisterInstance(configSetting)
                     .AsSelf()
                     .SingleInstance())

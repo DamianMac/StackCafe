@@ -1,6 +1,6 @@
 ﻿using ConfigInjector;
 
-namespace StackMechanics.Barista.Configuration
+namespace StackMechanics.Common.MessageBus.Configuration
 {
     public class BusGlobalPrefix : ConfigurationSetting<string>
     {

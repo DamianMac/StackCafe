@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DBBFCA6E-7F0F-439D-AA50-57D49ED6A7F2}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{0DF202D2-752A-4647-9B4B-E8A0F8E33F16}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>StackMechanics.Cashier</RootNamespace>
-    <AssemblyName>StackMechanics.Cashier</AssemblyName>
+    <RootNamespace>StackMechanics.Common.MessageBus</RootNamespace>
+    <AssemblyName>StackMechanics.Common.MessageBus</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -49,12 +46,36 @@
       <HintPath>..\packages\Nimbus.3.0.0.1187\lib\net45\Nimbus.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Nimbus.Autofac, Version=3.0.0.1187, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nimbus.Autofac.3.0.0.1187\lib\net45\Nimbus.Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Nimbus.InfrastructureContracts, Version=3.0.0.1187, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Nimbus.InfrastructureContracts.3.0.0.1187\lib\net45\Nimbus.InfrastructureContracts.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Nimbus.Logger.Serilog, Version=3.0.0.1187, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nimbus.Logger.Serilog.3.0.0.1187\lib\net45\Nimbus.Logger.Serilog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Nimbus.MessageContracts, Version=3.0.0.1187, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Nimbus.MessageContracts.3.0.0.1187\lib\net45\Nimbus.MessageContracts.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Nimbus.Serializers.Json, Version=3.0.0.1187, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nimbus.Serializers.Json.3.0.0.1187\lib\net45\Nimbus.Serializers.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Nimbus.Transports.Redis, Version=3.0.0.1187, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nimbus.Transports.Redis.3.0.0.1187\lib\net45\Nimbus.Transports.Redis.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Serilog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.2.0.0\lib\net45\Serilog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Serilog.Exceptions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=fc5550082a9c642c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Exceptions.2.0.0\lib\net45\Serilog.Exceptions.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="StackExchange.Redis, Version=1.0.316.0, Culture=neutral, processorArchitecture=MSIL">
@@ -75,17 +96,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="AssemblyMarker.cs" />
+    <Compile Include="AutofacModules\BusModule.cs" />
+    <Compile Include="Configuration\BusConnectionString.cs" />
+    <Compile Include="Configuration\BusGlobalPrefix.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="AutofacModules\" />
-    <Folder Include="Configuration\" />
-    <Folder Include="Rules\WhenACustomerPaysForTheirOrder\" />
+    <Content Include="FodyWeavers.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StackMechanics.Common.AppDomainScanner\StackMechanics.Common.AppDomainScanner.csproj">
+      <Project>{ABB103B4-3B92-402E-AF80-2B3DF7B4FC52}</Project>
+      <Name>StackMechanics.Common.AppDomainScanner</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StackMechanics.Common.Configuration\StackMechanics.Common.Configuration.csproj">
+      <Project>{CA92EC12-B8E1-4DBF-8D36-C38CBB355FB3}</Project>
+      <Name>StackMechanics.Common.Configuration</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

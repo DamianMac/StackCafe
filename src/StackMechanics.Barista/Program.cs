@@ -1,5 +1,6 @@
 ﻿using System;
 using Serilog;
+using StackMechanics.Common.Logging;
 
 namespace StackMechanics.Barista
 {
