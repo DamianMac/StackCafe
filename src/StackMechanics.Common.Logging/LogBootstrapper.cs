@@ -12,18 +12,20 @@ namespace StackMechanics.Common.Logging
         public static void Bootstrap()
         {
             var logLevelSwitch = new LoggingLevelSwitch();
+            var applicationName = DefaultSettingsReader.Get<ApplicationName>();
 
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.ControlledBy(logLevelSwitch)
                 .WriteTo.Console()
                 .WriteTo.Seq(DefaultSettingsReader.Get<SeqServerUrl>().ToString(), controlLevelSwitch: logLevelSwitch)
-                .Enrich.WithProcessName()
                 .Enrich.WithProcessId()
                 .Enrich.WithMachineName()
                 .Enrich.WithEnvironmentUserName()
-                .Enrich.WithProperty(nameof(ApplicationName), DefaultSettingsReader.Get<ApplicationName>())
+                .Enrich.WithProperty(nameof(ApplicationName), applicationName)
                 .Enrich.With<CorrelationIdEnricher>()
                 .CreateLogger();
+
+            Log.Information("Application {ApplicationName} starting up", applicationName);
         }
     }
 }
