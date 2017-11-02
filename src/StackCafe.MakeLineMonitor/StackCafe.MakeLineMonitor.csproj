@@ -46,13 +46,31 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=4.6.2.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.6.2\lib\net45\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.Mvc5.4.0.2\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="AutofacSerilogIntegration, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d672c67444a98ac9, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutofacSerilogIntegration.2.0.0\lib\net45\AutofacSerilogIntegration.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Serilog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.2.5.0\lib\net46\Serilog.dll</HintPath>
+    </Reference>
+    <Reference Include="SerilogWeb.Classic, Version=3.0.0.0, Culture=neutral, PublicKeyToken=9462ddd55fbc0e7f, processorArchitecture=MSIL">
+      <HintPath>..\packages\SerilogWeb.Classic.3.0.20\lib\net45\SerilogWeb.Classic.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -150,9 +168,14 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IoC.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="AutofacModules\AspNetMvcModule.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="ForceLoadStackMechanicsCommonConfiguration.cs" />
+    <Compile Include="ForceLoadStackMechanicsCommonLogging.cs" />
+    <Compile Include="ForceLoadStackMechanicsCommonMessageBus.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -209,6 +232,24 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StackCafe.Common.AppDomainScanner\StackCafe.Common.AppDomainScanner.csproj">
+      <Project>{ABB103B4-3B92-402E-AF80-2B3DF7B4FC52}</Project>
+      <Name>StackCafe.Common.AppDomainScanner</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StackCafe.Common.Configuration\StackCafe.Common.Configuration.csproj">
+      <Project>{ca92ec12-b8e1-4dbf-8d36-c38cbb355fb3}</Project>
+      <Name>StackCafe.Common.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StackCafe.Common.Logging\StackCafe.Common.Logging.csproj">
+      <Project>{A6A6C9E2-EA69-4FC3-8369-CEDC8A96C204}</Project>
+      <Name>StackCafe.Common.Logging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StackCafe.Common.MessageBus\StackCafe.Common.MessageBus.csproj">
+      <Project>{0df202d2-752a-4647-9b4b-e8a0f8e33f16}</Project>
+      <Name>StackCafe.Common.MessageBus</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

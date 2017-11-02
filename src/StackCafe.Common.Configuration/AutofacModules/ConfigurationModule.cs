@@ -14,6 +14,11 @@ namespace StackCafe.Common.Configuration.AutofacModules
                 .RegisterWithContainer(configSetting => builder.RegisterInstance(configSetting)
                     .AsSelf()
                     .SingleInstance())
+                .ExcludeSettingKeys(
+                    "webpages:Version",
+                    "webpages:Enabled",
+                    "ClientValidationEnabled",
+                    "UnobtrusiveJavaScriptEnabled")
                 .DoYourThing();
         }
     }
