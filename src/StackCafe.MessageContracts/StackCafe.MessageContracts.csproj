@@ -7,8 +7,8 @@
     <ProjectGuid>{C318769A-9797-4C06-9105-B76CFB78D128}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>StackMechanics.MessageContracts</RootNamespace>
-    <AssemblyName>StackMechanics.MessageContracts</AssemblyName>
+    <RootNamespace>StackCafe.MessageContracts</RootNamespace>
+    <AssemblyName>StackCafe.MessageContracts</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

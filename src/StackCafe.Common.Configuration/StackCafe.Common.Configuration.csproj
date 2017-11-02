@@ -7,8 +7,8 @@
     <ProjectGuid>{CA92EC12-B8E1-4DBF-8D36-C38CBB355FB3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>StackMechanics.Common.Configuration</RootNamespace>
-    <AssemblyName>StackMechanics.Common.Configuration</AssemblyName>
+    <RootNamespace>StackCafe.Common.Configuration</RootNamespace>
+    <AssemblyName>StackCafe.Common.Configuration</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

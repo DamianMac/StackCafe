@@ -7,8 +7,8 @@
     <ProjectGuid>{0DF202D2-752A-4647-9B4B-E8A0F8E33F16}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>StackMechanics.Common.MessageBus</RootNamespace>
-    <AssemblyName>StackMechanics.Common.MessageBus</AssemblyName>
+    <RootNamespace>StackCafe.Common.MessageBus</RootNamespace>
+    <AssemblyName>StackCafe.Common.MessageBus</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

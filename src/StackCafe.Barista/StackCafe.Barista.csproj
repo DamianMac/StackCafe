@@ -7,8 +7,8 @@
     <ProjectGuid>{94DBDCEB-FA39-42B1-83EE-7A575C96C981}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>StackMechanics.Barista</RootNamespace>
-    <AssemblyName>StackMechanics.Barista</AssemblyName>
+    <RootNamespace>StackCafe.Barista</RootNamespace>
+    <AssemblyName>StackCafe.Barista</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

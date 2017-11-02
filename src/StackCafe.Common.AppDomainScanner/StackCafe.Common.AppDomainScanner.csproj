@@ -7,8 +7,8 @@
     <ProjectGuid>{ABB103B4-3B92-402E-AF80-2B3DF7B4FC52}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>StackMechanics.Common.AppDomainScanner</RootNamespace>
-    <AssemblyName>StackMechanics.Common.AppDomainScanner</AssemblyName>
+    <RootNamespace>StackCafe.Common.AppDomainScanner</RootNamespace>
+    <AssemblyName>StackCafe.Common.AppDomainScanner</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
