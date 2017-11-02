@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Serilog;
 
-namespace StackMechanics.Waiter.Services
+namespace StackCafe.Waiter.Services
 {
     public class OrderDeliveryService : IOrderDeliveryService
     {

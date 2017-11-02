@@ -1,11 +1,11 @@
 ﻿using System.Threading.Tasks;
 using Nimbus;
 using Nimbus.Handlers;
-using StackMechanics.MessageContracts.Commands;
-using StackMechanics.MessageContracts.Events;
+using StackCafe.MessageContracts.Commands;
+using StackCafe.MessageContracts.Events;
 using ILogger = Serilog.ILogger;
 
-namespace StackMechanics.Cashier.CommandHandlers
+namespace StackCafe.Cashier.CommandHandlers
 {
     public class PlaceOrderCommandHandler : IHandleCommand<PlaceOrderCommand>
     {

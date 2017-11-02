@@ -1,7 +1,7 @@
 ﻿using Autofac;
-using StackMechanics.Cashier.Services;
+using StackCafe.Cashier.Services;
 
-namespace StackMechanics.Cashier.AutofacModules
+namespace StackCafe.Cashier.AutofacModules
 {
     public class PretendCustomerModule : Module
     {

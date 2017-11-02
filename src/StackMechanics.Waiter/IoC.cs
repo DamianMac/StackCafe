@@ -1,8 +1,8 @@
 ﻿using Autofac;
 using Autofac.Builder;
-using StackMechanics.Common.AppDomainScanner;
+using StackCafe.Common.AppDomainScanner;
 
-namespace StackMechanics.Waiter
+namespace StackCafe.Waiter
 {
     public static class IoC
     {

@@ -1,11 +1,11 @@
 ﻿using ConfigInjector.QuickAndDirty;
 using Serilog;
 using Serilog.Core;
-using StackMechanics.Common.Configuration.Configuration;
-using StackMechanics.Common.Logging.Configuration;
-using StackMechanics.Common.Logging.Enrichers;
+using StackCafe.Common.Configuration.Configuration;
+using StackCafe.Common.Logging.Configuration;
+using StackCafe.Common.Logging.Enrichers;
 
-namespace StackMechanics.Common.Logging
+namespace StackCafe.Common.Logging
 {
     public static class LogBootstrapper
     {

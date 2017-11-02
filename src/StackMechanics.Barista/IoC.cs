@@ -1,8 +1,8 @@
 ﻿using Autofac;
 using Autofac.Builder;
-using StackMechanics.Common.AppDomainScanner;
+using StackCafe.Common.AppDomainScanner;
 
-namespace StackMechanics.Barista
+namespace StackCafe.Barista
 {
     public static class IoC
     {

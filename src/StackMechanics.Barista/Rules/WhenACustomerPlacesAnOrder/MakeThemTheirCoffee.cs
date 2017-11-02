@@ -2,10 +2,10 @@
 using System.Threading.Tasks;
 using Nimbus;
 using Nimbus.Handlers;
-using StackMechanics.MessageContracts.Events;
+using StackCafe.MessageContracts.Events;
 using ILogger = Serilog.ILogger;
 
-namespace StackMechanics.Barista.Rules.WhenACustomerPlacesAnOrder
+namespace StackCafe.Barista.Rules.WhenACustomerPlacesAnOrder
 {
     public class MakeThemTheirCoffee : IHandleCompetingEvent<OrderPlacedEvent>
     {

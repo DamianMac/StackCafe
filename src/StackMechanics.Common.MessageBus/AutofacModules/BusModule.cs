@@ -4,11 +4,11 @@ using Nimbus;
 using Nimbus.Configuration;
 using Nimbus.Infrastructure;
 using Nimbus.Transports.Redis;
-using StackMechanics.Common.Configuration.Configuration;
-using StackMechanics.Common.MessageBus.Configuration;
-using StackMechanics.Common.MessageBus.Interceptors;
+using StackCafe.Common.Configuration.Configuration;
+using StackCafe.Common.MessageBus.Configuration;
+using StackCafe.Common.MessageBus.Interceptors;
 
-namespace StackMechanics.Common.MessageBus.AutofacModules
+namespace StackCafe.Common.MessageBus.AutofacModules
 {
     public class BusModule : Module
     {

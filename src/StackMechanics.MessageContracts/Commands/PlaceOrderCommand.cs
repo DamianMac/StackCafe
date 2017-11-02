@@ -1,7 +1,7 @@
 ﻿using System;
 using Nimbus.MessageContracts;
 
-namespace StackMechanics.MessageContracts.Commands
+namespace StackCafe.MessageContracts.Commands
 {
     public class PlaceOrderCommand : IBusCommand
     {

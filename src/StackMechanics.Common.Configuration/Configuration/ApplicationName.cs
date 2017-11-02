@@ -1,6 +1,6 @@
 ﻿using ConfigInjector;
 
-namespace StackMechanics.Common.Configuration.Configuration
+namespace StackCafe.Common.Configuration.Configuration
 {
     public class ApplicationName : ConfigurationSetting<string>
     {

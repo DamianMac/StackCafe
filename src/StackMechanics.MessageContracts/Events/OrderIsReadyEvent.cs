@@ -1,7 +1,7 @@
 ﻿using System;
 using Nimbus.MessageContracts;
 
-namespace StackMechanics.MessageContracts.Events
+namespace StackCafe.MessageContracts.Events
 {
     public class OrderIsReadyEvent : IBusEvent
     {

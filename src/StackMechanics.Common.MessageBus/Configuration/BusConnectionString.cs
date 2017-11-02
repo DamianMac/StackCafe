@@ -1,6 +1,6 @@
 ﻿using ConfigInjector;
 
-namespace StackMechanics.Common.MessageBus.Configuration
+namespace StackCafe.Common.MessageBus.Configuration
 {
     public class BusConnectionString : ConfigurationSetting<string>
     {

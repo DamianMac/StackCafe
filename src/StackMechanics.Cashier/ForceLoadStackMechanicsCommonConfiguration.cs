@@ -1,8 +1,8 @@
-﻿using StackMechanics.Common.Configuration;
+﻿using StackCafe.Common.Configuration;
 
-namespace StackMechanics.Cashier
+namespace StackCafe.Cashier
 {
-    public class ForceLoadStackMechanicsCommonConfiguration: AssemblyMarker
+    public class ForceLoadStackCafeCommonConfiguration: AssemblyMarker
     {
     }
 }

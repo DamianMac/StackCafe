@@ -3,7 +3,7 @@ using System.Runtime.Remoting.Messaging;
 using Serilog.Core;
 using Serilog.Events;
 
-namespace StackMechanics.Common.Logging.Enrichers
+namespace StackCafe.Common.Logging.Enrichers
 {
     public class CorrelationIdEnricher : ILogEventEnricher
     {

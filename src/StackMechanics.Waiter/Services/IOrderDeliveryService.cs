@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace StackMechanics.Waiter.Services
+namespace StackCafe.Waiter.Services
 {
     public interface IOrderDeliveryService
     {

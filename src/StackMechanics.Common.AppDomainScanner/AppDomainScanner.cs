@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace StackMechanics.Common.AppDomainScanner
+namespace StackCafe.Common.AppDomainScanner
 {
     public static class AppDomainScanner
     {
@@ -27,7 +27,7 @@ namespace StackMechanics.Common.AppDomainScanner
         private static void ForceLoadReferencedAssemblies(Assembly assembly, List<AssemblyName> alreadySeen)
         {
             var assemblyNamesToLoad = assembly.GetReferencedAssemblies()
-                .Where(a => a.Name.Contains("StackMechanics"))
+                .Where(a => a.Name.Contains("StackCafe"))
                 .Except(alreadySeen)
                 .ToArray();
 
@@ -42,7 +42,7 @@ namespace StackMechanics.Common.AppDomainScanner
         private static Assembly[] ScanForMyAssemblies()
         {
             var myAssemblies = AppDomain.CurrentDomain.GetAssemblies()
-                .Where(a => a.GetName().FullName.Contains("StackMechanics"))
+                .Where(a => a.GetName().FullName.Contains("StackCafe"))
                 .ToArray();
             return myAssemblies;
         }

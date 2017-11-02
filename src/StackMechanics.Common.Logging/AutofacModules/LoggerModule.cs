@@ -1,7 +1,7 @@
 ﻿using Autofac;
 using AutofacSerilogIntegration;
 
-namespace StackMechanics.Common.Logging.AutofacModules
+namespace StackCafe.Common.Logging.AutofacModules
 {
     public class LoggerModule : Module
     {

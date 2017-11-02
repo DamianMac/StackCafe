@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
 using Nimbus.Handlers;
-using StackMechanics.MessageContracts.Events;
-using StackMechanics.Waiter.Services;
+using StackCafe.MessageContracts.Events;
+using StackCafe.Waiter.Services;
 
-namespace StackMechanics.Waiter.Rules.WhenAnOrderIsReady
+namespace StackCafe.Waiter.Rules.WhenAnOrderIsReady
 {
     public class CheckWhetherItHasBeenPaidFor : IHandleCompetingEvent<OrderIsReadyEvent>
     {

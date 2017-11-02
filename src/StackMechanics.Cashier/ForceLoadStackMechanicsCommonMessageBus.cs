@@ -1,8 +1,8 @@
-﻿using StackMechanics.Common.MessageBus;
+﻿using StackCafe.Common.MessageBus;
 
-namespace StackMechanics.Cashier
+namespace StackCafe.Cashier
 {
-    public class ForceLoadStackMechanicsCommonMessageBus : AssemblyMarker
+    public class ForceLoadStackCafeCommonMessageBus : AssemblyMarker
     {
     }
 }

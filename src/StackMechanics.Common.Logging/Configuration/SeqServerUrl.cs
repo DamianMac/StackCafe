@@ -1,7 +1,7 @@
 ﻿using System;
 using ConfigInjector;
 
-namespace StackMechanics.Common.Logging.Configuration
+namespace StackCafe.Common.Logging.Configuration
 {
     public class SeqServerUrl : ConfigurationSetting<Uri>
     {

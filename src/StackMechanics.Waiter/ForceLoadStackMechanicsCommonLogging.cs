@@ -1,8 +1,8 @@
-﻿using StackMechanics.Common.Logging;
+﻿using StackCafe.Common.Logging;
 
-namespace StackMechanics.Waiter
+namespace StackCafe.Waiter
 {
-    public class ForceLoadStackMechanicsCommonLogging : AssemblyMarker
+    public class ForceLoadStackCafeCommonLogging : AssemblyMarker
     {
     }
 }

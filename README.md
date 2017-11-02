@@ -1,4 +1,4 @@
-# StackMechanics
+# StackCafe
 
 ## Getting started
 

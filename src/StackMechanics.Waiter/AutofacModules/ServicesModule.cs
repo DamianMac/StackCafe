@@ -1,7 +1,7 @@
 ﻿using Autofac;
-using StackMechanics.Waiter.Services;
+using StackCafe.Waiter.Services;
 
-namespace StackMechanics.Waiter.AutofacModules
+namespace StackCafe.Waiter.AutofacModules
 {
     public class ServicesModule : Module
     {

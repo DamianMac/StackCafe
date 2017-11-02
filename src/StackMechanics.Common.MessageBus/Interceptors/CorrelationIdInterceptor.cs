@@ -5,7 +5,7 @@ using Nimbus.Interceptors.Inbound;
 using Nimbus.MessageContracts;
 using Nimbus.PropertyInjection;
 
-namespace StackMechanics.Common.MessageBus.Interceptors
+namespace StackCafe.Common.MessageBus.Interceptors
 {
     public class CorrelationIdInterceptor : InboundInterceptor, IRequireDispatchContext
     {

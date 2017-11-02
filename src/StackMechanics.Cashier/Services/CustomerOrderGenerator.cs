@@ -2,9 +2,9 @@
 using System.Threading.Tasks;
 using System.Timers;
 using Nimbus;
-using StackMechanics.MessageContracts.Commands;
+using StackCafe.MessageContracts.Commands;
 
-namespace StackMechanics.Cashier.Services
+namespace StackCafe.Cashier.Services
 {
     public class CustomerOrderGenerator : IDisposable
     {

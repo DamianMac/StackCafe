@@ -1,8 +1,8 @@
-﻿using StackMechanics.Common.Configuration;
+﻿using StackCafe.Common.Configuration;
 
-namespace StackMechanics.Waiter
+namespace StackCafe.Waiter
 {
-    public class ForceLoadStackMechanicsCommonConfiguration: AssemblyMarker
+    public class ForceLoadStackCafeCommonConfiguration: AssemblyMarker
     {
     }
 }

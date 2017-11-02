@@ -1,4 +1,4 @@
-﻿namespace StackMechanics.MessageContracts.Events
+﻿namespace StackCafe.MessageContracts.Events
 {
     public class CustomerSignedUpEvent
     {

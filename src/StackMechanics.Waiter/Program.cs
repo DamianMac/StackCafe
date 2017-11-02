@@ -1,8 +1,8 @@
 ﻿using System;
 using Serilog;
-using StackMechanics.Common.Logging;
+using StackCafe.Common.Logging;
 
-namespace StackMechanics.Waiter
+namespace StackCafe.Waiter
 {
     internal class Program
     {

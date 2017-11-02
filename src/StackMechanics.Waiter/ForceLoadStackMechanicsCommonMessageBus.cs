@@ -1,8 +1,8 @@
-﻿using StackMechanics.Common.MessageBus;
+﻿using StackCafe.Common.MessageBus;
 
-namespace StackMechanics.Waiter
+namespace StackCafe.Waiter
 {
-    public class ForceLoadStackMechanicsCommonMessageBus : AssemblyMarker
+    public class ForceLoadStackCafeCommonMessageBus : AssemblyMarker
     {
     }
 }

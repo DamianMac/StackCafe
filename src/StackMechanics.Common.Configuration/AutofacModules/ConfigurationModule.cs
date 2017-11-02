@@ -1,7 +1,7 @@
 ﻿using Autofac;
 using ConfigInjector.Configuration;
 
-namespace StackMechanics.Common.Configuration.AutofacModules
+namespace StackCafe.Common.Configuration.AutofacModules
 {
     public class ConfigurationModule : Module
     {

@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
 using Nimbus.Handlers;
-using StackMechanics.MessageContracts.Events;
-using StackMechanics.Waiter.Services;
+using StackCafe.MessageContracts.Events;
+using StackCafe.Waiter.Services;
 
-namespace StackMechanics.Waiter.Rules.WhenAnOrderIsPaidFor
+namespace StackCafe.Waiter.Rules.WhenAnOrderIsPaidFor
 {
     public class CheckWhetherItHasAlreadyBeenMade : IHandleCompetingEvent<OrderPaidForEvent>
     {

@@ -1,4 +1,4 @@
-﻿namespace StackMechanics.Common.Configuration
+﻿namespace StackCafe.Common.Configuration
 {
     public class AssemblyMarker
     {
