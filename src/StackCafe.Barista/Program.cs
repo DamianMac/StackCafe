@@ -6,16 +6,26 @@ namespace StackCafe.Barista
 {
     internal class Program
     {
-        private static void Main(string[] args)
+        private static int Main(string[] args)
         {
-            LogBootstrapper.Bootstrap();
-
-            using (var container = IoC.LetThereBeIoC())
+            Log.Logger = DefaultLoggerConfiguration.CreateLogger();
+            try
             {
-                Console.ReadKey();
+                using (var container = IoC.LetThereBeIoC())
+                {
+                    Console.ReadKey();
+                    return 0;
+                }
             }
-
-            Log.CloseAndFlush();
+            catch (Exception ex)
+            {
+                Log.Fatal(ex, "An unhandled exception occurred");
+                return 1;
+            }
+            finally
+            {
+                Log.CloseAndFlush();
+            }
         }
     }
 }

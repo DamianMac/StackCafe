@@ -7,14 +7,14 @@ using StackCafe.Common.Logging.Enrichers;
 
 namespace StackCafe.Common.Logging
 {
-    public static class LogBootstrapper
+    public static class DefaultLoggerConfiguration
     {
-        public static void Bootstrap()
+        public static Logger CreateLogger()
         {
             var logLevelSwitch = new LoggingLevelSwitch();
             var applicationName = DefaultSettingsReader.Get<ApplicationName>();
 
-            Log.Logger = new LoggerConfiguration()
+            var logger = new LoggerConfiguration()
                 .MinimumLevel.ControlledBy(logLevelSwitch)
                 .WriteTo.Console()
                 .WriteTo.Seq(DefaultSettingsReader.Get<SeqServerUrl>().ToString(), controlLevelSwitch: logLevelSwitch)
@@ -25,7 +25,8 @@ namespace StackCafe.Common.Logging
                 .Enrich.With<CorrelationIdEnricher>()
                 .CreateLogger();
 
-            Log.Information("Application {ApplicationName} starting up", applicationName);
+            logger.Information("Application {ApplicationName} starting up", applicationName);
+            return logger;
         }
     }
 }

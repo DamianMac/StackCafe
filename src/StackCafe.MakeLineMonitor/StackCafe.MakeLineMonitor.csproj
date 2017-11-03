@@ -59,6 +59,12 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Nimbus.InfrastructureContracts, Version=3.0.0.1187, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nimbus.InfrastructureContracts.3.0.0.1187\lib\net45\Nimbus.InfrastructureContracts.dll</HintPath>
+    </Reference>
+    <Reference Include="Nimbus.MessageContracts, Version=3.0.0.1187, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nimbus.MessageContracts.3.0.0.1187\lib\net45\Nimbus.MessageContracts.dll</HintPath>
+    </Reference>
     <Reference Include="Serilog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
       <HintPath>..\packages\Serilog.2.5.0\lib\net46\Serilog.dll</HintPath>
     </Reference>
@@ -172,7 +178,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="AutofacModules\AspNetMvcModule.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MakeLineController.cs" />
     <Compile Include="ForceLoadStackMechanicsCommonConfiguration.cs" />
     <Compile Include="ForceLoadStackMechanicsCommonLogging.cs" />
     <Compile Include="ForceLoadStackMechanicsCommonMessageBus.cs" />
@@ -180,6 +186,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rules\WhenACustomerPlacesTheirOrder\AddItToTheMakeLine.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -212,9 +219,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\MakeLine\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -249,6 +254,10 @@
     <ProjectReference Include="..\StackCafe.Common.MessageBus\StackCafe.Common.MessageBus.csproj">
       <Project>{0df202d2-752a-4647-9b4b-e8a0f8e33f16}</Project>
       <Name>StackCafe.Common.MessageBus</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StackCafe.MessageContracts\StackCafe.MessageContracts.csproj">
+      <Project>{C318769A-9797-4C06-9105-B76CFB78D128}</Project>
+      <Name>StackCafe.MessageContracts</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
