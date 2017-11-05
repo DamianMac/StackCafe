@@ -1,4 +1,5 @@
 ﻿using System;
+using Serilog;
 using StackCafe.Catalog.Contracts;
 using StackCafe.Catalog.Messages;
 using StackCafe.Catalog.Messaging;
@@ -16,10 +17,14 @@ namespace StackCafe.Catalog.Cli
 
         public void Start()
         {
+            Log.Information("Starting CLI");
+
             string line;
             while (!string.IsNullOrEmpty(line = Console.ReadLine()))
             {
                 var items = line.Split();
+                Log.Information("Dispatching {CliCommand}", items);
+
                 switch (items[0])
                 {
                     case "add":
@@ -44,6 +49,8 @@ namespace StackCafe.Catalog.Cli
                     }
                 }
             }
+
+            Log.Information("Stopping CLI");
         }
     }
 }
