@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -28,6 +29,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -41,19 +43,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cli\CommandLineCatalogApi.cs" />
-    <Compile Include="Cli\TextRequestReader.cs" />
-    <Compile Include="Cli\TextResponseFormatter.cs" />
-    <Compile Include="Contracts\AddProductRequest.cs" />
-    <Compile Include="Contracts\LookupProductRequest.cs" />
-    <Compile Include="Handlers\AddProductRequestHandler.cs" />
+    <Compile Include="Contracts\ProductData.cs" />
+    <Compile Include="Messaging\IBus.cs" />
+    <Compile Include="InMemory\InMemoryMessageBus.cs" />
+    <Compile Include="InMemory\InMemoryProductRepository.cs" />
+    <Compile Include="Messages\AddProductCommand.cs" />
+    <Compile Include="Messages\LookupProductRequest.cs" />
+    <Compile Include="Handlers\AddProductCommandHandler.cs" />
     <Compile Include="Handlers\LookupProductRequestHandler.cs" />
-    <Compile Include="IRequestHandler.cs" />
-    <Compile Include="IProductRepository.cs" />
-    <Compile Include="Product.cs" />
+    <Compile Include="Messaging\IHandleCommand.cs" />
+    <Compile Include="Messaging\IHandleRequest.cs" />
+    <Compile Include="Data\IProductRepository.cs" />
+    <Compile Include="MessageContracts\IBusCommand.cs" />
+    <Compile Include="MessageContracts\IBusRequest.cs" />
+    <Compile Include="MessageContracts\IBusResponse.cs" />
+    <Compile Include="Messages\LookupProductResponse.cs" />
+    <Compile Include="Model\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="InMemory\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
