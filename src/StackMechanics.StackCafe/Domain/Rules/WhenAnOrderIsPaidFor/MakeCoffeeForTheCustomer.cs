@@ -1,10 +1,11 @@
-﻿using StackMechanics.StackCafe.Domain.Aggregates.CustomerAggregate.Events;
+﻿using System;
+using StackMechanics.StackCafe.Domain.Aggregates.CustomerAggregate.Events;
 using StackMechanics.StackCafe.Domain.Services;
 using StackMechanics.StackCafe.Infrastructure;
 
 namespace StackMechanics.StackCafe.Domain.Rules.WhenAnOrderIsPaidFor
 {
-    public class MakeCoffeeForTheCustomer: IHandleEvent<OrderPaidForEvent>
+    public class MakeCoffeeForTheCustomer : IHandleEvent<OrderPaidForEvent>
     {
         private readonly IBarista _barista;
 
@@ -15,7 +16,7 @@ namespace StackMechanics.StackCafe.Domain.Rules.WhenAnOrderIsPaidFor
 
         public void Handle(OrderPaidForEvent e)
         {
-            _barista.MakeOrder(e.Order);
+            throw new NotImplementedException();
         }
     }
 }
