@@ -48,62 +48,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AutofacModules\DomainServicesModule.cs" />
-    <Compile Include="AutofacModules\HandlersModule.cs" />
-    <Compile Include="AutofacModules\MediatorModule.cs" />
-    <Compile Include="AutofacModules\PersistenceModule.cs" />
-    <Compile Include="CommandHandlers\CustomerPayForOrderCommandHandler.cs" />
-    <Compile Include="CommandHandlers\CustomerPlaceOrderCommandHandler.cs" />
-    <Compile Include="Domain\Infrastructure\AggregateRoot.cs" />
-    <Compile Include="Domain\Aggregates\CustomerAggregate\Events\CustomerReceivedOrderEvent.cs" />
-    <Compile Include="Domain\Aggregates\CustomerAggregate\Events\CustomerSignedUpEvent.cs" />
-    <Compile Include="Domain\Infrastructure\DomainEventsCollection.cs" />
-    <Compile Include="Domain\Infrastructure\DomainException.cs" />
-    <Compile Include="Domain\Infrastructure\Entity.cs" />
-    <Compile Include="Domain\Infrastructure\IAggregateRoot.cs" />
-    <Compile Include="Domain\Infrastructure\IEntity.cs" />
-    <Compile Include="Domain\Aggregates\CustomerAggregate\Events\OrderPaidForEvent.cs" />
-    <Compile Include="Domain\Infrastructure\IDomainEvent.cs" />
-    <Compile Include="Domain\Services\Barista.cs" />
-    <Compile Include="Domain\Services\IBarista.cs" />
-    <Compile Include="Domain\Rules\WhenAnOrderIsReady\GiveItToTheCustomer.cs" />
-    <Compile Include="Domain\Services\IDomainService.cs" />
-    <Compile Include="Domain\Services\IWaiter.cs" />
-    <Compile Include="Domain\Aggregates\CustomerAggregate\Events\OrderIsReadyEvent.cs" />
-    <Compile Include="Domain\Services\Waiter.cs" />
-    <Compile Include="Infrastructure\EntityChangeTracker.cs" />
-    <Compile Include="Infrastructure\IEntityChangeTracker.cs" />
-    <Compile Include="Infrastructure\IEvent.cs" />
-    <Compile Include="Infrastructure\IHandleEvent.cs" />
-    <Compile Include="Domain\Rules\WhenAnOrderIsPaidFor\MakeCoffeeForTheCustomer.cs" />
-    <Compile Include="Infrastructure\EntityCollectionExtensions.cs" />
-    <Compile Include="Infrastructure\IHandleCommand.cs" />
-    <Compile Include="Infrastructure\IRepository.cs" />
-    <Compile Include="CommandHandlers\SignUpCustomerCommandHandler.cs" />
-    <Compile Include="Domain\Aggregates\CustomerAggregate\Commands\CustomerPayForOrderCommand.cs" />
-    <Compile Include="Domain\Aggregates\CustomerAggregate\Commands\CustomerPlaceOrderCommand.cs" />
-    <Compile Include="Domain\Aggregates\CustomerAggregate\OrderItemDto.cs" />
-    <Compile Include="Domain\Infrastructure\ICommand.cs" />
-    <Compile Include="Infrastructure\IMediator.cs" />
-    <Compile Include="Infrastructure\IUnitOfWork.cs" />
-    <Compile Include="Domain\Aggregates\CustomerAggregate\Commands\SignUpCustomerCommand.cs" />
-    <Compile Include="Infrastructure\Mediator.cs" />
-    <Compile Include="Infrastructure\MemoryRepository.cs" />
-    <Compile Include="Infrastructure\TrackingRepository.cs" />
-    <Compile Include="Domain\Infrastructure\UnitOfWork.cs" />
-    <Compile Include="AutofacModules\UnitOfWorkModule.cs" />
     <Compile Include="Domain\Aggregates\CustomerAggregate\Customer.cs" />
     <Compile Include="Domain\Aggregates\CustomerAggregate\Order.cs" />
     <Compile Include="Domain\Aggregates\CustomerAggregate\OrderItem.cs" />
-    <Compile Include="IoC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Domain\Rules\WhenACustomerPlacesAnOrder\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

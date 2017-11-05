@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackMechanics.StackCafe", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackMechanics.StackCafe.Tests.Unit", "StackMechanics.StackCafe.Tests.Unit\StackMechanics.StackCafe.Tests.Unit.csproj", "{08AD484A-CEE1-444D-AD97-541184BB7FFA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackMechanics.StackCafe.Tests.Integration", "StackMechanics.StackCafe.Tests.Integration\StackMechanics.StackCafe.Tests.Integration.csproj", "{66009EC3-F697-4B32-893D-B0161CD1F59F}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{08AD484A-CEE1-444D-AD97-541184BB7FFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08AD484A-CEE1-444D-AD97-541184BB7FFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08AD484A-CEE1-444D-AD97-541184BB7FFA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{66009EC3-F697-4B32-893D-B0161CD1F59F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{66009EC3-F697-4B32-893D-B0161CD1F59F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{66009EC3-F697-4B32-893D-B0161CD1F59F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{66009EC3-F697-4B32-893D-B0161CD1F59F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
