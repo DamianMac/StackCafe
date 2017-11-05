@@ -56,7 +56,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="WhenACustomerPlacesAndPaysForAnOrder.cs" />
+    <Compile Include="BddTest.cs" />
+    <Compile Include="WhenACustomerPlacesAndPaysForAnOrder_TheCustomerShouldEndUpCaffeinated.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
