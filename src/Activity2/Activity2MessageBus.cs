@@ -1,29 +1,31 @@
 ﻿using System;
-using Autofac;
 using StackCafe.Catalog.Handlers;
 using StackCafe.Catalog.MessageContracts;
 using StackCafe.Catalog.Messages;
 using StackCafe.Catalog.Messaging;
 
-namespace Activity3
+namespace Activity2
 {
-    public class DispatchingMessageBus : IBus
+    public class Activity2MessageBus : IBus
     {
         readonly IBus _requestBus;
-        readonly ILifetimeScope _lifetimeScope;
+        readonly AddProductCommandHandler _addProductHandler;
 
-        public DispatchingMessageBus(IBus requestBus, ILifetimeScope lifetimeScope)
+        public Activity2MessageBus(IBus requestBus, AddProductCommandHandler addProductHandler)
         {
             _requestBus = requestBus;
-            _lifetimeScope = lifetimeScope;
+            _addProductHandler = addProductHandler;
         }
 
         public void Send<TBusCommand>(TBusCommand busCommand) where TBusCommand : IBusCommand
         {
-            using (var handlerLifetime = _lifetimeScope.BeginLifetimeScope())
+            if (busCommand is AddProductCommand apc)
             {
-                var handler = handlerLifetime.Resolve<IHandleCommand<TBusCommand>>();
-                handler.Handle(busCommand);
+                _addProductHandler.Handle(apc);
+            }
+            else
+            {
+                throw new NotSupportedException($"No handler is registered for command type {busCommand.GetType()}.");
             }
         }
 

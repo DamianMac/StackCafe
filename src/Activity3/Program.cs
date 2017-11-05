@@ -33,7 +33,7 @@ namespace Activity3
                     .SingleInstance();
 
                 builder.RegisterType<InMemoryMessageBus>().Named<IBus>("requests");
-                builder.Register(c => new DispatchingMessageBus(
+                builder.Register(c => new Activity3MessageBus(
                         c.ResolveNamed<IBus>("requests"),
                         c.Resolve<ILifetimeScope>()))
                     .As<IBus>();
