@@ -42,32 +42,32 @@
       <HintPath>..\packages\Newtonsoft.Json.3.5.8\lib\35\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Nimbus, Version=3.0.0.1187, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Nimbus.3.0.0.1187\lib\net45\Nimbus.dll</HintPath>
+    <Reference Include="Nimbus, Version=3.0.0.1200, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nimbus.3.0.0.1200\lib\net45\Nimbus.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Nimbus.Autofac, Version=3.0.0.1187, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Nimbus.Autofac.3.0.0.1187\lib\net45\Nimbus.Autofac.dll</HintPath>
+    <Reference Include="Nimbus.Autofac, Version=3.0.0.1200, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nimbus.Autofac.3.0.0.1200\lib\net45\Nimbus.Autofac.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Nimbus.InfrastructureContracts, Version=3.0.0.1187, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Nimbus.InfrastructureContracts.3.0.0.1187\lib\net45\Nimbus.InfrastructureContracts.dll</HintPath>
+    <Reference Include="Nimbus.InfrastructureContracts, Version=3.0.0.1200, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nimbus.InfrastructureContracts.3.0.0.1200\lib\net45\Nimbus.InfrastructureContracts.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Nimbus.Logger.Serilog, Version=3.0.0.1187, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Nimbus.Logger.Serilog.3.0.0.1187\lib\net45\Nimbus.Logger.Serilog.dll</HintPath>
+    <Reference Include="Nimbus.Logger.Serilog, Version=3.0.0.1200, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nimbus.Logger.Serilog.3.0.0.1200\lib\net45\Nimbus.Logger.Serilog.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Nimbus.MessageContracts, Version=3.0.0.1187, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Nimbus.MessageContracts.3.0.0.1187\lib\net45\Nimbus.MessageContracts.dll</HintPath>
+    <Reference Include="Nimbus.MessageContracts, Version=3.0.0.1200, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nimbus.MessageContracts.3.0.0.1200\lib\net45\Nimbus.MessageContracts.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Nimbus.Serializers.Json, Version=3.0.0.1187, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Nimbus.Serializers.Json.3.0.0.1187\lib\net45\Nimbus.Serializers.Json.dll</HintPath>
+    <Reference Include="Nimbus.Serializers.Json, Version=3.0.0.1200, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nimbus.Serializers.Json.3.0.0.1200\lib\net45\Nimbus.Serializers.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Nimbus.Transports.Redis, Version=3.0.0.1187, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Nimbus.Transports.Redis.3.0.0.1187\lib\net45\Nimbus.Transports.Redis.dll</HintPath>
+    <Reference Include="Nimbus.Transports.Redis, Version=3.0.0.1200, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nimbus.Transports.Redis.3.0.0.1200\lib\net45\Nimbus.Transports.Redis.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Serilog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
@@ -105,7 +105,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />

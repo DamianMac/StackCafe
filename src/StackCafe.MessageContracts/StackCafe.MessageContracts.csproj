@@ -30,8 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Nimbus.MessageContracts, Version=3.0.0.1187, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Nimbus.MessageContracts.3.0.0.1187\lib\net45\Nimbus.MessageContracts.dll</HintPath>
+    <Reference Include="Nimbus.MessageContracts, Version=3.0.0.1200, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nimbus.MessageContracts.3.0.0.1200\lib\net45\Nimbus.MessageContracts.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />

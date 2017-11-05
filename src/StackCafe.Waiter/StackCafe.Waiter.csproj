@@ -45,16 +45,16 @@
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Nimbus, Version=3.0.0.1187, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Nimbus.3.0.0.1187\lib\net45\Nimbus.dll</HintPath>
+    <Reference Include="Nimbus, Version=3.0.0.1200, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nimbus.3.0.0.1200\lib\net45\Nimbus.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Nimbus.InfrastructureContracts, Version=3.0.0.1187, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Nimbus.InfrastructureContracts.3.0.0.1187\lib\net45\Nimbus.InfrastructureContracts.dll</HintPath>
+    <Reference Include="Nimbus.InfrastructureContracts, Version=3.0.0.1200, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nimbus.InfrastructureContracts.3.0.0.1200\lib\net45\Nimbus.InfrastructureContracts.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Nimbus.MessageContracts, Version=3.0.0.1187, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Nimbus.MessageContracts.3.0.0.1187\lib\net45\Nimbus.MessageContracts.dll</HintPath>
+    <Reference Include="Nimbus.MessageContracts, Version=3.0.0.1200, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nimbus.MessageContracts.3.0.0.1200\lib\net45\Nimbus.MessageContracts.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Serilog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
