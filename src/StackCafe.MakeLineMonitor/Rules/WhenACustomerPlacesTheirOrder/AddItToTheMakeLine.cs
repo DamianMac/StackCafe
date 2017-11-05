@@ -1,25 +1,23 @@
 ﻿using System.Threading.Tasks;
 using Nimbus;
 using Nimbus.Handlers;
+using StackCafe.MakeLineMonitor.Services;
 using StackCafe.MessageContracts.Events;
-using ILogger = Serilog.ILogger;
 
 namespace StackCafe.MakeLineMonitor.Rules.WhenACustomerPlacesTheirOrder
 {
     public class AddItToTheMakeLine : IHandleMulticastEvent<OrderPlacedEvent>
     {
-        private readonly IBus _bus;
-        private readonly ILogger _logger;
+        private readonly IMakeLineService _makeLine;
 
-        public AddItToTheMakeLine(IBus bus, ILogger logger)
+        public AddItToTheMakeLine(IMakeLineService makeLine)
         {
-            _bus = bus;
-            _logger = logger;
+            _makeLine = makeLine;
         }
 
         public Task Handle(OrderPlacedEvent busEvent)
         {
-            _logger.Debug("{Coffee} for order {OrderId} is on the make-line", busEvent.CoffeeType, busEvent.OrderId);
+            _makeLine.Add(busEvent.OrderId, busEvent.CoffeeType);
             return Task.CompletedTask;
         }
     }
