@@ -1,0 +1,10 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>StackCafe.MakeLineMonitor</id>
+    <description>Make Line Monitor</description>
+  </metadata>
+  <files>
+    <file src="bin\roslyn\*.*" target="bin\roslyn" />
+  </files>
+</package>
