@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Serilog;
 using StackMechanics.StackCafe.Domain.Aggregates.CustomerAggregate.Events;
 using StackMechanics.StackCafe.Domain.Infrastructure;
 
@@ -29,6 +30,7 @@ namespace StackMechanics.StackCafe.Domain.Aggregates.CustomerAggregate
         public static Customer SignUp(Guid id, string name)
         {
             var customer = new Customer(id, name);
+            Log.Information("Customer {CustomerID} has signed up", customer.Id);
             customer.DomainEvents.Raise(new CustomerSignedUpEvent(customer));
 
             return customer;
@@ -48,7 +50,7 @@ namespace StackMechanics.StackCafe.Domain.Aggregates.CustomerAggregate
             if (order.Customer != this) throw new DomainException("Sorry! That's not my order.");
 
             IsCaffeinated = true;
-
+            Log.Information("Customer Has accepted the order {OrderID}",order.Id);
             DomainEvents.Raise(new CustomerReceivedOrderEvent(order));
         }
     }

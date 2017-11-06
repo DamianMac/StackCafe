@@ -19,6 +19,7 @@ namespace StackMechanics.StackCafe.CommandHandlers
             var customer = _customerRepository.Get(command.CustomerId);
             var order = customer.Orders.Get(command.OrderId);
             customer.PayFor(order);
+            //customer.AcceptDeliveryOfOrder(order);
         }
     }
 }
