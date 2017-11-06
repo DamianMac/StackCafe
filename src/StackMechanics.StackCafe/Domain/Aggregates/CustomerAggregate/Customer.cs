@@ -11,7 +11,9 @@ namespace StackMechanics.StackCafe.Domain.Aggregates.CustomerAggregate
         public List<Order> Orders { get; }
         public Customer(string name, Guid customerId)
         {
+            customerId = customerId;
             Orders = new List<Order>();
+            name = Name;
         }
         public static Customer SignUp(Guid customerId, string damian)
         {
@@ -21,6 +23,7 @@ namespace StackMechanics.StackCafe.Domain.Aggregates.CustomerAggregate
 
         public Order PlaceOrder(Guid orderId, OrderItem[] orderItems)
         {
+
             return  new Order(orderId,orderItems);
         }
 
