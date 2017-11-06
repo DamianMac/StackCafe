@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Serilog;
 using StackMechanics.StackCafe.Domain;
 using StackMechanics.StackCafe.Domain.Aggregates.CustomerAggregate;
 using StackMechanics.StackCafe.Domain.Aggregates.CustomerAggregate.Commands;
@@ -21,6 +22,7 @@ namespace StackMechanics.StackCafe.CommandHandlers
             var orderItems = command.Items
                 .Select(item => new OrderItem(item.Name, item.Quantity))
                 .ToArray();
+
             customer.PlaceOrder(command.OrderId, orderItems);
         }
     }

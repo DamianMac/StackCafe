@@ -1,4 +1,5 @@
-﻿using StackMechanics.StackCafe.Domain;
+﻿using Serilog;
+using StackMechanics.StackCafe.Domain;
 using StackMechanics.StackCafe.Domain.Aggregates.CustomerAggregate;
 using StackMechanics.StackCafe.Domain.Aggregates.CustomerAggregate.Commands;
 using StackMechanics.StackCafe.Infrastructure;
@@ -18,6 +19,7 @@ namespace StackMechanics.StackCafe.CommandHandlers
         {
             var customer = _customerRepository.Get(command.CustomerId);
             var order = customer.Orders.Get(command.OrderId);
+            
             customer.PayFor(order);
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Serilog;
 using StackMechanics.StackCafe.Domain.Aggregates.CustomerAggregate.Events;
 using StackMechanics.StackCafe.Domain.Infrastructure;
 
@@ -22,6 +23,9 @@ namespace StackMechanics.StackCafe.Domain.Aggregates.CustomerAggregate
         public Order PlaceOrder(Guid orderId, OrderItem[] items)
         {
             var order = new Order(orderId, this, items);
+
+
+            Log.Information("Order was placed with id {OrderId}", orderId);
             Orders.Add(order);
             return order;
         }
@@ -29,6 +33,8 @@ namespace StackMechanics.StackCafe.Domain.Aggregates.CustomerAggregate
         public static Customer SignUp(Guid id, string name)
         {
             var customer = new Customer(id, name);
+
+            Log.Information("Customer signed up with id {CustomerId}, and name {CustomerName}", customer.Id, customer.Name);
             customer.DomainEvents.Raise(new CustomerSignedUpEvent(customer));
 
             return customer;
@@ -40,6 +46,7 @@ namespace StackMechanics.StackCafe.Domain.Aggregates.CustomerAggregate
             //TODO: We might want to change this. Can we pay for other customers' orders?
             //TODO: Do I have enough cash?
 
+            Log.Information("Mark order {OrderId} as paid by customer {CustomerId}", order.Id, Id);
             order.MarkAsPaidBy(this);
         }
 
