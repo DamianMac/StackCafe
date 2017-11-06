@@ -4,6 +4,7 @@ using Serilog;
 using Serilog.Sinks.SystemConsole.Themes;
 using StackCafe.Catalog.Cli;
 using StackCafe.Catalog.Data;
+using StackCafe.Catalog.Handlers;
 using StackCafe.Catalog.InMemory;
 using StackCafe.Catalog.Messaging;
 using StackCafe.Catalog.Model;
@@ -26,7 +27,11 @@ namespace Activity2
                     .As<IProductRepository>()
                     .SingleInstance();
 
-                builder.RegisterType<InMemoryMessageBus>().As<IBus>();
+                builder.RegisterType<InMemoryMessageBus>().Named<IBus>("r");
+
+                builder.Register(c => new Activity2MessageBus(
+                    c.ResolveNamed<IBus>("r"),
+                    c.Resolve<ILifetimeScope>())).As<IBus>();
 
                 builder.RegisterType<CommandLineCatalogApi>();
 

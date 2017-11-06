@@ -1,4 +1,5 @@
 ﻿using System;
+using Autofac;
 using StackCafe.Catalog.Handlers;
 using StackCafe.Catalog.MessageContracts;
 using StackCafe.Catalog.Messages;
@@ -10,22 +11,20 @@ namespace Activity2
     {
         readonly IBus _requestBus;
         readonly AddProductCommandHandler _addProductHandler;
+         readonly ILifetimeScope _lifetimeScope;
 
-        public Activity2MessageBus(IBus requestBus, AddProductCommandHandler addProductHandler)
+        public Activity2MessageBus(IBus requestBus, ILifetimeScope lifetimeScope)
         {
             _requestBus = requestBus;
-            _addProductHandler = addProductHandler;
+            _lifetimeScope = lifetimeScope;
         }
 
         public void Send<TBusCommand>(TBusCommand busCommand) where TBusCommand : IBusCommand
         {
-            if (busCommand is AddProductCommand apc)
+            using (var handlerLifetime = _lifetimeScope.BeginLifetimeScope())
             {
-                _addProductHandler.Handle(apc);
-            }
-            else
-            {
-                throw new NotSupportedException($"No handler is registered for command type {busCommand.GetType()}.");
+                var handler = handlerLifetime.Resolve<IHandleCommand<TBusCommand>>();
+                handler.Handle(busCommand);
             }
         }
 

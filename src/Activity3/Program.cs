@@ -34,7 +34,7 @@ namespace Activity3
 
                 builder.RegisterType<InMemoryMessageBus>().Named<IBus>("requests");
                 builder.Register(c => new Activity3MessageBus(
-                        c.ResolveNamed<IBus>("requests"),
+                        c.ResolveNamed<Lazy<IBus>>("requests"),
                         c.Resolve<ILifetimeScope>()))
                     .As<IBus>();
 

@@ -1,18 +1,16 @@
 ﻿using System;
 using Autofac;
-using StackCafe.Catalog.Handlers;
 using StackCafe.Catalog.MessageContracts;
-using StackCafe.Catalog.Messages;
 using StackCafe.Catalog.Messaging;
 
 namespace Activity3
 {
     public class Activity3MessageBus : IBus
     {
-        readonly IBus _requestBus;
+        readonly Lazy<IBus> _requestBus;
         readonly ILifetimeScope _lifetimeScope;
 
-        public Activity3MessageBus(IBus requestBus, ILifetimeScope lifetimeScope)
+        public Activity3MessageBus(Lazy<IBus> requestBus, ILifetimeScope lifetimeScope)
         {
             _requestBus = requestBus;
             _lifetimeScope = lifetimeScope;
@@ -30,7 +28,7 @@ namespace Activity3
         public TResponse Request<TRequest, TResponse>(IBusRequest<TRequest, TResponse> busRequest)
             where TRequest : IBusRequest<TRequest, TResponse> where TResponse : IBusResponse
         {
-            return _requestBus.Request(busRequest);
+            return _requestBus.Value.Request(busRequest);
         }
     }
 }
