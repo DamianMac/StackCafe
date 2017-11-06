@@ -22,6 +22,7 @@ namespace StackMechanics.StackCafe.Tests.Unit
         {
             _orderItems = new[] {new OrderItem("Flat white", 1)};
             _order = _customer.PlaceOrder(_orderId, _orderItems);
+          
         }
 
         [Test]
