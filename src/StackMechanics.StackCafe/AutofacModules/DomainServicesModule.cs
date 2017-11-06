@@ -1,5 +1,4 @@
-﻿using Autofac;
-using StackMechanics.StackCafe.Domain.Rules.WhenAnOrderIsReady;
+using Autofac;
 using StackMechanics.StackCafe.Domain.Services;
 
 namespace StackMechanics.StackCafe.AutofacModules

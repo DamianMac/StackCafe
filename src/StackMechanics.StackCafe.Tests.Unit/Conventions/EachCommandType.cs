@@ -1,10 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using NUnit.Framework;
 using Shouldly;
-using StackMechanics.StackCafe.Domain;
 using StackMechanics.StackCafe.Domain.Aggregates.CustomerAggregate.Commands;
 using StackMechanics.StackCafe.Domain.Infrastructure;
 using StackMechanics.StackCafe.Infrastructure;

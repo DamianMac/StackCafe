@@ -1,5 +1,4 @@
 using StackMechanics.StackCafe.Domain.Infrastructure;
-using StackMechanics.StackCafe.Domain.Rules.WhenAnOrderIsPaidFor;
 
 namespace StackMechanics.StackCafe.Infrastructure
 {
