@@ -16,7 +16,7 @@ namespace StackMechanics.StackCafe.Domain.Rules.WhenAnOrderIsPaidFor
 
         public void Handle(OrderPaidForEvent e)
         {
-            throw new NotImplementedException();
+            _barista.MakeOrder(e.Order);
         }
     }
 }
