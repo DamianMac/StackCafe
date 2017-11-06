@@ -24,7 +24,7 @@ namespace StackCafe.Common.MessageBus.AutofacModules
                 .WithTransport(new RedisTransportConfiguration()
                     .WithConnectionString(componentContext.Resolve<BusConnectionString>())
                 )
-                .WithNames(componentContext.Resolve<ApplicationName>(), Environment.MachineName)
+                .WithNames(componentContext.Resolve<ApplicationName>(), System.Environment.MachineName)
                 .WithTypesFrom(handlerTypesProvider)
                 .WithAutofacDefaults(componentContext)
                 .WithSerilogLogger()
