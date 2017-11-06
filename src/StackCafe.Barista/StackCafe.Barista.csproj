@@ -116,29 +116,32 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Configuration\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\StackCafe.Common.AppDomainScanner\StackCafe.Common.AppDomainScanner.csproj">
-      <Project>{ABB103B4-3B92-402E-AF80-2B3DF7B4FC52}</Project>
+      <Project>{abb103b4-3b92-402e-af80-2b3df7b4fc52}</Project>
       <Name>StackCafe.Common.AppDomainScanner</Name>
     </ProjectReference>
     <ProjectReference Include="..\StackCafe.Common.Configuration\StackCafe.Common.Configuration.csproj">
-      <Project>{CA92EC12-B8E1-4DBF-8D36-C38CBB355FB3}</Project>
+      <Project>{ca92ec12-b8e1-4dbf-8d36-c38cbb355fb3}</Project>
       <Name>StackCafe.Common.Configuration</Name>
     </ProjectReference>
     <ProjectReference Include="..\StackCafe.Common.Logging\StackCafe.Common.Logging.csproj">
-      <Project>{A6A6C9E2-EA69-4FC3-8369-CEDC8A96C204}</Project>
+      <Project>{a6a6c9e2-ea69-4fc3-8369-cedc8a96c204}</Project>
       <Name>StackCafe.Common.Logging</Name>
     </ProjectReference>
     <ProjectReference Include="..\StackCafe.Common.MessageBus\StackCafe.Common.MessageBus.csproj">
-      <Project>{0DF202D2-752A-4647-9B4B-E8A0F8E33F16}</Project>
+      <Project>{0df202d2-752a-4647-9b4b-e8a0f8e33f16}</Project>
       <Name>StackCafe.Common.MessageBus</Name>
     </ProjectReference>
     <ProjectReference Include="..\StackCafe.MessageContracts\StackCafe.MessageContracts.csproj">
-      <Project>{C318769A-9797-4C06-9105-B76CFB78D128}</Project>
+      <Project>{c318769a-9797-4c06-9105-b76cfb78d128}</Project>
       <Name>StackCafe.MessageContracts</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Configuration\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
