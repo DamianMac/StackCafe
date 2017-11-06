@@ -14,6 +14,7 @@ namespace StackCafe.Common.Logging
             var logLevelSwitch = new LoggingLevelSwitch();
             var applicationName = DefaultSettingsReader.Get<ApplicationName>();
             var environment = DefaultSettingsReader.Get<Environment>();
+            var version = typeof(DefaultLoggerConfiguration).Assembly.GetName().Version.ToString();
 
             var logger = new LoggerConfiguration()
                 .MinimumLevel.ControlledBy(logLevelSwitch)
@@ -24,6 +25,7 @@ namespace StackCafe.Common.Logging
                 .Enrich.WithEnvironmentUserName()
                 .Enrich.WithProperty(nameof(ApplicationName), applicationName)
                 .Enrich.WithProperty(nameof(Environment), environment)
+                .Enrich.WithProperty("Version", version)
                 .Enrich.With<CorrelationIdEnricher>()
                 .CreateLogger();
 
