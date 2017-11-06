@@ -1,7 +1,6 @@
-﻿using System;
+using System;
 using NUnit.Framework;
 using Shouldly;
-using StackMechanics.StackCafe.Domain;
 using StackMechanics.StackCafe.Domain.Aggregates.CustomerAggregate;
 
 namespace StackMechanics.StackCafe.Tests.Unit

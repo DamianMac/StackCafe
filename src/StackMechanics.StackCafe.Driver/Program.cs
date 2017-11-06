@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using Autofac;
+using Serilog;
 using StackMechanics.StackCafe.Domain.Aggregates.CustomerAggregate;
 using StackMechanics.StackCafe.Domain.Aggregates.CustomerAggregate.Commands;
 using StackMechanics.StackCafe.Infrastructure;
@@ -10,40 +11,75 @@ namespace StackMechanics.StackCafe.Driver
     {
         static void Main(string[] args)
         {
-            using (var container = IoC.LetThereBeIoC())
+
+            Log.Logger = new LoggerConfiguration()
+                .Enrich.FromLogContext()
+                .WriteTo.Console()
+                .WriteTo.Seq("http://localhost:5341")
+                .Enrich.WithProperty("Application", "Stack Cafe")
+                .CreateLogger();
+
+            Log.Information("Starting up application");
+
+            try
             {
-                var customerId = Guid.NewGuid();
-                var orderId = Guid.NewGuid();
-
-                using (var scope = container.BeginLifetimeScope())
+                using (var container = IoC.LetThereBeIoC())
                 {
-                    var uow = scope.Resolve<IUnitOfWork>();
-                    var mediator = scope.Resolve<IMediator>();
+                    var customerId = Guid.NewGuid();
+                    var orderId = Guid.NewGuid();
 
-                    mediator.Send(new SignUpCustomerCommand(customerId, "Damian"));
+                    SignUpCustomer(container, customerId);
 
-                    uow.Complete();
+                    PlaceOrder(container, customerId, orderId);
+
+                    CheckCaffeinationStatus(container, customerId);
+
                 }
+            }
+            catch (Exception ex)
+            {
+                Log.Fatal(ex, "Unhandled Exception");
+            }
 
-                using (var scope = container.BeginLifetimeScope())
-                {
-                    var uow = scope.Resolve<IUnitOfWork>();
-                    var mediator = scope.Resolve<IMediator>();
+            Log.CloseAndFlush();
+        }
 
-                    mediator.Send(new CustomerPlaceOrderCommand(orderId, customerId,
-                        new[] {new OrderItemDto("Flat white", 1)}));
-                    mediator.Send(new CustomerPayForOrderCommand(customerId, orderId));
+        private static void CheckCaffeinationStatus(IContainer container, Guid customerId)
+        {
+            using (var scope = container.BeginLifetimeScope())
+            {
+                var repository = scope.Resolve<IRepository<Customer>>();
+                var customer = repository.Get(customerId);
 
-                    uow.Complete();
-                }
+                Console.WriteLine(customer.IsCaffeinated);
+            }
+        }
 
-                using (var scope = container.BeginLifetimeScope())
-                {
-                    var repository = scope.Resolve<IRepository<Customer>>();
-                    var customer = repository.Get(customerId);
+        private static void PlaceOrder(IContainer container, Guid customerId, Guid orderId)
+        {
+            using (var scope = container.BeginLifetimeScope())
+            {
+                var uow = scope.Resolve<IUnitOfWork>();
+                var mediator = scope.Resolve<IMediator>();
 
-                    Console.WriteLine(customer.IsCaffeinated);
-                }
+                mediator.Send(new CustomerPlaceOrderCommand(orderId, customerId,
+                    new[] { new OrderItemDto("Flat white", 1) }));
+                mediator.Send(new CustomerPayForOrderCommand(customerId, orderId));
+
+                uow.Complete();
+            }
+        }
+
+        private static void SignUpCustomer(IContainer container, Guid customerId)
+        {
+            using (var scope = container.BeginLifetimeScope())
+            {
+                var uow = scope.Resolve<IUnitOfWork>();
+                var mediator = scope.Resolve<IMediator>();
+
+                mediator.Send(new SignUpCustomerCommand(customerId, "Damian"));
+
+                uow.Complete();
             }
         }
     }

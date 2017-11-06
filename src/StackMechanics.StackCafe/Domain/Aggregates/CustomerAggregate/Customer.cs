@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using Serilog;
 using StackMechanics.StackCafe.Domain.Aggregates.CustomerAggregate.Events;
 using StackMechanics.StackCafe.Domain.Infrastructure;
 
@@ -22,6 +23,9 @@ namespace StackMechanics.StackCafe.Domain.Aggregates.CustomerAggregate
         public Order PlaceOrder(Guid orderId, OrderItem[] items)
         {
             var order = new Order(orderId, this, items);
+
+            Log.Information("Placing Order {orderId}", order.Id);
+
             Orders.Add(order);
             return order;
         }
@@ -48,7 +52,7 @@ namespace StackMechanics.StackCafe.Domain.Aggregates.CustomerAggregate
             if (order.Customer != this) throw new DomainException("Sorry! That's not my order.");
 
             IsCaffeinated = true;
-
+            Log.Information("Customer {customerId} isCaffinated: {caffinated}", order.Customer.Name, order.Customer.IsCaffeinated);
             DomainEvents.Raise(new CustomerReceivedOrderEvent(order));
         }
     }

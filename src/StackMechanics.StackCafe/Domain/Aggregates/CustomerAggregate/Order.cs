@@ -1,4 +1,5 @@
 using System;
+using Serilog;
 using StackMechanics.StackCafe.Domain.Aggregates.CustomerAggregate.Events;
 using StackMechanics.StackCafe.Domain.Infrastructure;
 
@@ -36,6 +37,7 @@ namespace StackMechanics.StackCafe.Domain.Aggregates.CustomerAggregate
 
             IsReady = true;
 
+            Log.Information("Placing A Order");
             DomainEvents.Raise(new OrderIsReadyEvent(this));
         }
     }

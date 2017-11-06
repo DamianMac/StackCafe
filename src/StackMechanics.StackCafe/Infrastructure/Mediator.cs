@@ -1,4 +1,7 @@
-﻿using Autofac;
+using System;
+using Autofac;
+using Serilog;
+using Serilog.Context;
 using StackMechanics.StackCafe.Domain.Infrastructure;
 
 namespace StackMechanics.StackCafe.Infrastructure
@@ -14,8 +17,12 @@ namespace StackMechanics.StackCafe.Infrastructure
 
         public void Send<TCommand>(TCommand command) where TCommand : ICommand
         {
-            var handler = _scope.Resolve<IHandleCommand<TCommand>>();
-            handler.Handle(command);
+            using (LogContext.PushProperty("MessageId", Guid.NewGuid()))
+            {
+                Log.Debug("Dispatching Command {@Command}", command);
+                var handler = _scope.Resolve<IHandleCommand<TCommand>>();
+                handler.Handle(command);
+            }
         }
 
         public void Publish<TEvent>(TEvent @event) where TEvent : IEvent
