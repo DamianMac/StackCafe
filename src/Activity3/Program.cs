@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Autofac;
 using Autofac.Core;
+using Autofac.Features.OwnedInstances;
 using Serilog;
 using Serilog.Sinks.SystemConsole.Themes;
 using StackCafe.Catalog.Cli;
@@ -34,7 +35,7 @@ namespace Activity3
 
                 builder.RegisterType<InMemoryMessageBus>().Named<IBus>("requests");
                 builder.Register(c => new Activity3MessageBus(
-                        c.ResolveNamed<Lazy<IBus>>("requests"),
+                        c.ResolveNamed<Func<Owned<IBus>>>("requests"),
                         c.Resolve<ILifetimeScope>()))
                     .As<IBus>();
 
