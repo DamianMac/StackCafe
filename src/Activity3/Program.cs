@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Autofac;
-using Autofac.Core;
 using Serilog;
 using Serilog.Sinks.SystemConsole.Themes;
 using StackCafe.Catalog.Cli;
 using StackCafe.Catalog.Data;
-using StackCafe.Catalog.Handlers;
 using StackCafe.Catalog.InMemory;
 using StackCafe.Catalog.Messaging;
 using StackCafe.Catalog.Model;
@@ -34,7 +28,7 @@ namespace Activity3
 
                 builder.RegisterType<InMemoryMessageBus>().Named<IBus>("requests");
                 builder.Register(c => new Activity3MessageBus(
-                        c.ResolveNamed<IBus>("requests"),
+                        c.ResolveNamed<Lazy<IBus>>("requests"),
                         c.Resolve<ILifetimeScope>()))
                     .As<IBus>();
 
