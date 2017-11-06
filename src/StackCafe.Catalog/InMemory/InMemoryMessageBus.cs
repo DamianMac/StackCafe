@@ -21,8 +21,9 @@ namespace StackCafe.Catalog.InMemory
 
         public void Send<TBusCommand>(TBusCommand busCommand) where TBusCommand : IBusCommand
         {
-            if (busCommand is AddProductCommand apc)
+            if (busCommand.GetType() == typeof(AddProductCommand))
             {
+                var apc = (AddProductCommand)(object)busCommand;
                 _addProductHandler.Handle(apc);
             }
             else
