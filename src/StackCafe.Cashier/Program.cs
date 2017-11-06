@@ -1,31 +1,30 @@
-﻿using System;
-using Serilog;
-using StackCafe.Common.Logging;
+﻿using ConfigInjector.QuickAndDirty;
+using StackCafe.Common.Configuration.Configuration;
+using Topshelf;
 
 namespace StackCafe.Cashier
 {
     internal class Program
     {
-        private static int Main(string[] args)
+        public static void Main(string[] args)
         {
-            Log.Logger = DefaultLoggerConfiguration.CreateLogger();
-            try
+            HostFactory.Run(x =>
             {
-                using (var container = IoC.LetThereBeIoC())
+                var serviceName = DefaultSettingsReader.Get<ApplicationName>();
+
+                x.Service<CashierService>(sc =>
                 {
-                    Console.ReadKey();
-                    return 0;
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.Fatal(ex, "An unhandled exception occurred");
-                return 1;
-            }
-            finally
-            {
-                Log.CloseAndFlush();
-            }
+                    sc
+                        .ConstructUsing(() => new CashierService())
+                        .WhenStarted(s => s.Start())
+                        .WhenStopped(s => s.Stop())
+                        ;
+                });
+
+                x.SetServiceName(serviceName);
+                x.SetDisplayName(serviceName);
+                x.SetDescription(serviceName);
+            });
         }
     }
 }
