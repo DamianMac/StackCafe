@@ -7,7 +7,6 @@ namespace StackMechanics.StackCafe.Domain.Services
         public void MakeOrder(Order order)
         {
             //TODO: Mumble, mumble... Don't ask about this coffee. You've never heard of it.
-
             order.MarkAsReady();
         }
     }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using StackMechanics.StackCafe.Domain.Aggregates.CustomerAggregate;
 using StackMechanics.StackCafe.Domain.Aggregates.CustomerAggregate.Commands;
 using StackMechanics.StackCafe.Infrastructure;
@@ -16,7 +17,11 @@ namespace StackMechanics.StackCafe.CommandHandlers
 
         public void Handle(CustomerPayForOrderCommand command)
         {
-            throw new NotImplementedException();
+            var customer = _customerRepository.Get(command.CustomerId);
+            //customer.PayFor(customer.Orders.Get(command.OrderId));
+            var order = customer.Orders.First(o => o.Id == command.OrderId);
+            customer.AcceptDeliveryOfOrder(order);
+            //customer.IsCaffeinated = true;
         }
     }
 }

@@ -4,6 +4,8 @@ using NUnit.Framework;
 using Shouldly;
 using StackMechanics.StackCafe.Domain.Aggregates.CustomerAggregate;
 using StackMechanics.StackCafe.Domain.Aggregates.CustomerAggregate.Commands;
+using StackMechanics.StackCafe.Domain.Aggregates.CustomerAggregate.Events;
+using StackMechanics.StackCafe.Domain.Rules.WhenAnOrderIsPaidFor;
 using StackMechanics.StackCafe.Infrastructure;
 
 namespace StackMechanics.StackCafe.Tests.Integration
@@ -51,10 +53,13 @@ namespace StackMechanics.StackCafe.Tests.Integration
         {
             using (var scope = _container.BeginLifetimeScope())
             {
+                var uow = scope.Resolve<IUnitOfWork>();
+
                 var repository = scope.Resolve<IRepository<Customer>>();
                 var customer = repository.Get(_customerId);
-
+                
                 customer.IsCaffeinated.ShouldBeTrue();
+                uow.Complete();
             }
         }
     }
