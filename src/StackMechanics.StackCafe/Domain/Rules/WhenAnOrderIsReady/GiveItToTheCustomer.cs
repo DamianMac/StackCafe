@@ -16,7 +16,7 @@ namespace StackMechanics.StackCafe.Domain.Rules.WhenAnOrderIsReady
 
         public void Handle(OrderIsReadyEvent e)
         {
-            throw new NotImplementedException();
+            _waiter.DeliverOrderToCustomer(e.Order, e.Order.Customer);
         }
     }
 }
