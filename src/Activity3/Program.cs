@@ -13,6 +13,7 @@ using StackCafe.Catalog.Handlers;
 using StackCafe.Catalog.InMemory;
 using StackCafe.Catalog.Messaging;
 using StackCafe.Catalog.Model;
+using Autofac.Features.OwnedInstances;
 
 namespace Activity3
 {
@@ -34,7 +35,7 @@ namespace Activity3
 
                 builder.RegisterType<InMemoryMessageBus>().Named<IBus>("requests");
                 builder.Register(c => new Activity3MessageBus(
-                        c.ResolveNamed<IBus>("requests"),
+                        c.ResolveNamed<Func<Owned<IBus>>>("requests"),
                         c.Resolve<ILifetimeScope>()))
                     .As<IBus>();
 

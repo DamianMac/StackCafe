@@ -7,6 +7,7 @@ using StackCafe.Catalog.Data;
 using StackCafe.Catalog.InMemory;
 using StackCafe.Catalog.Messaging;
 using StackCafe.Catalog.Model;
+using StackCafe.Catalog.Handlers;
 
 namespace Activity2
 {
@@ -26,7 +27,10 @@ namespace Activity2
                     .As<IProductRepository>()
                     .SingleInstance();
 
-                builder.RegisterType<InMemoryMessageBus>().As<IBus>();
+                builder.RegisterType<InMemoryMessageBus>().Named<IBus>("r");
+                builder.Register(c => new Activity2MessageBus(
+                    c.ResolveNamed<IBus>("r"), 
+                    c.Resolve<ILifetimeScope>())).As<IBus>();
 
                 builder.RegisterType<CommandLineCatalogApi>();
 
