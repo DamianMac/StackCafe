@@ -7,11 +7,11 @@ namespace StackCafe.MakeLineMonitor.Models
 {
     public class MakeLineViewModel
     {
-        public MakeLineViewModel(params string[] items)
+        public MakeLineViewModel(IEnumerable<OrderViewModel> orders)
         {
-            Items = items;
+            Orders = orders.ToArray();
         }
 
-        public string[] Items { get; }
+        public OrderViewModel[] Orders { get; }
     }
 }

@@ -3,7 +3,7 @@
     ViewBag.Title = "Make Line Monitor";
 }
 
-
+<meta http-equiv="refresh" content="1">
 <div class="jumbotron">
 
     <h1>Welcome to Stack Cafe</h1>
@@ -24,11 +24,11 @@
 </div>
 <div class="row">
 
-    @foreach (var item in Model.Items)
+    @foreach (var order in Model.Orders)
     {
-        <div class="col-md-4" style="float: left; border: 1px solid grey;">
+        <div class="col-md-4" style="float: left; border: 1px solid grey; background: @System.Drawing.ColorTranslator.ToHtml(order.Colour)">
 
-            <h2>@item</h2>
+            <h2>@order.CoffeeType</h2>
 
         </div>
     }
