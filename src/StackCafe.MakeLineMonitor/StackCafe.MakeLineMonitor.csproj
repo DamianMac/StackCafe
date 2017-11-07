@@ -56,6 +56,12 @@
     <Reference Include="AutofacSerilogIntegration, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d672c67444a98ac9, processorArchitecture=MSIL">
       <HintPath>..\packages\AutofacSerilogIntegration.2.0.0\lib\net45\AutofacSerilogIntegration.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -181,6 +187,8 @@
     <Compile Include="AutofacModules\AspNetMvcModule.cs" />
     <Compile Include="AutofacModules\ServicesModule.cs" />
     <Compile Include="Controllers\MakeLineController.cs" />
+    <Compile Include="Ef\MakeLineMonitorContext.cs" />
+    <Compile Include="Ef\MakeLineMonitorInitializer.cs" />
     <Compile Include="Models\MakeLineViewModel.cs" />
     <Compile Include="ForceLoadStackMechanicsCommonConfiguration.cs" />
     <Compile Include="ForceLoadStackMechanicsCommonLogging.cs" />
@@ -188,6 +196,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Order.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rules\WhenACustomerPlacesTheirOrder\AddItToTheMakeLine.cs" />
     <Compile Include="Rules\WhenAnOrderIsReady\RemoveItFromTheMakeLine.cs" />

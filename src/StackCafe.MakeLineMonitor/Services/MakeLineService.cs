@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using StackCafe.MakeLineMonitor.Ef;
 
 namespace StackCafe.MakeLineMonitor.Services
 {
@@ -15,10 +16,18 @@ namespace StackCafe.MakeLineMonitor.Services
 
         public void Add(Guid orderId, string coffeeType)
         {
+            var dbcontext = new MakeLineMonitorContext();
+            dbcontext.Orders.Add(new Models.Order()
+            {
+                Id = orderId,
+                Coffee = coffeeType
+            });
+            dbcontext.SaveChanges();
+
             if (this.ordersDictionary.ContainsKey(orderId))
             {
-                Serilog.Log.Information("Updating Order {orderId} from {previous} to {new}", 
-                    orderId, 
+                Serilog.Log.Information("Updating Order {orderId} from {previous} to {new}",
+                    orderId,
                     this.ordersDictionary[orderId],
                     coffeeType);
 
