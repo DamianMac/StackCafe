@@ -46,9 +46,11 @@
   <ItemGroup>
     <Compile Include="Commands\PayForOrderCommand.cs" />
     <Compile Include="Commands\PlaceOrderCommand.cs" />
+    <Compile Include="Commands\RequestPaymentCommand.cs" />
     <Compile Include="Events\CustomerSignedUpEvent.cs" />
     <Compile Include="Events\OrderIsReadyEvent.cs" />
     <Compile Include="Events\OrderPaidForEvent.cs" />
+    <Compile Include="Events\OrderPaymentRequestedEvent.cs" />
     <Compile Include="Events\OrderPlacedEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

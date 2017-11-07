@@ -43,6 +43,12 @@
       <HintPath>..\packages\ConfigInjector.2.2.1175.0\lib\net45\ConfigInjector.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -68,6 +74,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression.FileSystem" />
@@ -86,7 +93,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CashierService.cs" />
+    <Compile Include="CommandHandlers\PayForOrderCommandHandler.cs" />
     <Compile Include="CommandHandlers\PlaceOrderCommandHandler.cs" />
+    <Compile Include="Ef\CustomerDbContext.cs" />
+    <Compile Include="Rules\WhenACustomerPaysForTheirOrder\Class1.cs" />
     <Compile Include="Services\CustomerOrderGenerator.cs" />
     <Compile Include="AutofacModules\PretendCustomerModule.cs" />
     <Compile Include="ForceLoadStackMechanicsCommonConfiguration.cs" />
@@ -102,7 +112,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Configuration\" />
-    <Folder Include="Rules\WhenACustomerPaysForTheirOrder\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\StackCafe.Common.AppDomainScanner\StackCafe.Common.AppDomainScanner.csproj">

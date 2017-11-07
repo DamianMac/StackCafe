@@ -3,6 +3,9 @@ using System.Threading.Tasks;
 using System.Timers;
 using Nimbus;
 using StackCafe.MessageContracts.Commands;
+using StackCafe.Cashier.Ef;
+using System.Linq;
+using Serilog;
 
 namespace StackCafe.Cashier.Services
 {
@@ -47,10 +50,32 @@ namespace StackCafe.Cashier.Services
 
         private async Task PlaceFakeOrder()
         {
-            var customer = _customerNames[_random.Next(_customerNames.Length)];
-            var coffee = _coffeeOrders[_random.Next(_coffeeOrders.Length)];
-            var command = new PlaceOrderCommand(Guid.NewGuid(), customer, coffee);
-            await _bus.Send(command);
+            try
+            {
+                var rnd = new Random();
+                using (var dbcontext = new CustomerDbContext())
+                {
+                    var customerCount = dbcontext.Customers.Count();
+                    var customerNumber = rnd.Next(customerCount);
+
+                    var customer = dbcontext.Customers.OrderBy(c=>c.Name).Skip(customerNumber).Take(1).SingleOrDefault();
+
+                    if (customer != null)
+                    {
+                        var coffee = _coffeeOrders[_random.Next(_coffeeOrders.Length)];
+                        var command = new PlaceOrderCommand(Guid.NewGuid(), customer.Id, customer.Name, coffee);
+                        await _bus.Send(command);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, "unhandled exception");
+            }
+            //var customer = _customerNames[_random.Next(_customerNames.Length)];
+            //var coffee = _coffeeOrders[_random.Next(_coffeeOrders.Length)];
+            //var command = new PlaceOrderCommand(Guid.NewGuid(), customer, coffee);
+            //await _bus.Send(command);
         }
     }
 }

@@ -2,10 +2,7 @@
 using Autofac.Builder;
 using StackCafe.Common.AppDomainScanner;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StackCafe.Customer
 {
@@ -14,7 +11,7 @@ namespace StackCafe.Customer
         public static IContainer LetThereBeIoC(ContainerBuildOptions containerBuildOptions = ContainerBuildOptions.None)
         {
             var builder = new ContainerBuilder();
-            builder.RegisterAssemblyModules(AppDomainScanner.MyAssemblies);
+            builder.RegisterAssemblyModules(AppDomainScanner.MyAssemblies);            
             return builder.Build(containerBuildOptions);
         }
     }

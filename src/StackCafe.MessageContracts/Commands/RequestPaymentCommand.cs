@@ -3,13 +3,15 @@ using System;
 
 namespace StackCafe.MessageContracts.Commands
 {
-    public class PayForOrderCommand : IBusCommand
+    public class RequestPaymentCommand: IBusCommand
     {
-        public PayForOrderCommand(Guid orderId)
+        public RequestPaymentCommand(Guid orderId, decimal price)
         {
+            Price = price;
             OrderId = orderId;
         }
 
         public Guid OrderId { get; set; }
+        public decimal Price { get; set; }
     }
 }

@@ -1,7 +1,9 @@
-﻿namespace StackCafe.MessageContracts.Events
+﻿using System;
+
+namespace StackCafe.MessageContracts.Events
 {
     public class CustomerSignedUpEvent
     {
     }
-    
+   
 }
