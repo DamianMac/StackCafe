@@ -9,6 +9,7 @@ namespace StackCafe.Barista.Rules.WhenACustomerPlacesAnOrder
 {
     public class MakeThemTheirCoffee : IHandleCompetingEvent<OrderPlacedEvent>
     {
+        private static Random _random = new Random();
         private readonly IBus _bus;
         private readonly ILogger _logger;
 
@@ -21,7 +22,7 @@ namespace StackCafe.Barista.Rules.WhenACustomerPlacesAnOrder
         public async Task Handle(OrderPlacedEvent busEvent)
         {
             _logger.Debug("{OrderStatus} {Coffee} for {Customer}", "Making", busEvent.CoffeeType, busEvent.CustomerName);
-            await Task.Delay(TimeSpan.FromSeconds(1));
+            await Task.Delay(TimeSpan.FromSeconds(_random.Next(1, 20)));
             _logger.Information("{OrderStatus} {Coffee} for {Customer}", "Made", busEvent.CoffeeType, busEvent.CustomerName);
 
             await _bus.Publish(new OrderIsReadyEvent(busEvent.OrderId, busEvent.CoffeeType, busEvent.CustomerName));

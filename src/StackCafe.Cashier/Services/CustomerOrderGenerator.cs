@@ -8,12 +8,15 @@ namespace StackCafe.Cashier.Services
 {
     public class CustomerOrderGenerator : IDisposable
     {
-        private static readonly double _interval = TimeSpan.FromSeconds(5).TotalMilliseconds;
+        private static double Interval
+        {
+            get { return TimeSpan.FromSeconds(_random.Next(1, 10)).TotalMilliseconds; }
+        }
         private static readonly string[] _customerNames = {"Damian", "Nick", "Andrew"};
         private static readonly string[] _coffeeOrders = {"Extra shot flat white", "Doppio", "Flat white"};
 
         private readonly IBus _bus;
-        private readonly Random _random = new Random();
+        private static readonly Random _random = new Random();
 
         private Timer _timer;
 
@@ -41,7 +44,7 @@ namespace StackCafe.Cashier.Services
 #pragma warning disable 4014
             PlaceFakeOrder();
 #pragma warning restore 4014
-            timer.Interval = _interval;
+            timer.Interval = Interval;
             timer.Enabled = true;
         }
 
