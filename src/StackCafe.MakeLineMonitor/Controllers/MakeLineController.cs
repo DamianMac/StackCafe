@@ -1,13 +1,31 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Linq.Expressions;
+using System.Web.Mvc;
 using StackCafe.MakeLineMonitor.Models;
+using StackCafe.MakeLineMonitor.Services;
 
 namespace StackCafe.MakeLineMonitor.Controllers
 {
     public class MakeLineController : Controller
     {
+        private readonly IMakeLineService _mls;
+
+        public MakeLineController(IMakeLineService mls)
+        {
+            _mls = mls;
+        }
+
         public ActionResult Index()
         {
-            var model = new MakeLineViewModel("Doppio", "Flat white", "Long black", "Doppio", "Doppio");
+           // StackCafe.MakeLineMonitor.Services.MakeLineService;
+         
+    
+
+               
+
+           var model = new MakeLineViewModel(_mls.Items);
+
+ 
             return View(model);
         }
     }
