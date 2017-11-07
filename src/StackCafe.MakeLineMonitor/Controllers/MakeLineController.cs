@@ -8,14 +8,14 @@ namespace StackCafe.MakeLineMonitor.Controllers
     {
         public MakeLineController(IMakeLineService makeLineService)
         {
-            _MakeLineService = makeLineService;
+            _makeLineService = makeLineService;
         }
 
-        private IMakeLineService _MakeLineService { get; }
+        private readonly IMakeLineService _makeLineService;
 
         public ActionResult Index()
         {
-            var coffees = this._MakeLineService.GetAll();
+            var coffees = this._makeLineService.GetAll();
             var model = new MakeLineViewModel(coffees);
             return View(model);
         }
