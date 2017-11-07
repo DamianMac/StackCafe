@@ -7,7 +7,7 @@ namespace StackCafe.MakeLineMonitor.Rules.WhenAnOrderIsReady
 {
     public class RemoveItFromTheMakeLine : IHandleMulticastEvent<OrderIsReadyEvent>
     {
-        readonly IMakeLineService _makeLine;
+        private readonly IMakeLineService _makeLine;
 
         public RemoveItFromTheMakeLine(IMakeLineService makeLine)
         {

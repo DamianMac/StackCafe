@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Serilog;
 using StackCafe.Waiter.Ef;
@@ -92,7 +91,6 @@ namespace StackCafe.Waiter.Services
                     _logger.Information("{OrderId} can't be fount.", orderId);
                 }
             }
-
         }
 
         private void DeliverOrderToCustomer(Guid orderId)

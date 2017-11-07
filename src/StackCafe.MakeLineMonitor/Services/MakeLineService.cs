@@ -25,7 +25,8 @@ namespace StackCafe.MakeLineMonitor.Services
         {
             using (var dbcontext = new MakeLineMonitorContext())
             {
-                var order = dbcontext.Orders.Single(x => x.Id == orderId);
+                var order = dbcontext.Orders.SingleOrDefault(x => x.Id == orderId);
+
                 if (order != null)
                 {
                     dbcontext.Orders.Remove(order);
