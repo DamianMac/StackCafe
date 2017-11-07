@@ -17,7 +17,8 @@ namespace StackCafe.MakeLineMonitor.Rules.WhenACustomerPlacesTheirOrder
 
         public Task Handle(OrderPlacedEvent busEvent)
         {
-            _makeLine.Add(busEvent.OrderId, busEvent.CoffeeType);
+            
+            _makeLine.Add(busEvent.OrderId, busEvent.CoffeeType + " "+ busEvent.CustomerName + " " +busEvent.OrderId);
             return Task.CompletedTask;
         }
     }

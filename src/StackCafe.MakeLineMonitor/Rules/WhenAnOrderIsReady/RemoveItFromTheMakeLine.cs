@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Nimbus.Handlers;
+using Serilog;
 using StackCafe.MakeLineMonitor.Services;
 using StackCafe.MessageContracts.Events;
 
@@ -17,6 +18,7 @@ namespace StackCafe.MakeLineMonitor.Rules.WhenAnOrderIsReady
         public Task Handle(OrderIsReadyEvent busEvent)
         {
             _makeLine.Remove(busEvent.OrderId);
+            Log.Information("Rm" );
             return Task.CompletedTask;
         }
     }

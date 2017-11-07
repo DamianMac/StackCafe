@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Nimbus.Handlers;
 using StackCafe.MessageContracts.Events;
 using StackCafe.Waiter.Services;
@@ -16,6 +17,7 @@ namespace StackCafe.Waiter.Rules.WhenAnOrderIsReady
 
         public async Task Handle(OrderIsReadyEvent busEvent)
         {
+            throw new Exception("I QUIT");
             _orderDeliveryService.MarkAsMade(busEvent.OrderId);
         }
     }
