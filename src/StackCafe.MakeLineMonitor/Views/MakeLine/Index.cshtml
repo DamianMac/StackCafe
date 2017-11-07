@@ -26,9 +26,9 @@
 
     @foreach (var item in Model.Items)
     {
-        <div class="col-md-4" style="float: left; border: 1px solid grey;">
+        <div class="col-md-4" style="float: left; border: 1px solid grey; background-color:@(item.Colour)" title="@item.OrderId">
 
-            <h2>@item</h2>
+            <h2>@item.Type</h2>
 
         </div>
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StackCafe.MakeLineMonitor.Models;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -9,6 +10,6 @@ namespace StackCafe.MakeLineMonitor.Services
         void Add(Guid orderId, string coffeeType);
         void Remove(Guid orderId);
 
-        IEnumerable<(Guid OrderId, string CoffeeType)> GetMakeline();
+        IEnumerable<OrderItem> GetMakeline();
     }
 }

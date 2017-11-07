@@ -14,7 +14,7 @@ namespace StackCafe.MakeLineMonitor.Controllers
         }
         public ActionResult Index()
         {
-            var makeLineItems = _makeLineService.GetMakeline().Select(m=> m.CoffeeType).ToArray();
+            var makeLineItems = _makeLineService.GetMakeline().ToArray();
             var model = new MakeLineViewModel(makeLineItems);
             return View(model);
         }
