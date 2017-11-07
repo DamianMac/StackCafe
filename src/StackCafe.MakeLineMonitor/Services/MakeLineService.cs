@@ -1,20 +1,32 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Nimbus;
 using Serilog;
+using StackCafe.MakeLineMonitor.Models;
 
 namespace StackCafe.MakeLineMonitor.Services
 {
     public class MakeLineService : IMakeLineService
     {
-        private readonly IDictionary<Guid, string> line = new Dictionary<Guid, string>();
+        private readonly IDictionary<Guid, Order> line = new Dictionary<Guid, Order>();
 
         public void Add(Guid orderId, string coffeeType)
         {
             Log.Information("Add Order {OrderId} Coffer {CoffeeType}", orderId, coffeeType);
-           this.line.Add(orderId, coffeeType);
+           this.line.Add(orderId, new Order(orderId, coffeeType));
+        }
+
+        public void SetPaid(Guid orderId)
+        {
+            Order order;
+            if (line.TryGetValue(orderId, out order))
+            {
+                Log.Information("Paid order {OrderId}", orderId);
+                order.IsPaid = true;
+            }
         }
 
         public void Remove(Guid orderId)
@@ -26,6 +38,6 @@ namespace StackCafe.MakeLineMonitor.Services
             }
         }
 
-        public string[] CurrentOrders => this.line.Values.ToArray();
+        public Order[] CurrentOrders => this.line.Values.ToArray();
     }
 }
