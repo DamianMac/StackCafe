@@ -1,13 +1,24 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Linq;
+using System.Web.Mvc;
 using StackCafe.MakeLineMonitor.Models;
+using StackCafe.MakeLineMonitor.Services;
 
 namespace StackCafe.MakeLineMonitor.Controllers
 {
     public class MakeLineController : Controller
     {
+        private readonly IMakeLineService makeLineService;
+
+        public MakeLineController(IMakeLineService makeLineService)
+        {
+            this.makeLineService = makeLineService;
+        }
+
         public ActionResult Index()
         {
-            var model = new MakeLineViewModel("Doppio", "Flat white", "Long black", "Doppio", "Doppio");
+            var coffees = this.makeLineService.GetOrders().ToArray();
+            var model = new MakeLineViewModel(coffees);
             return View(model);
         }
     }
