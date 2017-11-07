@@ -9,7 +9,7 @@ namespace StackCafe.MakeLineMonitor.Ef
 {
     public class MakeLineMonitorContext : DbContext
     {
-        public MakeLineMonitorContext() : base("Server=localhost;Database=StackCafe;Trusted_Connection=True;")
+        public MakeLineMonitorContext() : base("Server=localhost;Database=StackCafeMakeLineMonitor;Trusted_Connection=True;")
         {
         }
 

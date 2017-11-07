@@ -20,4 +20,5 @@ namespace StackCafe.MessageContracts.Commands
         public string CustomerName { get; set; }
         public string CoffeeType { get; set; }
     }
+    
 }

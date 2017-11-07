@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using StackCafe.MakeLineMonitor.Ef;
 
@@ -7,44 +6,53 @@ namespace StackCafe.MakeLineMonitor.Services
 {
     public class MakeLineService : IMakeLineService
     {
-        private Dictionary<Guid, string> ordersDictionary;
-
-        public MakeLineService()
-        {
-            this.ordersDictionary = new Dictionary<Guid, string>();
-        }
-
         public void Add(Guid orderId, string coffeeType)
         {
-            if (this.ordersDictionary.ContainsKey(orderId))
+            using (var dbcontext = new MakeLineMonitorContext())
             {
-                Serilog.Log.Information("Updating Order {orderId} from {previous} to {new}",
-                    orderId,
-                    this.ordersDictionary[orderId],
-                    coffeeType);
+                dbcontext.Orders.Add(new Models.Order()
+                {
+                    Id = orderId,
+                    Coffee = coffeeType
+                });
+                dbcontext.SaveChanges();
+            }
 
-                this.ordersDictionary[orderId] = coffeeType;
-            }
-            else
-            {
-                Serilog.Log.Information("Adding Order {orderId} for {new}", orderId, coffeeType);
-                this.ordersDictionary.Add(orderId, coffeeType);
-            }
+            Serilog.Log.Information("Adding Order {orderId} for {new}", orderId, coffeeType);
         }
 
         public void Remove(Guid orderId)
         {
-            this.ordersDictionary.Remove(orderId);
+            using (var dbcontext = new MakeLineMonitorContext())
+            {
+                var order = dbcontext.Orders.Single(x => x.Id == orderId);
+                if (order != null)
+                {
+                    dbcontext.Orders.Remove(order);
+                    dbcontext.SaveChanges();
+                    Serilog.Log.Information("Removing Order {orderId}", orderId);
+                }
+                else
+                {
+                    Serilog.Log.Warning("Could not find order id {orderId} to remove it", orderId);
+                }
+            }
         }
 
         public string[] GetAll()
         {
-            return this.ordersDictionary.Values.ToArray();
+            using (var dbcontext = new MakeLineMonitorContext())
+            {
+                return dbcontext.Orders.Select(x => x.Coffee).ToArray();
+            }
         }
 
         public bool IsEmpty()
         {
-            return this.ordersDictionary.Values.Count == 0;
+            using (var dbcontext = new MakeLineMonitorContext())
+            {
+                return dbcontext.Orders.Select(x => x.Id).Any();
+            }
         }
     }
 }
