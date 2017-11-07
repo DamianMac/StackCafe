@@ -12,6 +12,10 @@ namespace StackCafe.Waiter.AutofacModules
             builder.RegisterType<OrderDeliveryService>()
                 .AsImplementedInterfaces()
                 .SingleInstance();
+
+            builder.RegisterType<OrderLockService>()
+                .AsImplementedInterfaces()
+                .SingleInstance();
         }
     }
 }

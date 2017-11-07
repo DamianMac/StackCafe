@@ -43,6 +43,12 @@
       <HintPath>..\packages\ConfigInjector.2.2.1175.0\lib\net45\ConfigInjector.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -68,6 +74,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression.FileSystem" />
@@ -85,8 +92,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ef\WaiterContext.cs" />
+    <Compile Include="Models\Order.cs" />
     <Compile Include="Rules\WhenAnOrderIsPaidFor\CheckWhetherItHasAlreadyBeenMade.cs" />
     <Compile Include="Services\IOrderDeliveryService.cs" />
+    <Compile Include="Services\IOrderLockService.cs" />
     <Compile Include="Services\OrderDeliveryService.cs" />
     <Compile Include="AutofacModules\ServicesModule.cs" />
     <Compile Include="ForceLoadStackMechanicsCommonConfiguration.cs" />
@@ -96,6 +106,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rules\WhenAnOrderIsReady\CheckWhetherItHasBeenPaidFor.cs" />
+    <Compile Include="Services\OrderLockService.cs" />
     <Compile Include="WaiterService.cs" />
   </ItemGroup>
   <ItemGroup>

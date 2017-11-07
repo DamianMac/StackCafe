@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Serilog;
+using StackCafe.Waiter.Ef;
 
 namespace StackCafe.Waiter.Services
 {
     public class OrderDeliveryService : IOrderDeliveryService
     {
         private readonly ILogger _logger;
-        private readonly List<Guid> _madeOrderIds = new List<Guid>();
-        private readonly List<Guid> _paidOrderIds = new List<Guid>();
 
         public OrderDeliveryService(ILogger logger)
         {
@@ -17,37 +17,82 @@ namespace StackCafe.Waiter.Services
 
         public void MarkAsPaid(Guid orderId)
         {
-            _paidOrderIds.Add(orderId);
+            using (var dbcontext = new WaiterContext())
+            {
+                var order = dbcontext.Orders.Where(x => x.Id == orderId).FirstOrDefault();
+
+                if (order == null)
+                {
+                    dbcontext.Orders.Add(new Models.Order()
+                    {
+                        Id = orderId,
+                        Paid = true
+                    });
+                }
+                else
+                {
+                    order.Paid = true;
+                }
+
+                dbcontext.SaveChanges();
+            }
+
             CheckWhetherWeShouldDeliver(orderId);
         }
 
         public void MarkAsMade(Guid orderId)
         {
-            _madeOrderIds.Add(orderId);
-            CheckWhetherWeShouldDeliver(orderId);
-        }
+            using (var dbcontext = new WaiterContext())
+            {
+                var order = dbcontext.Orders.Where(x => x.Id == orderId).FirstOrDefault();
 
-        public bool HasBeenPaid(Guid orderId)
-        {
-            var hasBeenPaid = _paidOrderIds.Contains(orderId);
-            return hasBeenPaid;
+                if (order == null)
+                {
+                    dbcontext.Orders.Add(new Models.Order()
+                    {
+                        Id = orderId,
+                        Made = true
+                    });
+                }
+                else
+                {
+                    order.Made = true;
+                }
+
+                dbcontext.SaveChanges();
+            }
+
+            CheckWhetherWeShouldDeliver(orderId);
         }
 
         private void CheckWhetherWeShouldDeliver(Guid orderId)
         {
-            if (!_madeOrderIds.Contains(orderId))
+            using (var dbcontext = new WaiterContext())
             {
-                _logger.Information("{OrderId} isn't ready yet. We can't give it to the customer.", orderId);
-                return;
+                var order = dbcontext.Orders.AsNoTracking().Where(x => x.Id == orderId).FirstOrDefault();
+
+                if (order != null)
+                {
+                    if (!order.Made)
+                    {
+                        _logger.Information("{OrderId} isn't ready yet. We can't give it to the customer.", orderId);
+                        return;
+                    }
+
+                    if (!order.Paid)
+                    {
+                        _logger.Information("{OrderId} hasn't been paid for yet. We can't give it to the customer.", orderId);
+                        return;
+                    }
+
+                    DeliverOrderToCustomer(orderId);
+                }
+                else
+                {
+                    _logger.Information("{OrderId} can't be fount.", orderId);
+                }
             }
 
-            if (!_paidOrderIds.Contains(orderId))
-            {
-                _logger.Information("{OrderId} hasn't been paid for yet. We can't give it to the customer.", orderId);
-                return;
-            }
-
-            DeliverOrderToCustomer(orderId);
         }
 
         private void DeliverOrderToCustomer(Guid orderId)

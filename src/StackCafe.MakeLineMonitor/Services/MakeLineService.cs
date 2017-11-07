@@ -16,14 +16,6 @@ namespace StackCafe.MakeLineMonitor.Services
 
         public void Add(Guid orderId, string coffeeType)
         {
-            var dbcontext = new MakeLineMonitorContext();
-            dbcontext.Orders.Add(new Models.Order()
-            {
-                Id = orderId,
-                Coffee = coffeeType
-            });
-            dbcontext.SaveChanges();
-
             if (this.ordersDictionary.ContainsKey(orderId))
             {
                 Serilog.Log.Information("Updating Order {orderId} from {previous} to {new}",
