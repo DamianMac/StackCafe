@@ -179,6 +179,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="AutofacModules\AspNetMvcModule.cs" />
     <Compile Include="AutofacModules\ServicesModule.cs" />
+    <Compile Include="Controllers\DeadLetterController.cs" />
     <Compile Include="Controllers\MakeLineController.cs" />
     <Compile Include="ForceLoadStackMechanicsCommonConfiguration.cs" />
     <Compile Include="ForceLoadStackMechanicsCommonLogging.cs" />
@@ -186,6 +187,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DeadLetterViewModel.cs" />
     <Compile Include="Models\MakeLineViewModel.cs" />
     <Compile Include="Models\OrderViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -225,6 +227,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\MakeLine\Index.cshtml" />
+    <Content Include="Views\DeadLetter\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
