@@ -19,7 +19,10 @@ namespace StackCafe.Common.Logging
             var logger = new LoggerConfiguration()
                 .MinimumLevel.ControlledBy(logLevelSwitch)
                 .WriteTo.Console()
-                .WriteTo.Seq(DefaultSettingsReader.Get<SeqServerUrl>().ToString(), controlLevelSwitch: logLevelSwitch)
+                .WriteTo.Seq(
+                    DefaultSettingsReader.Get<SeqServerUrl>().ToString(),
+                    apiKey: DefaultSettingsReader.Get<SeqApiKey>(),
+                    controlLevelSwitch: logLevelSwitch)
                 .Enrich.WithProcessId()
                 .Enrich.WithMachineName()
                 .Enrich.WithEnvironmentUserName()

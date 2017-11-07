@@ -94,6 +94,7 @@
   <ItemGroup>
     <Compile Include="AssemblyMarker.cs" />
     <Compile Include="AutofacModules\LoggerModule.cs" />
+    <Compile Include="Configuration\SeqApiKey.cs" />
     <Compile Include="Configuration\SeqServerUrl.cs" />
     <Compile Include="Enrichers\CorrelationIdEnricher.cs" />
     <Compile Include="DefaultLoggerConfiguration.cs" />
