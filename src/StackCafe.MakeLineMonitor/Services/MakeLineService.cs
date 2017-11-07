@@ -10,17 +10,20 @@ namespace StackCafe.MakeLineMonitor.Services
 
         public void Add(Guid orderId, string coffeeType)
         {
-            _items.Add(orderId, coffeeType);
+            lock (_items)
+                _items.Add(orderId, coffeeType);
         }
 
         public void Remove(Guid orderId)
         {
-            _items.Remove(orderId);
+            lock (_items)
+                _items.Remove(orderId);
         }
 
         public string[] Get()
         {
-            return _items.Values.ToArray();
+            lock (_items)
+                return _items.Values.ToArray();
         }
     }
 }
