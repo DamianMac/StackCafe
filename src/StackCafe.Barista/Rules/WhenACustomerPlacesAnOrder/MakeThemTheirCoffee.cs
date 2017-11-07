@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using Nimbus;
 using Nimbus.Handlers;
@@ -23,7 +23,7 @@ namespace StackCafe.Barista.Rules.WhenACustomerPlacesAnOrder
             _logger.Debug("{OrderStatus} {Coffee} for {Customer}", "Making", busEvent.CoffeeType, busEvent.CustomerName);
             await Task.Delay(TimeSpan.FromSeconds(1));
             _logger.Information("{OrderStatus} {Coffee} for {Customer}", "Made", busEvent.CoffeeType, busEvent.CustomerName);
-
+            await Task.Delay(8000);
             await _bus.Publish(new OrderIsReadyEvent(busEvent.OrderId, busEvent.CoffeeType, busEvent.CustomerName));
         }
     }
