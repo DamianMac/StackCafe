@@ -181,6 +181,7 @@
     <Compile Include="AutofacModules\AspNetMvcModule.cs" />
     <Compile Include="AutofacModules\ServicesModule.cs" />
     <Compile Include="Controllers\MakeLineController.cs" />
+    <Compile Include="Models\MakeLineViewModel.cs" />
     <Compile Include="ForceLoadStackMechanicsCommonConfiguration.cs" />
     <Compile Include="ForceLoadStackMechanicsCommonLogging.cs" />
     <Compile Include="ForceLoadStackMechanicsCommonMessageBus.cs" />
@@ -228,7 +229,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

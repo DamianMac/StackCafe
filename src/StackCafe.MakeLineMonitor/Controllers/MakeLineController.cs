@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using StackCafe.MakeLineMonitor.Models;
 
 namespace StackCafe.MakeLineMonitor.Controllers
 {
@@ -6,7 +7,8 @@ namespace StackCafe.MakeLineMonitor.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            var model = new MakeLineViewModel("Doppio", "Flat white", "Long black", "Doppio", "Doppio");
+            return View(model);
         }
     }
 }
