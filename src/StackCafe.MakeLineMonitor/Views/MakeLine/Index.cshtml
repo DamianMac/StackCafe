@@ -3,6 +3,12 @@
     ViewBag.Title = "Make Line Monitor";
 }
 
+<style>
+    .item {
+        float: left;
+        border: 1px solid grey;
+    }
+</style>
 
 <div class="jumbotron">
 
@@ -22,16 +28,29 @@
         </p>
     </div>
 </div>
-<div class="row">
+<div class="row" id="items"></div>
 
-    @foreach (var item in Model.Items)
-    {
-        <div class="col-md-4" style="float: left; border: 1px solid grey;">
-
-            <h2>@item</h2>
-
-        </div>
-    }
-
-
-</div>
+@section scripts
+{
+    <script>
+        (function worker() {
+            jQuery.ajax({
+                url: "@Url.Action("GetItems", "MakeLine")",
+                success: res => {
+                    var $items = $('#items');
+                    $items.empty();
+                    res.Items.map(item => {
+                        $items.append(
+                            $('<div/>', { class: 'col-md-4 item' }).append(
+                                $('<h2/>', { text: item })
+                            )
+                        );
+                    });
+                },
+                complete: () => {
+                    setTimeout(worker, 500);
+                }
+            });
+        })();
+    </script>
+}

@@ -20,15 +20,14 @@ namespace StackCafe.MakeLineMonitor.Controllers
 
         public ActionResult Index()
         {
-            var model = new MakeLineViewModel(_makeLine.Get());
-            return View(model);
+            return View();
         }
 
         [HttpGet]
         public JsonResult GetItems()
         {
             var model = new MakeLineViewModel(_makeLine.Get());
-            return Json(model);
+            return Json(model, JsonRequestBehavior.AllowGet);
         }
     }
 }
