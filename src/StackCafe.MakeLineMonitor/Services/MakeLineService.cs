@@ -15,14 +15,27 @@ namespace StackCafe.MakeLineMonitor.Services
 
         public void Add(Guid orderId, string coffeeType)
         {
-            this.ordersDictionary.Add(orderId, coffeeType);
+            if (this.ordersDictionary.ContainsKey(orderId))
+            {
+                Serilog.Log.Information("Updating Order {orderId} from {previous} to {new}", 
+                    orderId, 
+                    this.ordersDictionary[orderId],
+                    coffeeType);
+
+                this.ordersDictionary[orderId] = coffeeType;
+            }
+            else
+            {
+                Serilog.Log.Information("Adding Order {orderId} for {new}", orderId, coffeeType);
+                this.ordersDictionary.Add(orderId, coffeeType);
+            }
         }
 
         public void Remove(Guid orderId)
         {
             this.ordersDictionary.Remove(orderId);
         }
-        
+
         public string[] GetAll()
         {
             return this.ordersDictionary.Values.ToArray();
