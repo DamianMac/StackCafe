@@ -28,10 +28,18 @@
     {
         <div class="col-md-4" style="float: left; border: 1px solid grey;">
 
-            <h2>@item</h2>
+            <h2>@item.OrderType</h2>
+            <p>Price: $@item.Price</p>
+            <p>@item.OrderId</p>
 
         </div>
-    }
+    }   
 
 
 </div>
+
+<script>
+    setTimeout(function() {
+        window.location.reload();
+    }, 1000)
+</script>

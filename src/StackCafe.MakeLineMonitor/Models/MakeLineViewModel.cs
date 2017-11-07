@@ -2,11 +2,11 @@
 {
     public class MakeLineViewModel
     {
-        public MakeLineViewModel(params string[] items)
+        public MakeLineViewModel(params MakeLineItem[] items)
         {
             Items = items;
         }
 
-        public string[] Items { get; }
+        public MakeLineItem[] Items { get; }
     }
 }

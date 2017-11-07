@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using StackCafe.MakeLineMonitor.Models;
 
 namespace StackCafe.MakeLineMonitor.Services
 {
@@ -8,24 +9,25 @@ namespace StackCafe.MakeLineMonitor.Services
     {
         public MakeLineService()
         {
-            this.LineOrders = new Dictionary<Guid, string>();
+            this.LineOrders = new List<MakeLineItem>();
         }
 
         public void Add(Guid orderId, string coffeeType)
         {
-            LineOrders.Add(orderId, coffeeType);
+            LineOrders.Add(new MakeLineItem(coffeeType, orderId));
         }
 
         public void Remove(Guid orderId)
         {
-            LineOrders.Remove(orderId);
+            var item = LineOrders.Find(o => o.OrderId == orderId);
+            this.LineOrders.Remove(item);
         }
 
-        public string[] GetOrders()
+        public MakeLineItem[] GetOrders()
         {
-            return this.LineOrders.Select(x => x.Value).ToArray();
+            return this.LineOrders.ToArray();
         }
 
-        private Dictionary<Guid,string> LineOrders { get; }
+        private List<MakeLineItem> LineOrders { get; }
     }
 }
