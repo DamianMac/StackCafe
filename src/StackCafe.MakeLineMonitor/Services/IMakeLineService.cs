@@ -5,7 +5,7 @@ namespace StackCafe.MakeLineMonitor.Services
 {
     public interface IMakeLineService
     {
-        void Add(Guid orderId, string coffeeType);
+        void Add(Guid orderId, string customerName, string coffeeType);
 
         void SetPaid(Guid orderId);
 

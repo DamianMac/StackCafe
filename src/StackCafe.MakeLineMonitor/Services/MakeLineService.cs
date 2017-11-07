@@ -13,10 +13,10 @@ namespace StackCafe.MakeLineMonitor.Services
     {
         private readonly IDictionary<Guid, Order> line = new Dictionary<Guid, Order>();
 
-        public void Add(Guid orderId, string coffeeType)
+        public void Add(Guid orderId, string customerName, string coffeeType)
         {
             Log.Information("Add Order {OrderId} Coffer {CoffeeType}", orderId, coffeeType);
-           this.line.Add(orderId, new Order(orderId, coffeeType));
+           this.line.Add(orderId, new Order(orderId, customerName, coffeeType));
         }
 
         public void SetPaid(Guid orderId)
