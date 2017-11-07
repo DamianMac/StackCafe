@@ -16,7 +16,7 @@ namespace StackCafe.MakeLineMonitor.Services
         {
             lock (_pendingOrders)
             {
-                _pendingOrders.Add(new OrderItem() { OrderId = orderId, Type = coffeeType });
+                _pendingOrders.Add(new OrderItem(orderId, coffeeType));
             }
         }
 
@@ -49,7 +49,10 @@ namespace StackCafe.MakeLineMonitor.Services
         {
             lock (_pendingOrders)
             {
-                var oldOrders = _pendingOrders.Where(p => p.CompletedTime.HasValue && p.CompletedTime < DateTime.Now.AddMinutes(-1)).ToList();
+                var oldOrders = _pendingOrders.Where(p =>
+                    p.CompletedTime.HasValue && p.CompletedTime < DateTime.Now.AddMinutes(-1)
+                    || p.OrderTime < DateTime.Now.AddMinutes(-5)
+                ).ToList();
                 foreach (var item in oldOrders)
                 {
                     _pendingOrders.Remove(item);

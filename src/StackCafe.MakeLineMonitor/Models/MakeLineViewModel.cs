@@ -15,8 +15,15 @@ namespace StackCafe.MakeLineMonitor.Models
 
     public class OrderItem
     {
-        public Guid OrderId { get; set; }
-        public string Type { get; set; }
+        public OrderItem(Guid orderId, string coffeeType)
+        {
+            OrderId = orderId;
+            Type = coffeeType;
+            OrderTime = DateTime.Now;
+        }
+        public Guid OrderId { get;  }
+        public string Type { get;  }
+        public DateTime OrderTime { get; }
         public DateTime? CompletedTime { get; set; }
         public string Colour
         {
