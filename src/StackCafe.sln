@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27004.2006
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackCafe.MessageContracts", "StackCafe.MessageContracts\StackCafe.MessageContracts.csproj", "{C318769A-9797-4C06-9105-B76CFB78D128}"
 EndProject
@@ -25,6 +25,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackCafe.MakeLineMonitor", "StackCafe.MakeLineMonitor\StackCafe.MakeLineMonitor.csproj", "{B45935BF-64F0-4AEB-8C66-06EE3AFC6FE8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackCafe.Chef", "StackCafe.Chef\StackCafe.Chef.csproj", "{4F18C704-0CE9-471D-B4F8-926C3BB717B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -68,10 +70,10 @@ Global
 		{B45935BF-64F0-4AEB-8C66-06EE3AFC6FE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B45935BF-64F0-4AEB-8C66-06EE3AFC6FE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B45935BF-64F0-4AEB-8C66-06EE3AFC6FE8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{06F95D29-E7AF-44CF-98F2-B276F7FB53FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{06F95D29-E7AF-44CF-98F2-B276F7FB53FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{06F95D29-E7AF-44CF-98F2-B276F7FB53FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{06F95D29-E7AF-44CF-98F2-B276F7FB53FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F18C704-0CE9-471D-B4F8-926C3BB717B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F18C704-0CE9-471D-B4F8-926C3BB717B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F18C704-0CE9-471D-B4F8-926C3BB717B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F18C704-0CE9-471D-B4F8-926C3BB717B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
