@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 using Nimbus.Handlers;
 using StackCafe.MakeLineMonitor.Services;
 using StackCafe.MessageContracts.Events;
@@ -16,7 +16,7 @@ namespace StackCafe.MakeLineMonitor.Rules.WhenACustomerPlacesTheirOrder
 
         public Task Handle(OrderPlacedEvent busEvent)
         {
-            _makeLine.Add(busEvent.OrderId, busEvent.ItemName, busEvent.ItemType);
+            _makeLine.Add(busEvent.OrderId, busEvent.Items);
             return Task.CompletedTask;
         }
     }
