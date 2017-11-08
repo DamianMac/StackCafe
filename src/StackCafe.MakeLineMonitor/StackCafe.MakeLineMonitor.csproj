@@ -195,7 +195,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rules\WhenACustomerPlacesTheirOrder\AddItToTheMakeLine.cs" />
-    <Compile Include="Rules\WhenAnOrderIsReady\RemoveItFromTheMakeLine.cs" />
+    <Compile Include="Rules\WhenItemIsComplete\RemoveItFromTheMakeLine.cs" />
     <Compile Include="Services\IMakeLineService.cs" />
     <Compile Include="Services\MakeLineService.cs" />
   </ItemGroup>

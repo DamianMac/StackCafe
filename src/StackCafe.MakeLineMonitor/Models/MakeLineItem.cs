@@ -7,5 +7,6 @@ namespace StackCafe.MakeLineMonitor.Models
         public string Name { get; set; }
         public string Type { get; set; }
         public TimeSpan PrepTime { get; set; }
+        public string Code { get; set; }
     }
 }

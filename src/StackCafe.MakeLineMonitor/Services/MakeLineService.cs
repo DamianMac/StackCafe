@@ -18,7 +18,7 @@ namespace StackCafe.MakeLineMonitor.Services
 
         public void Add(Guid orderId, List<Item> items)
         {
-            var makelineItems = items.Select(i => new MakeLineItem {Name = i.ItemName, Type = i.ItemType, PrepTime = TimeSpan.FromSeconds(i.ItemPrepTime)}).ToList();
+            var makelineItems = items.Select(i => new MakeLineItem {Name = i.ItemName, Type = i.ItemType, PrepTime = TimeSpan.FromSeconds(i.ItemPrepTime), Code = i.ItemCode}).ToList();
             lock (ItemsLock)
             {
                 Items.Add(orderId, makelineItems);
@@ -26,9 +26,10 @@ namespace StackCafe.MakeLineMonitor.Services
             }
         }
 
-        public void Remove(Guid orderId)
+        public void Remove(Guid orderId, string itemCode)
         {
-            Items.Remove(orderId);
+            var item = Items[orderId].First(i => i.Code == itemCode);
+            Items[orderId].Remove(item);
         }
 
         public List<List<MakeLineItem>> Get()
