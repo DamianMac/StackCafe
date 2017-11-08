@@ -1,5 +1,5 @@
 ﻿using StackCafe.Notifications.Configuration;
-using TransmitSms;
+//using TransmitSms;
 
 namespace StackCafe.Notifications.Services
 {
@@ -8,7 +8,7 @@ namespace StackCafe.Notifications.Services
         private readonly string _apiKey;
         private readonly string _apiSecret;
 
-        public BurstSmsProvider(string apiKey, string apiSecret)
+        public BurstSmsProvider(SmsApiKey apiKey, SmsApiSecret apiSecret)
         {
             _apiKey = apiKey;
             _apiSecret = apiSecret;
@@ -20,13 +20,13 @@ namespace StackCafe.Notifications.Services
 
             string[] sendTo = { phoneNumber };
             
-            var manager = new TransmitSmsWrapper(_apiKey, _apiSecret, "https://api.transmitsms.com/");
+            //var manager = new TransmitSmsWrapper(_apiKey, _apiSecret, "https://api.transmitsms.com/");
             
             
             
-            // Send an SMS via SendSms
+            //// Send an SMS via SendSms
 
-            var response = manager.SendSms(message, sendTo, "StackCafe", null, null, "", "", 0);
+            //var response = manager.SendSms(message, sendTo, "StackCafe", null, null, "", "", 0);
 
 
 
