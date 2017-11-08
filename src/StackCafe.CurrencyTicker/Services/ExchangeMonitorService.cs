@@ -89,6 +89,7 @@ namespace StackCafe.CurrencyTicker.Services
         private async Task LetEveryoneKnowTheCurrentPrice(CurrencyExchangeRate price)
         {
             var @event = new CurrencyExchangeRateUpdatedEvent(price);
+            Serilog.Log.Information("Sending Currency Update {@Event}", @event);
             await _bus.Publish(@event);
         }
     }

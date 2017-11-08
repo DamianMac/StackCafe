@@ -76,7 +76,7 @@ namespace StackCafe.Cashier.Services
 
 
             // for now, we'll pretend that we take the customer's money before actually adding the order to the queue
-            _logger.Information("{Customer} just paid {Ammount} for their coffee. Thank you :)", customer, amount.Amount);
+            _logger.Information("{Customer} just paid {Ammount} in {Currency} for their coffee. Thank you :)", customer, amount.Amount, amount.Currency);
             await _bus.Publish(new OrderPaidForEvent(orderId, amount));
 
         }
