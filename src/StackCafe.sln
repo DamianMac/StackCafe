@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27004.2006
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackCafe.MessageContracts", "StackCafe.MessageContracts\StackCafe.MessageContracts.csproj", "{C318769A-9797-4C06-9105-B76CFB78D128}"
 EndProject
@@ -45,6 +45,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackCafe.MakeLineMonitor",
 		{0DF202D2-752A-4647-9B4B-E8A0F8E33F16} = {0DF202D2-752A-4647-9B4B-E8A0F8E33F16}
 		{A6A6C9E2-EA69-4FC3-8369-CEDC8A96C204} = {A6A6C9E2-EA69-4FC3-8369-CEDC8A96C204}
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackCafe.Chef", "StackCafe.Chef\StackCafe.Chef.csproj", "{4F18C704-0CE9-471D-B4F8-926C3BB717B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

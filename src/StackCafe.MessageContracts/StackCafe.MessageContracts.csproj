@@ -45,11 +45,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\PayForOrderCommand.cs" />
+    <Compile Include="Commands\PlaceDrinkOrderCommand.cs" />
+    <Compile Include="Commands\PlaceFoodOrderCommand.cs" />
     <Compile Include="Commands\PlaceOrderCommand.cs" />
     <Compile Include="Events\CustomerSignedUpEvent.cs" />
     <Compile Include="Events\OrderIsReadyEvent.cs" />
     <Compile Include="Events\OrderPaidForEvent.cs" />
     <Compile Include="Events\OrderPlacedEvent.cs" />
+    <Compile Include="Item.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
