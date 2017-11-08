@@ -13,9 +13,9 @@ namespace StackCafe.MakeLineMonitor.Services
             Items = new Dictionary<Guid, string>();
         }
 
-        public void Add(Guid orderId, string coffeeType)
+        public void Add(Guid orderId, string itemName, string itemType)
         {
-            Items[orderId] = coffeeType;
+            Items[orderId] = itemName;
         }
 
         public void Remove(Guid orderId)
@@ -23,9 +23,9 @@ namespace StackCafe.MakeLineMonitor.Services
             Items.Remove(orderId);
         }
 
-        public string[] Get()
+        public IEnumerable<string> Get()
         {
-            return Items.Values.ToArray();
+            return Items.Values;
         }
     }
 }
