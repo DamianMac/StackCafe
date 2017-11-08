@@ -10,14 +10,20 @@ namespace StackCafe.Cashier.Services
     {
         public decimal ConvertToBTC(decimal amount)
         {
-            return amount * AudToBtc;
+            if (!AudToBtc.HasValue)
+                throw new Exception("Sorry but we don't have a BTC conversion rate");
+
+            return amount * AudToBtc.Value;
         }
 
         public decimal ConvertToAUD(decimal amount)
         {
-            return amount / AudToBtc;
+            if (!AudToBtc.HasValue)
+                throw new Exception("Sorry but we don't have a BTC conversion rate");
+
+            return amount / AudToBtc.Value;
         }
 
-        public decimal AudToBtc { get; set; }
+        public decimal? AudToBtc { get; set; }
     }
 }

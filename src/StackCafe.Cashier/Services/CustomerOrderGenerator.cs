@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Timers;
 using Nimbus;
+using Serilog;
 using StackCafe.MessageContracts.Commands;
 using StackCafe.MessageContracts.Events;
 
@@ -83,10 +84,21 @@ namespace StackCafe.Cashier.Services
 
         private Currency AskCustomerWhatCurrencyTheyWouldLike()
         {
+            if (_btcCurrencyConverterService.AudToBtc == null)
+            {
+                Log.Information("We don't yet had a BTC conversion rate, so must pay in AUD");
+
+                return Currency.AUD;
+            }
+
             Random rnd = new Random();
             var randInt = rnd.Next(2);
 
-            return randInt == 1 ? Currency.AUD : Currency.BTC;
+            var choice = randInt == 1 ? Currency.AUD : Currency.BTC;
+
+            Log.Information("Customer wants to pay in {Currency}",choice);
+
+            return choice;
         }
     }
 }
