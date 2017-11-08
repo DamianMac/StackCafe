@@ -22,19 +22,24 @@ namespace StackCafe.MakeLineMonitor.Services
             lock (ItemsLock)
             {
                 Items.Add(orderId, makelineItems);
-
             }
         }
 
         public void Remove(Guid orderId, string itemCode)
         {
-            var item = Items[orderId].First(i => i.Code == itemCode);
-            Items[orderId].Remove(item);
+            lock (ItemsLock)
+            {
+                var item = Items[orderId].First(i => i.Code == itemCode);
+                Items[orderId].Remove(item);
+            }
         }
 
         public List<List<MakeLineItem>> Get()
         {
-            return Items.Values.ToList();
+            lock (ItemsLock)
+            {
+                return Items.Values.ToList();
+            }
         }
     }
 }

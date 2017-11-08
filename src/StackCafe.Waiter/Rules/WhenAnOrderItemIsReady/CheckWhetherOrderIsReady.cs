@@ -5,7 +5,7 @@ using StackCafe.Waiter.Services;
 
 namespace StackCafe.Waiter.Rules.WhenAnOrderItemIsReady
 {
-    public class CheckWhetherOrderIsReady : IHandleCompetingEvent<OrderItemCompleteEvent>
+    public class CheckWhetherOrderIsReady : IHandleMulticastEvent<OrderItemCompleteEvent>
     {
         private readonly IOrderDeliveryService _orderDeliveryService;
 

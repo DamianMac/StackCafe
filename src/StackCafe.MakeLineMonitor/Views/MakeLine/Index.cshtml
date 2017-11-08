@@ -12,12 +12,18 @@
 
 <div class="jumbotron">
 
-    <h1>Welcome to Stack Cafe</h1>
+    <h1>Welcome to Stack Cafe - @Model.view</h1>
 
     <p class="lead">Now go and make coffee.</p>
     <p>
         And <em>don't smile at the customers!</em>
     </p>
+    <form>
+        <input type="radio" id="Food"/>
+        <label for="Food">Food</label>
+        <input type="radio" id="Drink"/>
+        <label for="Drink">Drink</label>
+    </form>
 
 </div>
 <div class="row">
@@ -54,5 +60,13 @@
                 }
             });
         })();
+
+        jQuery('#Food').click(e => {
+            window.location.href = '@Url.Action("Index", "MakeLine", new { view = "Food" })';
+        });
+
+        jQuery('#Drink').click(e => {
+            window.location.href = '@Url.Action("Index", "MakeLine", new { view = "Drink" })';
+        });
     </script>
 }
