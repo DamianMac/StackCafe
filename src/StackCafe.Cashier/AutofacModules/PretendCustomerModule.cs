@@ -14,6 +14,10 @@ namespace StackCafe.Cashier.AutofacModules
                 .SingleInstance()
                 .AutoActivate()
                 .OnActivated(c => c.Instance.Start());
+
+            builder.RegisterType<BtcCurrencyConverterService>()
+                .As<IBtcCurrencyConverterService>()
+                .SingleInstance();
         }
     }
 }

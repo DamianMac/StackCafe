@@ -9,11 +9,19 @@ namespace StackCafe.MessageContracts.Events
         {
         }
 
-        public OrderPaidForEvent(Guid orderId)
+        public OrderPaidForEvent(Guid orderId, CurrencyAmount amnount)
         {
             OrderId = orderId;
         }
 
         public Guid OrderId { get; set; }
+    }
+
+    public class CurrencyAmount
+    {
+        public CurrencyAmount(string currency, decimal amount)
+        {
+            
+        }
     }
 }
