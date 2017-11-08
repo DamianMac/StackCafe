@@ -9,7 +9,5 @@ namespace StackCafe.Waiter.Services
         void MarkItemAsMade(Guid orderId, string itemCode);
         void MarkAsPaid(Guid orderId);
         void MarkAsMade(Guid orderId);
-        bool HasBeenMade(Guid orderId);
-        bool HasBeenPaid(Guid orderId);
     }
 }
