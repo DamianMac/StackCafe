@@ -10,8 +10,8 @@ namespace StackCafe.Cashier.Services
     public class CustomerOrderGenerator : IDisposable
     {
         private static readonly double _interval = TimeSpan.FromSeconds(5).TotalMilliseconds;
-        private static readonly string[] _customerNames = {"Damian", "Nick", "Andrew"};
-        private static readonly string[] _coffeeOrders = {"Extra shot flat white", "Doppio", "Flat white"};
+        private static readonly string[] _customerNames = { "Damian", "Nick", "Andrew" };
+        private static readonly string[] _coffeeOrders = { "Extra shot flat white", "Doppio", "Flat white" };
 
         private readonly IBus _bus;
         private readonly Random _random = new Random();
@@ -42,7 +42,7 @@ namespace StackCafe.Cashier.Services
 
         private void OnTimerElapsed(object sender, ElapsedEventArgs e)
         {
-            var timer = (Timer) sender;
+            var timer = (Timer)sender;
 #pragma warning disable 4014
             PlaceFakeOrder();
 #pragma warning restore 4014
@@ -61,18 +61,18 @@ namespace StackCafe.Cashier.Services
 
             CurrencyAmount amount;
             var currency = AskCustomerWhatCurrencyTheyWouldLike(); // mock pick random currency
-            if (currency == "AUD")
+            switch (currency)
             {
-                amount = new CurrencyAmount("AUD", 3.00M);
-            } else if (currency == "BTC")
-            {
-                var btc = _btcCurrencyConverterService.ConvertToBTC(3.00M); 
-                amount = new CurrencyAmount("BTC", btc);
-            }
-            else
-            {
-                throw new NotSupportedException();
-            }
+                case Currency.AUD:
+                    amount = new CurrencyAmount(Currency.AUD, 3.00M);
+                    break;
+                case Currency.BTC:
+                    var btc = _btcCurrencyConverterService.ConvertToBTC(3.00M);
+                    amount = new CurrencyAmount(Currency.BTC, btc);
+                    break;
+                default:
+                    throw new NotSupportedException();
+            }         
 
 
             // for now, we'll pretend that we take the customer's money before actually adding the order to the queue
@@ -81,12 +81,12 @@ namespace StackCafe.Cashier.Services
 
         }
 
-        private string AskCustomerWhatCurrencyTheyWouldLike()
+        private Currency AskCustomerWhatCurrencyTheyWouldLike()
         {
             Random rnd = new Random();
             var randInt = rnd.Next(2);
 
-            return randInt == 1 ? "AUD" : "BTC";
+            return randInt == 1 ? Currency.AUD : Currency.BTC;
         }
     }
 }

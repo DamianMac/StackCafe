@@ -1,21 +1,20 @@
-﻿using System;
+﻿using Nimbus;
+using StackCafe.MessageContracts.Events;
+using System;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
-using Nimbus;
-using StackCafe.MessageContracts.Commands;
-using StackCafe.CurrencyTicker.Services.Coindesk;
-using System.Net;
-using StackCafe.MessageContracts.Events;
-using System.Linq;
 
 namespace StackCafe.CurrencyTicker.Services
 {
     public class ExchangeMonitorService : IDisposable
     {
         private readonly IBus _bus;
-
-
-        private Timer _timer;
+        private HttpClient _httpClient = new HttpClient();
+        private System.Timers.Timer _timer;
 
         public ExchangeMonitorService(IBus bus)
         {
@@ -29,7 +28,7 @@ namespace StackCafe.CurrencyTicker.Services
 
         public void Start()
         {
-            _timer = new Timer();
+            _timer = new System.Timers.Timer();
             _timer.Elapsed += OnTimerElapsed;
             _timer.Interval = 10000;
             _timer.Enabled = true;
@@ -37,23 +36,14 @@ namespace StackCafe.CurrencyTicker.Services
 
         private async void OnTimerElapsed(object sender, ElapsedEventArgs e)
         {
-            var timer = (Timer)sender;
+            var timer = (System.Timers.Timer)sender;
 #pragma warning disable 4014
             foreach (Currency currency in Enum.GetValues(typeof(Currency)))
             {
                 if (currency != Currency.BTC)
                 {
-                    try
-                    {
-                        var price = await GetThePrice(currency);
-                        LetEveryoneKnowTheCurrentPrice(price);
-                    }
-                    catch (Exception)
-                    {
-
-                        throw;
-                    }
-
+                    var price = await GetThePrice(currency);
+                    LetEveryoneKnowTheCurrentPrice(price);
                 }
             }
 #pragma warning restore 4014
@@ -66,14 +56,28 @@ namespace StackCafe.CurrencyTicker.Services
         private const string ApiEndpoint = "https://api.coindesk.com/v1/bpi/currentprice/{0}.json";
 
 
+        private Task _throttle = Task.CompletedTask;
+
         private async Task<CurrencyExchangeRate> GetThePrice(Currency currencyCode)
         {
             var endpointUrl = string.Format(ApiEndpoint, currencyCode);
             string apiResponse;
-            using (var webClient = new WebClient())
+
+            _throttle.Wait();
+
+            var response = await _httpClient.GetAsync(endpointUrl);
+            if (!response.IsSuccessStatusCode)
             {
-                apiResponse = await webClient.DownloadStringTaskAsync(endpointUrl);
+                switch (response.StatusCode)
+                {
+                    case (HttpStatusCode)429:
+                        Interlocked.Exchange(ref _throttle, Task.Delay(10000));
+                        break;
+                }
+                return await GetThePrice(currencyCode);
             }
+            apiResponse = await response.Content.ReadAsStringAsync();
+
             var jObject = Newtonsoft.Json.Linq.JObject.Parse(apiResponse);
 
             var rate = (double)jObject.SelectToken(string.Format("bpi.{0}.rate_float", currencyCode));

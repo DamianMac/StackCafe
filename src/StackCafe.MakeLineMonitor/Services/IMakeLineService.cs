@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StackCafe.MessageContracts.Events;
+using System;
 
 namespace StackCafe.MakeLineMonitor.Services
 {
