@@ -1,5 +1,7 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
 using Nimbus.MessageContracts;
+using StackCafe.MessageContracts.Events;
 
 namespace StackCafe.MessageContracts.Commands
 {
@@ -9,15 +11,15 @@ namespace StackCafe.MessageContracts.Commands
         {
         }
 
-        public PlaceOrderCommand(Guid orderId, string customerName, string coffeeType)
+        public PlaceOrderCommand(Guid orderId, string customerName, List<Item> items)
         {
             OrderId = orderId;
             CustomerName = customerName;
-            CoffeeType = coffeeType;
+            Items = items;
         }
 
         public Guid OrderId { get; set; }
         public string CustomerName { get; set; }
-        public string CoffeeType { get; set; }
+        public List<Item> Items { get; set; }
     }
 }

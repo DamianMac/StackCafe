@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using StackCafe.MakeLineMonitor.Models;
+using StackCafe.MessageContracts.Events;
 
 namespace StackCafe.MakeLineMonitor.Services
 {
     public interface IMakeLineService
     {
-        void Add(Guid orderId, string itemName, string itemType);
+        void Add(Guid orderId, List<Item> items);
         void Remove(Guid orderId);
-        IEnumerable<MakeLineItem> Get();
+        List<List<MakeLineItem>> Get();
     }
 }

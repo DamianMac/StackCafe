@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 using Nimbus;
 using Nimbus.Handlers;
 using StackCafe.MessageContracts.Commands;
@@ -20,12 +20,15 @@ namespace StackCafe.Cashier.CommandHandlers
 
         public async Task Handle(PlaceOrderCommand busCommand)
         {
+
             // for now, we'll pretend that we take the customer's money before actually adding the order to the queue
             _logger.Information("{Customer} just paid for their coffee. Thank you :)", busCommand.CustomerName);
             await _bus.Publish(new OrderPaidForEvent(busCommand.OrderId));
 
-            _logger.Information("{Customer} would like a {ItemType}", busCommand.CustomerName, busCommand.CoffeeType);
-            await _bus.Publish(new OrderPlacedEvent(busCommand.OrderId, TODO, busCommand.CoffeeType, busCommand.CustomerName));
+            _logger.Information("{Customer} placed their order for {ItemType}", busCommand.CustomerName, busCommand.Items[0].ItemType);
+            _logger.Information("{Customer} placed their order for {ItemType}", busCommand.CustomerName, busCommand.Items[1].ItemType);
+
+            await _bus.Publish(new OrderPlacedEvent(busCommand.OrderId, busCommand.CustomerName, busCommand.Items));
         }
     }
 }

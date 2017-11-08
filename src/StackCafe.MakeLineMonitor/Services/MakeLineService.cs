@@ -2,25 +2,26 @@
 using System.Collections.Generic;
 using System.Linq;
 using StackCafe.MakeLineMonitor.Models;
+using StackCafe.MessageContracts.Events;
 
 namespace StackCafe.MakeLineMonitor.Services
 {
     public class MakeLineService : IMakeLineService
     {
-        public Dictionary<Guid, MakeLineItem> Items { get; }
+        public Dictionary<Guid, List<MakeLineItem>> Items { get; }
 
         public MakeLineService()
         {
-            Items = new Dictionary<Guid, MakeLineItem>();
+            Items = new Dictionary<Guid, List<MakeLineItem>>();
         }
 
-        public void Add(Guid orderId, string itemName, string itemType)
+        public void Add(Guid orderId, List<Item> items)
         {
-            Items[orderId] = new MakeLineItem
+            Items[orderId] = new List<MakeLineItem>(items.Select(i => new MakeLineItem
             {
-                ItemName = itemName,
-                ItemType = itemType
-            };
+                ItemName = i.ItemName,
+                ItemType = i.ItemType
+            }).ToList());
         }
 
         public void Remove(Guid orderId)
@@ -28,9 +29,9 @@ namespace StackCafe.MakeLineMonitor.Services
             Items.Remove(orderId);
         }
 
-        public IEnumerable<MakeLineItem> Get()
+        public List<List<MakeLineItem>> Get()
         {
-            return Items.Values;
+            return Items.Values.ToList();
         }
     }
 }
