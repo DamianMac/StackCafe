@@ -25,7 +25,13 @@ namespace StackCafe.MakeLineMonitor.Controllers
         [HttpGet]
         public JsonResult GetItems(string menuItemType)
         {
-            var model = new MakeLineViewModel(_makeLine.Get().SelectMany(l => l).Where(i => i.ItemType == menuItemType).Select(i => i.ItemName).ToArray());
+            var model = new MakeLineViewModel(
+                _makeLine.Get()
+                .SelectMany(l => l)
+                .Where(i => i.ItemType == menuItemType)
+                .Select(i => i.ItemName)
+                .ToArray()
+            );
             return Json(model, JsonRequestBehavior.AllowGet);
         }
     }

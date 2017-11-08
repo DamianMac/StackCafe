@@ -34,8 +34,10 @@
 {
     <script>
         (function worker() {
+            var urlParams = new URLSearchParams(window.location.search);
+
             jQuery.ajax({
-                url: "@Url.Action("GetItems", "MakeLine")",
+                url: `@Url.Action("GetItems", "MakeLine")?menuItemType=${urlParams.get('menuItemType')}`,
                 success: res => {
                     var $items = $('#items');
                     $items.empty();

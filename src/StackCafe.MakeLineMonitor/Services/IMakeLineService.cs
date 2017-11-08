@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using StackCafe.MakeLineMonitor.Models;
-using StackCafe.MessageContracts.Events;
+using StackCafe.MessageContracts;
 
 namespace StackCafe.MakeLineMonitor.Services
 {

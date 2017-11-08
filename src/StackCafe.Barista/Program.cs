@@ -1,4 +1,5 @@
-﻿using ConfigInjector.QuickAndDirty;
+﻿using System;
+using ConfigInjector.QuickAndDirty;
 using StackCafe.Common.Configuration.Configuration;
 using Topshelf;
 
@@ -8,23 +9,30 @@ namespace StackCafe.Barista
     {
         public static void Main(string[] args)
         {
-            HostFactory.Run(x =>
+            try
             {
-                var serviceName = DefaultSettingsReader.Get<ApplicationName>();
-
-                x.Service<BaristaService>(sc =>
+                HostFactory.Run(x =>
                 {
-                    sc
-                        .ConstructUsing(() => new BaristaService())
-                        .WhenStarted(s => s.Start())
-                        .WhenStopped(s => s.Stop())
-                        ;
-                });
+                    var serviceName = DefaultSettingsReader.Get<ApplicationName>();
 
-                x.SetServiceName(serviceName);
-                x.SetDisplayName(serviceName);
-                x.SetDescription(serviceName);
-            });
+                    x.Service<BaristaService>(sc =>
+                    {
+                        sc
+                            .ConstructUsing(() => new BaristaService())
+                            .WhenStarted(s => s.Start())
+                            .WhenStopped(s => s.Stop())
+                            ;
+                    });
+
+                    x.SetServiceName(serviceName);
+                    x.SetDisplayName(serviceName);
+                    x.SetDescription(serviceName);
+                });
+            }
+            catch (Exception e)
+            {
+
+            }
         }
     }
 }

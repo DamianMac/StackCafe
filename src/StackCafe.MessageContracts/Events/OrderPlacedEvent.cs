@@ -22,6 +22,6 @@ namespace StackCafe.MessageContracts.Events
 
         public string CustomerName { get; set; }
 
-        public List<Item> Items = new List<Item>();
+        public List<Item> Items { get; set; } = new List<Item>();
     }
 }

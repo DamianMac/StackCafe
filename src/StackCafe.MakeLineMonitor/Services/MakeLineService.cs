@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using StackCafe.MakeLineMonitor.Models;
-using StackCafe.MessageContracts.Events;
+using StackCafe.MessageContracts;
 
 namespace StackCafe.MakeLineMonitor.Services
 {
     public class MakeLineService : IMakeLineService
     {
-        public Dictionary<Guid, List<MakeLineItem>> Items { get; }
+        public Dictionary<Guid, List<MakeLineItem>> Items { get; private set; }
+        private object ItemsLock = new object();
 
         public MakeLineService()
         {
@@ -17,11 +18,12 @@ namespace StackCafe.MakeLineMonitor.Services
 
         public void Add(Guid orderId, List<Item> items)
         {
-            Items[orderId] = new List<MakeLineItem>(items.Select(i => new MakeLineItem
+            var makelineItems = items.Select(i => new MakeLineItem {ItemName = i.ItemName, ItemType = i.ItemType}).ToList();
+            lock (ItemsLock)
             {
-                ItemName = i.ItemName,
-                ItemType = i.ItemType
-            }).ToList());
+                Items.Add(orderId, makelineItems);
+
+            }
         }
 
         public void Remove(Guid orderId)
