@@ -1,11 +1,14 @@
 ﻿using System;
+using StackCafe.MessageContracts;
 
 namespace StackCafe.MakeLineMonitor.Services
 {
     public interface IMakeLineService
     {
-        void Add(Guid orderId, string[] items);
+        void Add(Guid orderId, OrderItemDto[] items);
         void Remove(Guid orderId);
-        string[] GetAllItems();
+        OrderItemDto[] GetAllItems();
     }
+
+    
 }

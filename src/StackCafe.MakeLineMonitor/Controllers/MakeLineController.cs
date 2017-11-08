@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
 using StackCafe.MakeLineMonitor.Models;
 using StackCafe.MakeLineMonitor.Services;
 
@@ -15,7 +16,7 @@ namespace StackCafe.MakeLineMonitor.Controllers
 
         public ActionResult Index()
         {
-            var model = new MakeLineViewModel(_makeLineService.GetAllItems());
+            var model = new MakeLineViewModel(_makeLineService.GetAllItems().Select(orderItem => new OrderItemViewModel() { Name = orderItem.Name, WasRecommended = orderItem.WasRecommended }).ToArray());
             return View(model);
         }
     }

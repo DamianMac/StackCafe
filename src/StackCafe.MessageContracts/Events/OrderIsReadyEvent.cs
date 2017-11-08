@@ -9,7 +9,7 @@ namespace StackCafe.MessageContracts.Events
         {
         }
 
-        public OrderIsReadyEvent(Guid orderId,  string customerName, string[] items)
+        public OrderIsReadyEvent(Guid orderId,  string customerName, OrderItemDto[] items)
         {
             OrderId = orderId;
             CustomerName = customerName;
@@ -18,6 +18,6 @@ namespace StackCafe.MessageContracts.Events
 
         public Guid OrderId { get; set; }
         public string CustomerName { get; set; }
-        public string[] Items { get; }
+        public OrderItemDto[] Items { get; }
     }
 }

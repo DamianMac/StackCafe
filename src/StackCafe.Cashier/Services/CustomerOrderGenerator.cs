@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Timers;
 using Nimbus;
+using StackCafe.MessageContracts;
 using StackCafe.MessageContracts.Commands;
 using StackCafe.MessageContracts.Requests;
 
@@ -55,11 +56,11 @@ namespace StackCafe.Cashier.Services
         {
             var customer = _customerNames[_random.Next(_customerNames.Length)];
 
-            var items = new List<string>();
+            var items = new List<OrderItemDto>();
             for (var i = 0; i < _random.Next(1, 5); i++)
             {
                 var coffee = _coffeeOrders[_random.Next(_coffeeOrders.Length)];
-                items.Add(coffee);
+                items.Add(new OrderItemDto() {Name = coffee});
             }
 
             await UpdateWithRecommendation(customer, items);
@@ -68,16 +69,16 @@ namespace StackCafe.Cashier.Services
             await _bus.Send(command);
         }
 
-        private async Task UpdateWithRecommendation(string customer, List<string> items)
+        private async Task UpdateWithRecommendation(string customer, List<OrderItemDto> items)
         {
             //var recommendation = await _bus.Request(new RecommendationRequest(customer, items));
-            var recommendations = await _recommendationService.AskForRecommendations(customer, items);
+            var recommendations = await _recommendationService.AskForRecommendations(customer, items.Select(item => item.Name).ToList());
             if (recommendations.Any())
             {
                 var response = await _bus.Request(
                     new RecommendationRequest() {Customer = customer, RecommendedItems = recommendations});
                 if (response.IsAccepted)
-                    items.AddRange(recommendations);
+                    items.AddRange(recommendations.Select(rec => new OrderItemDto() {Name = rec, WasRecommended = true}));
             }
         }
     }

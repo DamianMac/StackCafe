@@ -3,7 +3,7 @@
     ViewBag.Title = "Make Line Monitor";
 }
 
-<meta http-equiv="refresh" content="3"/>
+@*<meta http-equiv="refresh" content="3"/>*@
 <div class="jumbotron">
 
     <h1>Welcome to Stack Cafe</h1>
@@ -28,7 +28,11 @@
     {
         <div class="col-md-4" style="float: left; border: 1px solid grey;">
 
-            <h2>@item</h2>
+            <h2>@item.Name</h2>
+            @if (item.WasRecommended)
+            {
+                <i style="color:green;">Recommended</i>
+            }
 
         </div>
     }

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Nimbus.Handlers;
 using StackCafe.Cashier.Services;
 using StackCafe.MessageContracts.Events;
@@ -16,7 +17,7 @@ namespace StackCafe.Cashier.Rules.WhenACustomerPlacesAnOrder
 
         public Task Handle(OrderPlacedEvent busEvent)
         {
-            _orderStorage.AddOrder(busEvent.CustomerName, busEvent.Items);
+            _orderStorage.AddOrder(busEvent.CustomerName, busEvent.Items.Select(item => item.Name).ToArray());
             return Task.CompletedTask;
         }
     }

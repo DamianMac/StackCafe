@@ -2,11 +2,17 @@
 {
     public class MakeLineViewModel
     {
-        public MakeLineViewModel(params string[] items)
+        public MakeLineViewModel(params OrderItemViewModel[] items)
         {
             Items = items;
         }
 
-        public string[] Items { get; }
+        public OrderItemViewModel[] Items { get; }
+    }
+
+    public class OrderItemViewModel
+    {
+        public string Name { get; set; }
+        public bool WasRecommended { get; set; }
     }
 }
