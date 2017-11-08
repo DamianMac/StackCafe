@@ -2,9 +2,13 @@
 using System.Threading.Tasks;
 using System.Timers;
 using Nimbus;
+<<<<<<< HEAD
 using StackCafe.MessageContracts.Commands;
 using StackCafe.CurrencyTicker.Services.Coindesk;
 using System.Net;
+=======
+using StackCafe.MessageContracts.Events;
+>>>>>>> ee0f4f9e4c12492bd515dd58b6905bd5fa1c84bf
 
 namespace StackCafe.CurrencyTicker.Services
 {
@@ -45,6 +49,7 @@ namespace StackCafe.CurrencyTicker.Services
         }
 
 
+
         private const string ApiEndpoint = "https://api.coindesk.com/v1/bpi/currentprice/{0}.json";
         private const string Aud = "AUD";
 
@@ -57,15 +62,13 @@ namespace StackCafe.CurrencyTicker.Services
             var apiResponse = await webClient.DownloadStringTaskAsync(endpointUrl);
 
             var responseObject = Newtonsoft.Json.JsonConvert.DeserializeObject<CoindeskApiResponseObject>(apiResponse);
-            return 1;
+            return new CurrencyExchangeRate((decimal)(_random.NextDouble() * 0.001), Currency.BTC);
         }
 
-        private async Task LetEveryoneKnowTheCurrentPrice()
+        private async Task LetEveryoneKnowTheCurrentPrice(CurrencyExchangeRate price)
         {
-            var customer = _customerNames[_random.Next(_customerNames.Length)];
-            var coffee = _coffeeOrders[_random.Next(_coffeeOrders.Length)];
-            var command = new PlaceOrderCommand(Guid.NewGuid(), customer, coffee);
-            await _bus.Send(command);
+            var @event = new CurrencyExchangeRateEvent(price);
+            await _bus.Publish(@event);
         }
     }
 

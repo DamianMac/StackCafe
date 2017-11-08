@@ -5,7 +5,7 @@ using StackCafe.Common.Logging;
 
 namespace StackCafe.CurrencyTicker
 {
-    internal class BaristaService
+    internal class CurrencyTickerService
     {
         private IContainer _container;
 

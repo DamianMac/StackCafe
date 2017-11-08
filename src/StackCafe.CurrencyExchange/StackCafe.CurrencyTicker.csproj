@@ -110,7 +110,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutofacModules\ExchangeMonitorServiceModule.cs" />
-    <Compile Include="BaristaService.cs" />
+    <Compile Include="CurrencyTickerService.cs" />
     <Compile Include="ForceLoadStackMechanicsCommonConfiguration.cs" />
     <Compile Include="ForceLoadStackMechanicsCommonLogging.cs" />
     <Compile Include="ForceLoadStackMechanicsCommonMessageBus.cs" />

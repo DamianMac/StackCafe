@@ -20,10 +20,6 @@ namespace StackCafe.Cashier.CommandHandlers
 
         public async Task Handle(PlaceOrderCommand busCommand)
         {
-            // for now, we'll pretend that we take the customer's money before actually adding the order to the queue
-            _logger.Information("{Customer} just paid for their coffee. Thank you :)", busCommand.CustomerName);
-            await _bus.Publish(new OrderPaidForEvent(busCommand.OrderId));
-
             _logger.Information("{Customer} would like a {CoffeeType}", busCommand.CustomerName, busCommand.CoffeeType);
             await _bus.Publish(new OrderPlacedEvent(busCommand.OrderId, busCommand.CoffeeType, busCommand.CustomerName));
         }
