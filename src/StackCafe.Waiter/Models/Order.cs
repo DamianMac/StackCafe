@@ -6,18 +6,27 @@ namespace StackCafe.Waiter.Models
 {
     public class Order
     {
+        public Order()
+        {
+        }
+
+        public Order(Guid id)
+        {
+            this.Id = id;
+        }
+
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public Guid Id { get;  set; }
+        public virtual Guid Id { get; protected set; }
 
-        public bool Paid { get;  set; }
+        public virtual bool Paid { get; protected set; }
 
-        public bool Made { get;  set; }
+        public virtual bool Made { get; protected set; }
 
-        public string Coffee { get;  set; }
+        public virtual string Coffee { get; protected set; }
 
-        public string CustomerName { get;  set; }
+        public virtual string CustomerName { get; protected set; }
 
-        public bool IsDelivered { get; private set; }
+        public virtual bool IsDelivered { get; protected set; }
 
         public bool CanBeDelivered()
         {
@@ -52,6 +61,46 @@ namespace StackCafe.Waiter.Models
 
             // This DOES is in process NOT Bus
             // DomainEvents.Raise(new OrderDeliveredEvent(this));
+        }
+
+        public bool CanPay()
+        {
+            if (Paid)
+            {
+                Log.Information("{OrderId} Shouldn't pay twice.", Id);
+                return false;
+            }
+
+            return true;
+        }
+
+        public void MarkAsPaid()
+        {
+            if (!CanPay()) throw new Exception();
+
+            Paid = true;
+
+            Log.Information("Customer Paid {OrderId}.", Id);
+        }
+
+        public bool CanMake()
+        {
+            if (Made)
+            {
+                Log.Information("{OrderId} Shouldn't make twice.", Id);
+                return false;
+            }
+
+            return true;
+        }
+
+        public void MarkAsMade()
+        {
+            if (!CanMake()) throw new Exception();
+
+            Made = true;
+
+            Log.Information("{OrderId} Made.", Id);
         }
     }
 }

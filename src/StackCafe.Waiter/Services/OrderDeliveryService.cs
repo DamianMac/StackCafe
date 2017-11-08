@@ -45,15 +45,13 @@ namespace StackCafe.Waiter.Services
 
                 if (order == null)
                 {
-                    dbcontext.Orders.Add(new Models.Order()
-                    {
-                        Id = orderId,
-                        Made = true
-                    });
+                    var newOrder = new Order(orderId);
+                    newOrder.MarkAsMade();
+                    dbcontext.Orders.Add(newOrder);
                 }
                 else
                 {
-                    order.Made = true;
+                    order.MarkAsMade();
                 }
 
                 dbcontext.SaveChanges();
@@ -70,15 +68,13 @@ namespace StackCafe.Waiter.Services
 
                 if (order == null)
                 {
-                    dbcontext.Orders.Add(new Models.Order()
-                    {
-                        Id = orderId,
-                        Paid = true
-                    });
+                    var newOrder = new Models.Order(orderId);
+                    newOrder.MarkAsPaid();
+                    dbcontext.Orders.Add(newOrder);
                 }
                 else
                 {
-                    order.Paid = true;
+                    order.MarkAsPaid();
                 }
 
                 dbcontext.SaveChanges();
