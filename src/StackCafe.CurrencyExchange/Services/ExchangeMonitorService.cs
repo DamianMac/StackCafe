@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 using System.Timers;
 using Nimbus;
 using StackCafe.MessageContracts.Commands;
+using StackCafe.CurrencyTicker.Services.Coindesk;
+using System.Net;
 
 namespace StackCafe.CurrencyTicker.Services
 {
@@ -33,7 +35,7 @@ namespace StackCafe.CurrencyTicker.Services
 
         private void OnTimerElapsed(object sender, ElapsedEventArgs e)
         {
-            var timer = (Timer) sender;
+            var timer = (Timer)sender;
 #pragma warning disable 4014
             var price = GetThePrice();
             LetEveryoneKnowTheCurrentPrice(price);
@@ -42,8 +44,19 @@ namespace StackCafe.CurrencyTicker.Services
             timer.Enabled = true;
         }
 
-        private decimal GetThePrice()
+
+        private const string ApiEndpoint = "https://api.coindesk.com/v1/bpi/currentprice/{0}.json";
+        private const string Aud = "AUD";
+
+        private async decimal GetThePrice()
         {
+            var endpointUrl = string.Format(ApiEndpoint, Aud);
+
+            var webClient = new WebClient();
+
+            var apiResponse = await webClient.DownloadStringTaskAsync(endpointUrl);
+
+            var responseObject = Newtonsoft.Json.JsonConvert.DeserializeObject<CoindeskApiResponseObject>(apiResponse);
             return 1;
         }
 
@@ -55,4 +68,6 @@ namespace StackCafe.CurrencyTicker.Services
             await _bus.Send(command);
         }
     }
+
+
 }

@@ -118,6 +118,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rules\WhenACustomerPlacesAnOrder\MakeThemTheirCoffee.cs" />
+    <Compile Include="Services\Coindesk\CoindeskApi.cs" />
     <Compile Include="Services\ExchangeMonitorService.cs" />
   </ItemGroup>
   <ItemGroup>
