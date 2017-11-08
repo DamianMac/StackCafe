@@ -6,7 +6,6 @@ using System.Timers;
 using Nimbus;
 using StackCafe.MessageContracts;
 using StackCafe.MessageContracts.Commands;
-using StackCafe.MessageContracts.Events;
 
 namespace StackCafe.Cashier.Services
 {
