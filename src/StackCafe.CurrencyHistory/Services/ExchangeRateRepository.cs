@@ -11,7 +11,7 @@ namespace StackCafe.CurrencyHistory.Services
     {
         public ExchangeRateRepository()
         {
-            _history.Add(new CurrencyExchangeRate(9599.7603m, Currency.BTC, Currency.AUD, new DateTimeOffset(2017, 11, 8, 4, 7, 0, 0, TimeSpan.Zero));
+            _history.Add(new CurrencyExchangeRate(9599.7603m, Currency.BTC, Currency.AUD, new DateTimeOffset(2017, 11, 8, 4, 7, 0, 0, TimeSpan.Zero)));
         }
         private readonly List<CurrencyExchangeRate> _history = new List<CurrencyExchangeRate>();
         public void Add(CurrencyExchangeRate currencyExchangeRate)
