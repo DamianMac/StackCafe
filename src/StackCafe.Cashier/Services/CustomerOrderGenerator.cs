@@ -53,6 +53,7 @@ namespace StackCafe.Cashier.Services
             AddFakeOrderItem("Specialty Bread Sample Plate", "SBSP", ItemType.Food);
             AddFakeOrderItem("Smoked Salmon Platter", "SSPT", ItemType.Food);
             AddFakeOrderItem("Steel Cut Oatmeal", "STOM", ItemType.Food);
+            AddFakeOrderItem("Smashed Avocado On Toast", "SAOT", ItemType.Food);
         }
 
         public void Dispose()
@@ -112,11 +113,19 @@ namespace StackCafe.Cashier.Services
             var command = new PlaceOrderCommand(orderId, customer, itemsToSend);
             await _bus.Send(command);
 
+            var prepTimeDifference = itemsToSend.First().ItemPrepTime - itemsToSend.Last().ItemPrepTime;
+            // negative means food takes longer to prep
+            // positive means drink takes longer to prep
+            var foodOffset = DateTimeOffset.Now.AddSeconds(prepTimeDifference > 0 ? prepTimeDifference : 0);
+            var drinkOffset = DateTimeOffset.Now.AddSeconds(prepTimeDifference < 0 ? prepTimeDifference * -1 : 0);
+
             var foodCommand = new PlaceFoodOrderCommand(orderId, itemsToSend.Where(i => i.ItemType == ItemType.Food.ToString()).ToList());
-            await _bus.Send(foodCommand);
+            //await _bus.Send(foodCommand);
+            await _bus.SendAt(foodCommand, foodOffset);
 
             var drinkCommand = new PlaceDrinkOrderCommand(orderId, itemsToSend.Where(i => i.ItemType == ItemType.Drink.ToString()).ToList());
-            await _bus.Send(drinkCommand);
+            //await _bus.Send(drinkCommand);
+            await _bus.SendAt(drinkCommand, drinkOffset);
         }
 
         private static void AddFakeOrderItem(string name, string code, ItemType type)
