@@ -6,10 +6,25 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackCafe.MessageContracts", "StackCafe.MessageContracts\StackCafe.MessageContracts.csproj", "{C318769A-9797-4C06-9105-B76CFB78D128}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackCafe.Barista", "StackCafe.Barista\StackCafe.Barista.csproj", "{94DBDCEB-FA39-42B1-83EE-7A575C96C981}"
+	ProjectSection(ProjectDependencies) = postProject
+		{97894097-3746-4A18-AE4F-FA6F65593930} = {97894097-3746-4A18-AE4F-FA6F65593930}
+		{0DF202D2-752A-4647-9B4B-E8A0F8E33F16} = {0DF202D2-752A-4647-9B4B-E8A0F8E33F16}
+		{A6A6C9E2-EA69-4FC3-8369-CEDC8A96C204} = {A6A6C9E2-EA69-4FC3-8369-CEDC8A96C204}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackCafe.Waiter", "StackCafe.Waiter\StackCafe.Waiter.csproj", "{97894097-3746-4A18-AE4F-FA6F65593930}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C318769A-9797-4C06-9105-B76CFB78D128} = {C318769A-9797-4C06-9105-B76CFB78D128}
+		{0DF202D2-752A-4647-9B4B-E8A0F8E33F16} = {0DF202D2-752A-4647-9B4B-E8A0F8E33F16}
+		{A6A6C9E2-EA69-4FC3-8369-CEDC8A96C204} = {A6A6C9E2-EA69-4FC3-8369-CEDC8A96C204}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackCafe.Cashier", "StackCafe.Cashier\StackCafe.Cashier.csproj", "{DBBFCA6E-7F0F-439D-AA50-57D49ED6A7F2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{97894097-3746-4A18-AE4F-FA6F65593930} = {97894097-3746-4A18-AE4F-FA6F65593930}
+		{0DF202D2-752A-4647-9B4B-E8A0F8E33F16} = {0DF202D2-752A-4647-9B4B-E8A0F8E33F16}
+		{A6A6C9E2-EA69-4FC3-8369-CEDC8A96C204} = {A6A6C9E2-EA69-4FC3-8369-CEDC8A96C204}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackCafe.Common.Logging", "StackCafe.Common.Logging\StackCafe.Common.Logging.csproj", "{A6A6C9E2-EA69-4FC3-8369-CEDC8A96C204}"
 EndProject
@@ -25,6 +40,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackCafe.MakeLineMonitor", "StackCafe.MakeLineMonitor\StackCafe.MakeLineMonitor.csproj", "{B45935BF-64F0-4AEB-8C66-06EE3AFC6FE8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{97894097-3746-4A18-AE4F-FA6F65593930} = {97894097-3746-4A18-AE4F-FA6F65593930}
+		{0DF202D2-752A-4647-9B4B-E8A0F8E33F16} = {0DF202D2-752A-4647-9B4B-E8A0F8E33F16}
+		{A6A6C9E2-EA69-4FC3-8369-CEDC8A96C204} = {A6A6C9E2-EA69-4FC3-8369-CEDC8A96C204}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -68,10 +88,6 @@ Global
 		{B45935BF-64F0-4AEB-8C66-06EE3AFC6FE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B45935BF-64F0-4AEB-8C66-06EE3AFC6FE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B45935BF-64F0-4AEB-8C66-06EE3AFC6FE8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{06F95D29-E7AF-44CF-98F2-B276F7FB53FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{06F95D29-E7AF-44CF-98F2-B276F7FB53FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{06F95D29-E7AF-44CF-98F2-B276F7FB53FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{06F95D29-E7AF-44CF-98F2-B276F7FB53FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
 using Serilog;
 using StackCafe.MakeLineMonitor.Models;
 using StackCafe.MakeLineMonitor.Services;
@@ -16,15 +17,15 @@ namespace StackCafe.MakeLineMonitor.Controllers
             _makeLine = makeLine;
         }
 
-        public ActionResult Index()
+        public ActionResult Index(string menuItemType)
         {
             return View();
         }
 
         [HttpGet]
-        public JsonResult GetItems()
+        public JsonResult GetItems(string menuItemType)
         {
-            var model = new MakeLineViewModel(_makeLine.Get());
+            var model = new MakeLineViewModel(_makeLine.Get().Where(i => i.ItemType == menuItemType).Select(i => i.ItemName).ToArray());
             return Json(model, JsonRequestBehavior.AllowGet);
         }
     }
