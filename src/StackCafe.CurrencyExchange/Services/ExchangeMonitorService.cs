@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Timers;
 using Nimbus;
 using StackCafe.MessageContracts.Commands;
+using StackCafe.MessageContracts.Events;
 
 namespace StackCafe.CurrencyTicker.Services
 {
@@ -42,17 +43,15 @@ namespace StackCafe.CurrencyTicker.Services
             timer.Enabled = true;
         }
 
-        private decimal GetThePrice()
+        private CurrencyAmount GetThePrice()
         {
-            return 1;
+            return new CurrencyAmount((decimal)(_random.NextDouble() * 0.001), Currency.BTC);
         }
 
-        private async Task LetEveryoneKnowTheCurrentPrice()
+        private async Task LetEveryoneKnowTheCurrentPrice(CurrencyAmount price)
         {
-            var customer = _customerNames[_random.Next(_customerNames.Length)];
-            var coffee = _coffeeOrders[_random.Next(_coffeeOrders.Length)];
-            var command = new PlaceOrderCommand(Guid.NewGuid(), customer, coffee);
-            await _bus.Send(command);
+            var @event = new CurrentPriceEvent(price);
+            await _bus.Publish(@event);
         }
     }
 }
