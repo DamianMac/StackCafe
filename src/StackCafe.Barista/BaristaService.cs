@@ -1,6 +1,7 @@
 ﻿using System;
 using Autofac;
 using Serilog;
+using StackCafe.Common.Configuration;
 using StackCafe.Common.Logging;
 
 namespace StackCafe.Barista

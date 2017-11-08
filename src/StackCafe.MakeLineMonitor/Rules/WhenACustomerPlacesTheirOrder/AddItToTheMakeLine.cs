@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using Nimbus;
 using Nimbus.Handlers;
 using StackCafe.MakeLineMonitor.Services;
 using StackCafe.MessageContracts.Events;

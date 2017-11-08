@@ -5,6 +5,7 @@ using System.Web.Routing;
 using Autofac;
 using Autofac.Integration.Mvc;
 using Serilog;
+using StackCafe.Common.Configuration;
 using StackCafe.Common.Logging;
 
 namespace StackCafe.MakeLineMonitor

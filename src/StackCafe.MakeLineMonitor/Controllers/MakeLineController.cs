@@ -1,6 +1,4 @@
-﻿using System.Linq;
-using System.Web.Mvc;
-using System.Web.UI.WebControls;
+﻿using System.Web.Mvc;
 using Serilog;
 using StackCafe.MakeLineMonitor.Models;
 using StackCafe.MakeLineMonitor.Services;
