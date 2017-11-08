@@ -3,9 +3,9 @@ using Nimbus.MessageContracts;
 
 namespace StackCafe.MessageContracts.Events
 {
-    public class CurrencyExchangeRateEvent : IBusEvent
+    public class CurrencyExchangeRateUpdatedEvent : IBusEvent
     {
-        public CurrencyExchangeRateEvent(CurrencyExchangeRate currencyExchangeRate)
+        public CurrencyExchangeRateUpdatedEvent(CurrencyExchangeRate currencyExchangeRate)
         {
             CurrencyExchangeRate = currencyExchangeRate;
         }
