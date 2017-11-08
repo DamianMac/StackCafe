@@ -16,6 +16,8 @@ namespace StackCafe.Cashier.AutofacModules
                 .OnActivated(c => c.Instance.Start());
 
             builder.RegisterType<RecommendationService>().AsImplementedInterfaces();
+
+            builder.RegisterType<InMemoryOrderHistory>().AsImplementedInterfaces().SingleInstance();
         }
     }
 }

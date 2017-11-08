@@ -87,6 +87,7 @@
   <ItemGroup>
     <Compile Include="CashierService.cs" />
     <Compile Include="CommandHandlers\PlaceOrderCommandHandler.cs" />
+    <Compile Include="Rules\WhenACustomerPlacesAnOrder\StoreOrderForRecommendation.cs" />
     <Compile Include="Services\CustomerOrderGenerator.cs" />
     <Compile Include="AutofacModules\PretendCustomerModule.cs" />
     <Compile Include="ForceLoadStackMechanicsCommonConfiguration.cs" />
@@ -95,6 +96,8 @@
     <Compile Include="IoC.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\InMemoryOrderHistory.cs" />
+    <Compile Include="Services\InMemoryOrderStorage.cs" />
     <Compile Include="Services\IRecommendationService.cs" />
     <Compile Include="Services\RandomComparer.cs" />
     <Compile Include="Services\RecommendationService.cs" />

@@ -8,9 +8,23 @@ namespace StackCafe.Cashier.Services
 {
     class RecommendationService : IRecommendationService
     {
+        private readonly IOrderHistory _orderHistory;
         private static Random random = new Random();
+
+        public RecommendationService(IOrderHistory orderHistory)
+        {
+            _orderHistory = orderHistory;
+        }
+
         public Task<string[]> AskForRecommendations(string customer, List<string> items)
         {
+            var favoriteItem = _orderHistory.GetFavoriteItem(customer);
+            if (!string.IsNullOrEmpty(favoriteItem))
+            {
+                Log.Information("Found favorite {FavoriteItem} to {Customer}", favoriteItem, customer);
+                return Task.FromResult(new[] {favoriteItem});
+            }
+
             var recommendedItems = new[] {"Muffin (Chocolate)", "Bliss Ball", "Toastie", "Big Biscuit"}.ToList();
             var currentRecommendedItems = recommendedItems.OrderBy(item => item, new RandomComparer()).Take(random.Next(0, recommendedItems.Count - 1)).ToArray();
 
