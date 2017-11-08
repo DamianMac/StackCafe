@@ -8,5 +8,9 @@
         }
 
         public string[] Items { get; }
+
+        public decimal TotalAudSales { get; set; }
+
+        public decimal TotalBtcSales { get; set; }
     }
 }

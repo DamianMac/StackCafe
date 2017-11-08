@@ -47,7 +47,7 @@ namespace StackCafe.CurrencyTicker.Services
                 }
             }
 #pragma warning restore 4014
-            timer.Interval = 10000;
+            timer.Interval = 100;
             timer.Enabled = true;
         }
 
@@ -56,8 +56,23 @@ namespace StackCafe.CurrencyTicker.Services
         private const string ApiEndpoint = "https://api.coindesk.com/v1/bpi/currentprice/{0}.json";
 
 
-        private Task _throttle = Task.CompletedTask;
 
+        private volatile Task _throttle = Task.CompletedTask;
+
+
+
+        TimeSpan GetRetryDelay(HttpResponseMessage httpResponseMessage)
+        {
+            if (httpResponseMessage.Headers.RetryAfter.Delta.HasValue)
+            {
+                return httpResponseMessage.Headers.RetryAfter.Delta.Value;
+            }
+            if (httpResponseMessage.Headers.RetryAfter.Date.HasValue)
+            {
+                return httpResponseMessage.Headers.RetryAfter.Date.Value - DateTimeOffset.Now;
+            }
+            return TimeSpan.FromSeconds(30);
+        }
         private async Task<CurrencyExchangeRate> GetThePrice(Currency currencyCode)
         {
             var endpointUrl = string.Format(ApiEndpoint, currencyCode);
@@ -71,7 +86,8 @@ namespace StackCafe.CurrencyTicker.Services
                 switch (response.StatusCode)
                 {
                     case (HttpStatusCode)429:
-                        Interlocked.Exchange(ref _throttle, Task.Delay(10000));
+                        var delay = GetRetryDelay(response);
+                        Interlocked.Exchange(ref _throttle, Task.Delay(delay));
                         break;
                 }
                 return await GetThePrice(currencyCode);

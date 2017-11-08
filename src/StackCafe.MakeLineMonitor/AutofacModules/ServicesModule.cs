@@ -12,6 +12,11 @@ namespace StackCafe.MakeLineMonitor.AutofacModules
             builder.RegisterType<MakeLineService>()
                 .AsImplementedInterfaces()
                 .SingleInstance();
+
+            builder.RegisterType<AccountingService>()
+               .AsImplementedInterfaces()
+               .SingleInstance();
+
         }
     }
 }

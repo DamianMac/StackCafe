@@ -11,20 +11,20 @@ namespace StackCafe.MessageContracts.Events
 
         public OrderPaidForEvent(Guid orderId, CurrencyAmount amnount)
         {
-            Amnount = amnount;
+            Amount = amnount;
             OrderId = orderId;
         }
 
         public Guid OrderId { get; set; }
-        public CurrencyAmount Amnount { get; set; }
+        public CurrencyAmount Amount { get; set; }
     }
 
     public class CurrencyAmount
     {
         public CurrencyAmount(Currency currency, decimal amount)
         {
-            Amount = amount;
             Currency = currency;
+            Amount = amount;
         }
 
         public Currency Currency { get; set; }
