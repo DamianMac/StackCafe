@@ -87,6 +87,7 @@
   <ItemGroup>
     <Compile Include="CashierService.cs" />
     <Compile Include="CommandHandlers\PlaceOrderCommandHandler.cs" />
+    <Compile Include="Rules\WhenAnExchangeEventIsReceived\UpdateLocalExchangeRate.cs" />
     <Compile Include="Services\BtcCurrencyConverterService.cs" />
     <Compile Include="Services\CustomerOrderGenerator.cs" />
     <Compile Include="AutofacModules\PretendCustomerModule.cs" />
