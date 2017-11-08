@@ -40,6 +40,9 @@
     <Reference Include="ConfigInjector, Version=2.2.1175.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ConfigInjector.2.2.1175.0\lib\net45\ConfigInjector.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Nimbus.InfrastructureContracts, Version=3.0.0.1200, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Nimbus.InfrastructureContracts.3.0.0.1200\lib\net45\Nimbus.InfrastructureContracts.dll</HintPath>
     </Reference>
@@ -76,7 +79,9 @@
     <Compile Include="Rules\WhenARecommendationIsOffered\AcceptOrDeclineRecommendation.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
