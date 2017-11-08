@@ -9,16 +9,16 @@ using System.Threading.Tasks;
 
 namespace StackCafe.CurrencyHistory.Rules.WhenSomeoneRequestsCurrentExchangeRate
 {
-    public class ReturnCurrentExchangeRate : IHandleRequest<GetCurrentExchangeRateRequest, GetCurrentExchanggeRateResponse>
+    public class ReturnCurrentExchangeRate : IHandleRequest<GetCurrentExchangeRateRequest, GetCurrentExchangeRateResponse>
     {
         readonly IExchangeRateRepository _exchangeRateRepository;
         public ReturnCurrentExchangeRate(IExchangeRateRepository exchangeRateRepository)
         {
             this._exchangeRateRepository = exchangeRateRepository;
         }
-        public Task<GetCurrentExchanggeRateResponse> Handle(GetCurrentExchangeRateRequest request)
+        public Task<GetCurrentExchangeRateResponse> Handle(GetCurrentExchangeRateRequest request)
         {
-            return Task.FromResult(new GetCurrentExchanggeRateResponse(_exchangeRateRepository.GetLatest(request.FromCurrency, request.ToCurrency)));
+            return Task.FromResult(new GetCurrentExchangeRateResponse(_exchangeRateRepository.GetLatest(request.FromCurrency, request.ToCurrency)));
         }
     }
 }

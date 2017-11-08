@@ -3,9 +3,9 @@ using StackCafe.MessageContracts.Events;
 
 namespace StackCafe.MessageContracts.Requests
 {
-    public class GetCurrentExchanggeRateResponse : IBusResponse
+    public class GetCurrentExchangeRateResponse : IBusResponse
     {
-        public GetCurrentExchanggeRateResponse(CurrencyExchangeRate currentExchangeRate)
+        public GetCurrentExchangeRateResponse(CurrencyExchangeRate currentExchangeRate)
         {
             CurrentExchangeRate = currentExchangeRate;
         }
