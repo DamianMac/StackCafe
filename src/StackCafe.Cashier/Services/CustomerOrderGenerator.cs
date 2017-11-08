@@ -11,6 +11,7 @@ namespace StackCafe.Cashier.Services
         private static readonly double _interval = TimeSpan.FromSeconds(5).TotalMilliseconds;
         private static readonly string[] _customerNames = {"Damian", "Nick", "Andrew"};
         private static readonly string[] _coffeeOrders = {"Extra shot flat white", "Doppio", "Flat white"};
+        private static readonly string[] _phoneNumbers = {"", "", "+61414011360"};
 
         private readonly IBus _bus;
         private readonly Random _random = new Random();
@@ -31,7 +32,7 @@ namespace StackCafe.Cashier.Services
         {
             _timer = new Timer();
             _timer.Elapsed += OnTimerElapsed;
-            _timer.Interval = 1;
+            _timer.Interval = 10;
             _timer.Enabled = true;
         }
 
@@ -49,7 +50,8 @@ namespace StackCafe.Cashier.Services
         {
             var customer = _customerNames[_random.Next(_customerNames.Length)];
             var coffee = _coffeeOrders[_random.Next(_coffeeOrders.Length)];
-            var command = new PlaceOrderCommand(Guid.NewGuid(), customer, coffee);
+            var phoneNumber = _phoneNumbers[_random.Next(_phoneNumbers.Length)];
+            var command = new PlaceOrderCommand(Guid.NewGuid(), customer, coffee, phoneNumber);
             await _bus.Send(command);
         }
     }

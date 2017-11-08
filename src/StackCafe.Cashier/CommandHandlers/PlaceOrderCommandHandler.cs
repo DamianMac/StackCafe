@@ -25,7 +25,7 @@ namespace StackCafe.Cashier.CommandHandlers
             await _bus.Publish(new OrderPaidForEvent(busCommand.OrderId));
 
             _logger.Information("{Customer} would like a {CoffeeType}", busCommand.CustomerName, busCommand.CoffeeType);
-            await _bus.Publish(new OrderPlacedEvent(busCommand.OrderId, busCommand.CoffeeType, busCommand.CustomerName));
+            await _bus.Publish(new OrderPlacedEvent(busCommand.OrderId, busCommand.CoffeeType, busCommand.CustomerName, busCommand.PhoneNumber));
         }
     }
 }
