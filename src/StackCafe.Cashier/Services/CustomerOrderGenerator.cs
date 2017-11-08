@@ -4,6 +4,7 @@ using System.Timers;
 using Nimbus;
 using StackCafe.MessageContracts.Commands;
 using StackCafe.MessageContracts.Events;
+using StackCafe.MessageContracts.Requests;
 
 namespace StackCafe.Cashier.Services
 {
@@ -34,6 +35,11 @@ namespace StackCafe.Cashier.Services
 
         public void Start()
         {
+            var currentExchangeRate = _bus.Request(new GetCurrentExchangeRateRequest(Currency.BTC, Currency.AUD)).Result.CurrentExchangeRate;
+            if (currentExchangeRate != null)
+            {
+                _btcCurrencyConverterService.AudToBtc = currentExchangeRate.Rate;
+            }
             _timer = new Timer();
             _timer.Elapsed += OnTimerElapsed;
             _timer.Interval = 1;

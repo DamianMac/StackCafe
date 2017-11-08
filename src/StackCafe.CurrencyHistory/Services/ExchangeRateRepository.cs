@@ -9,6 +9,10 @@ namespace StackCafe.CurrencyHistory.Services
 {
     public class ExchangeRateRepository : IExchangeRateRepository
     {
+        public ExchangeRateRepository()
+        {
+            _history.Add(new CurrencyExchangeRate(9599.7603m, Currency.BTC, Currency.AUD, DateTimeOffset.Now));
+        }
         private readonly List<CurrencyExchangeRate> _history = new List<CurrencyExchangeRate>();
         public void Add(CurrencyExchangeRate currencyExchangeRate)
         {
