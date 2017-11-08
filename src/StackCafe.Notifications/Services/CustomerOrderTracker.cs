@@ -23,7 +23,7 @@ namespace StackCafe.Notifications.Services
             if (!string.IsNullOrEmpty(phoneNumber))
             {
                 _logger.Information("{Customer} wants an SMS to {phoneNumber} when the {Coffee} is ready", customer, phoneNumber, coffee);
-                _orders.Add(orderId, new TrackedOrder { OrderId = orderId, Coffee = coffee, Customer = customer });
+                _orders.Add(orderId, new TrackedOrder { OrderId = orderId, Coffee = coffee, Customer = customer, PhoneNumber = phoneNumber});
 
             }
 
