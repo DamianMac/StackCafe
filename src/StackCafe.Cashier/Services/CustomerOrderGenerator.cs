@@ -36,10 +36,17 @@ namespace StackCafe.Cashier.Services
 
         public void Start()
         {
-            var currentExchangeRate = _bus.Request(new GetCurrentExchangeRateRequest(Currency.BTC, Currency.AUD)).Result.CurrentExchangeRate;
+#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+            StartAsync();
+#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+        }
+
+        private async Task StartAsync()
+        {
+            var currentExchangeRate = (await _bus.Request(new GetCurrentExchangeRateRequest(Currency.BTC, Currency.AUD))).CurrentExchangeRate;
             if (currentExchangeRate != null)
             {
-                _btcCurrencyConverterService.AudToBtc = currentExchangeRate.Rate;
+                _btcCurrencyConverterService.AudToBtc = 1 / currentExchangeRate.Rate;
             }
             _timer = new Timer();
             _timer.Elapsed += OnTimerElapsed;
