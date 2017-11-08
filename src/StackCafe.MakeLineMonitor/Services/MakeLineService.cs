@@ -18,7 +18,7 @@ namespace StackCafe.MakeLineMonitor.Services
 
         public void Add(Guid orderId, List<Item> items)
         {
-            var makelineItems = items.Select(i => new MakeLineItem {ItemName = i.ItemName, ItemType = i.ItemType}).ToList();
+            var makelineItems = items.Select(i => new MakeLineItem {Name = i.ItemName, Type = i.ItemType, PrepTime = TimeSpan.FromSeconds(i.ItemPrepTime)}).ToList();
             lock (ItemsLock)
             {
                 Items.Add(orderId, makelineItems);

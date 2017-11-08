@@ -1,8 +1,11 @@
+using System;
+
 namespace StackCafe.MakeLineMonitor.Models
 {
     public class MakeLineItem
     {
-        public string ItemName { get; set; }
-        public string ItemType { get; set; }
+        public string Name { get; set; }
+        public string Type { get; set; }
+        public TimeSpan PrepTime { get; set; }
     }
 }

@@ -37,7 +37,7 @@
             var urlParams = new URLSearchParams(window.location.search);
 
             jQuery.ajax({
-                url: `@Url.Action("GetItems", "MakeLine")?menuItemType=${urlParams.get('menuItemType')}`,
+                url: '@Url.Action("GetItems", "MakeLine", new { view = Model.view })',
                 success: res => {
                     var $items = $('#items');
                     $items.empty();
