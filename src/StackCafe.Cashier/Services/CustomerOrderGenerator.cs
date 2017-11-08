@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Timers;
 using Nimbus;
@@ -9,13 +10,19 @@ using StackCafe.MessageContracts.Events;
 
 namespace StackCafe.Cashier.Services
 {
+    internal class FakeOrderItem
+    {
+        public string ItemName { get; set; }
+        public string ItemCode { get; set; }
+        public ItemType Type { get; set; }
+    }
+
     public class CustomerOrderGenerator : IDisposable
     {
         private static readonly double _interval = TimeSpan.FromSeconds(5).TotalMilliseconds;
         private static readonly string[] _customerNames = {"Damian", "Nick", "Andrew", "Jared", "Josh", "Andrew" ,"Billy", "Bob", "James"};
 
-        private static List<string> _coffeeOrders = new List<string>();
-        private static List<string> _foodOrders = new List<string>();
+        private static List<FakeOrderItem> _fakeOrderItems = new List<FakeOrderItem>();
 
         private readonly IBus _bus;
         private readonly Random _random = new Random();
@@ -25,29 +32,28 @@ namespace StackCafe.Cashier.Services
         public CustomerOrderGenerator(IBus bus)
         {
             _bus = bus;
+            AddFakeOrderItem("Extra Shot Flat White", "ESFW", ItemType.Drink);
+            AddFakeOrderItem("Cappuccino", "CPPU", ItemType.Drink);
+            AddFakeOrderItem("Carajillo", "CRJL", ItemType.Drink);
+            AddFakeOrderItem("Cortado", "CRTD", ItemType.Drink);
+            AddFakeOrderItem("Cuban Espresso", "CBES", ItemType.Drink);
+            AddFakeOrderItem("Espresso", "ESPR", ItemType.Drink);
+            AddFakeOrderItem("Eiskaffee", "ESFE", ItemType.Drink);
+            AddFakeOrderItem("The Flat White", "TFWT", ItemType.Drink);
+            AddFakeOrderItem("Frappuccino", "FRPC", ItemType.Drink);
+            AddFakeOrderItem("Galao", "GLAO", ItemType.Drink);
+            AddFakeOrderItem("Iced-Coffee", "ICCF", ItemType.Drink);
+            AddFakeOrderItem("Irish Coffee", "IRCF", ItemType.Drink);
+            AddFakeOrderItem("Liqueur Coffee", "LQCF", ItemType.Drink);
 
-            _coffeeOrders.Add("Extra Shot Flat White");
-            _coffeeOrders.Add("Cappuccino");
-            _coffeeOrders.Add("Carajillo");
-            _coffeeOrders.Add("Cortado");
-            _coffeeOrders.Add("Cuban espresso");
-            _coffeeOrders.Add("Espresso");
-            _coffeeOrders.Add("Eiskaffee");
-            _coffeeOrders.Add("The Flat White");
-            _coffeeOrders.Add("Frappuccino");
-            _coffeeOrders.Add("Galao");
-            _coffeeOrders.Add("Iced-coffee");
-            _coffeeOrders.Add("Irish coffee");
-            _coffeeOrders.Add("Liqueur coffee");
-
-            _foodOrders.Add("Artichoke Frittata Panini");
-            _foodOrders.Add("Spinach and Feta Quiche");
-            _foodOrders.Add("Breakfast Pizza");
-            _foodOrders.Add("Ham and Swiss Gruyere Quiche");
-            _foodOrders.Add("Nectarine Mascarpone French Toast Panini");
-            _foodOrders.Add("Specialty Bread Sample Plate");
-            _foodOrders.Add("Smoked Salmon Platter");
-            _foodOrders.Add("Steel Cut Oatmeal");
+            AddFakeOrderItem("Artichoke Frittata Panini", "ACFP", ItemType.Food);
+            AddFakeOrderItem("Spinach and Feta Quiche", "SFQE", ItemType.Food);
+            AddFakeOrderItem("Breakfast Pizza", "BFPZ", ItemType.Food);
+            AddFakeOrderItem("Ham and Swiss Gruyere Quiche", "HSGQ", ItemType.Food);
+            AddFakeOrderItem("Nectarine Mascarpone French Toast Panini", "NMST", ItemType.Food);
+            AddFakeOrderItem("Specialty Bread Sample Plate", "SBSP", ItemType.Food);
+            AddFakeOrderItem("Smoked Salmon Platter", "SSPT", ItemType.Food);
+            AddFakeOrderItem("Steel Cut Oatmeal", "STOM", ItemType.Food);
         }
 
         public void Dispose()
@@ -76,19 +82,46 @@ namespace StackCafe.Cashier.Services
         private async Task PlaceFakeOrder()
         {
             var customer = _customerNames[_random.Next(_customerNames.Length)];
-            var coffee = _coffeeOrders[_random.Next(_coffeeOrders.Count)];
-            var food = _foodOrders[_random.Next(_foodOrders.Count)];
+
+            var coffees = _fakeOrderItems.Where(oi => oi.Type == ItemType.Drink).ToArray();
+            var coffee = coffees[_random.Next(coffees.Length)];
+
+            var foods = _fakeOrderItems.Where(oi => oi.Type == ItemType.Food).ToArray();
+            var food = foods[_random.Next(foods.Length)];
             var coffeePrepTime = _random.Next(1, 10);
             var foodPrepTime = _random.Next(1, 10);
 
-            var itemsToSend = new List<Item>();
-            itemsToSend.Add(new Item(){ItemName = coffee, ItemPrepTime = coffeePrepTime, ItemType = ItemType.Drink.ToString()});
-            itemsToSend.Add(new Item() { ItemName = food, ItemPrepTime = foodPrepTime, ItemType = ItemType.Food.ToString()}
-            );
+            var itemsToSend = new List<Item>
+            {
+                new Item
+                {
+                    ItemName = coffee.ItemName,
+                    ItemCode = coffee.ItemCode,
+                    ItemPrepTime = coffeePrepTime,
+                    ItemType = coffee.Type.ToString()
+                },
+                new Item
+                {
+                    ItemName = food.ItemName,
+                    ItemCode = food.ItemCode,
+                    ItemPrepTime = foodPrepTime,
+                    ItemType = food.Type.ToString()
+                }
+            };
 
             var command = new PlaceOrderCommand(Guid.NewGuid(), customer, itemsToSend);
 
             await _bus.Send(command);
+        }
+
+        private static void AddFakeOrderItem(string name, string code, ItemType type)
+        {
+            _fakeOrderItems.Add(new FakeOrderItem
+            {
+                ItemCode = code,
+                ItemName = name,
+                Type = type
+            });
         }
     }
 }
