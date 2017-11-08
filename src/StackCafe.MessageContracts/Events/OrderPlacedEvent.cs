@@ -24,13 +24,4 @@ namespace StackCafe.MessageContracts.Events
 
         public List<Item> Items = new List<Item>();
     }
-
-    public class Item
-    {
-        public string ItemName { get; set; }
-
-        public int ItemPrepTime { get; set; }
-
-        public string ItemType { get; set; }
-    }
 }

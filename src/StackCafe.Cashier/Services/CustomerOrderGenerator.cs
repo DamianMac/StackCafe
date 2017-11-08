@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Timers;
 using Nimbus;
+using StackCafe.MessageContracts;
 using StackCafe.MessageContracts.Commands;
 using StackCafe.MessageContracts.Events;
 
@@ -81,8 +82,9 @@ namespace StackCafe.Cashier.Services
             var foodPrepTime = _random.Next(1, 10);
 
             var itemsToSend = new List<Item>();
-            itemsToSend.Add(new Item(){ItemName = coffee, ItemPrepTime = coffeePrepTime, ItemType = "Drink"});
-            itemsToSend.Add(new Item() { ItemName = food, ItemPrepTime = foodPrepTime, ItemType = "Food" });
+            itemsToSend.Add(new Item(){ItemName = coffee, ItemPrepTime = coffeePrepTime, ItemType = ItemType.Drink.ToString()});
+            itemsToSend.Add(new Item() { ItemName = food, ItemPrepTime = foodPrepTime, ItemType = ItemType.Food.ToString()}
+            );
 
             var command = new PlaceOrderCommand(Guid.NewGuid(), customer, itemsToSend);
 
