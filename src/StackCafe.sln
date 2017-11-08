@@ -28,6 +28,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackCafe.MakeLineMonitor",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackCafe.CurrencyTicker", "StackCafe.CurrencyTicker\StackCafe.CurrencyTicker.csproj", "{94DBDCEB-FA39-42B1-83EE-7A575C96C982}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackCafe.CurrencyHistory", "StackCafe.CurrencyHistory\StackCafe.CurrencyHistory.csproj", "{7F6930C0-B70B-49CB-A828-B3FD10CB62A4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -74,6 +76,10 @@ Global
 		{94DBDCEB-FA39-42B1-83EE-7A575C96C982}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94DBDCEB-FA39-42B1-83EE-7A575C96C982}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94DBDCEB-FA39-42B1-83EE-7A575C96C982}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F6930C0-B70B-49CB-A828-B3FD10CB62A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F6930C0-B70B-49CB-A828-B3FD10CB62A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F6930C0-B70B-49CB-A828-B3FD10CB62A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F6930C0-B70B-49CB-A828-B3FD10CB62A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
