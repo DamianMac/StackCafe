@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2006
+VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackCafe.MessageContracts", "StackCafe.MessageContracts\StackCafe.MessageContracts.csproj", "{C318769A-9797-4C06-9105-B76CFB78D128}"
 EndProject
@@ -27,6 +27,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackCafe.MakeLineMonitor", "StackCafe.MakeLineMonitor\StackCafe.MakeLineMonitor.csproj", "{B45935BF-64F0-4AEB-8C66-06EE3AFC6FE8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackCafe.Customer", "StackCafe.Customer\StackCafe.Customer.csproj", "{6C12E0E6-673F-40DC-8FA3-772F398BAA35}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackCafe.Waiter.Tests", "StackCafe.Waiter.Tests\StackCafe.Waiter.Tests.csproj", "{C291FC8D-5D50-4BAD-B6E9-BC232849216D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -74,6 +76,10 @@ Global
 		{6C12E0E6-673F-40DC-8FA3-772F398BAA35}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C12E0E6-673F-40DC-8FA3-772F398BAA35}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C12E0E6-673F-40DC-8FA3-772F398BAA35}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C291FC8D-5D50-4BAD-B6E9-BC232849216D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C291FC8D-5D50-4BAD-B6E9-BC232849216D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C291FC8D-5D50-4BAD-B6E9-BC232849216D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C291FC8D-5D50-4BAD-B6E9-BC232849216D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

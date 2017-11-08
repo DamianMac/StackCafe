@@ -13,6 +13,10 @@ namespace StackCafe.Waiter.Models
 
         public bool Made { get;  set; }
 
+        public string Coffee { get;  set; }
+
+        public string CustomerName { get;  set; }
+
         public bool IsDelivered { get; private set; }
 
         public bool CanBeDelivered()
