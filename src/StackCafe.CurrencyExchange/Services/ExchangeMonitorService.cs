@@ -59,7 +59,7 @@ namespace StackCafe.CurrencyTicker.Services
             var apiResponse = await webClient.DownloadStringTaskAsync(endpointUrl);
 
             var responseObject = Newtonsoft.Json.JsonConvert.DeserializeObject<CoindeskApiResponseObject>(apiResponse);
-            return new CurrencyExchangeRate((decimal)(_random.NextDouble() * 0.001), Currency.BTC, Currency.AUD, DateTimeOffset.Now);
+            return new CurrencyExchangeRate((decimal)responseObject.bpi.AUD.rate_float, Currency.BTC, Currency.AUD, new DateTimeOffset(responseObject.time.updatedISO, TimeSpan.Zero));
         }
 
         private async Task LetEveryoneKnowTheCurrentPrice(CurrencyExchangeRate price)
