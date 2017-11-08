@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
 using StackCafe.MakeLineMonitor.Models;
 using StackCafe.MakeLineMonitor.Services;
 
@@ -6,17 +7,20 @@ namespace StackCafe.MakeLineMonitor.Controllers
 {
     public class MakeLineController : Controller
     {
-        public MakeLineController(IAccountingService accountingService)
+        private readonly IAccountingService _accountingService;
+        private readonly IMakeLineService _makeLineService;
+
+        public MakeLineController(IAccountingService accountingService, IMakeLineService makeLineService)
         {
             _accountingService = accountingService;
+            _makeLineService = makeLineService;
         }
         public ActionResult Index()
         {
-            var model = new MakeLineViewModel("Doppio", "Flat white", "Long black", "Doppio", "Doppio");
+            var model = new MakeLineViewModel(_makeLineService.GetItems().ToArray());
             model.TotalAudSales = _accountingService.Aud.Amount;
             model.TotalBtcSales = _accountingService.Btc.Amount;
             return View(model);
         }
-        private IAccountingService _accountingService;
     }
 }
