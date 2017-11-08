@@ -53,6 +53,7 @@ namespace StackCafe.Cashier.Services
             AddFakeOrderItem("Specialty Bread Sample Plate", "SBSP", ItemType.Food);
             AddFakeOrderItem("Smoked Salmon Platter", "SSPT", ItemType.Food);
             AddFakeOrderItem("Steel Cut Oatmeal", "STOM", ItemType.Food);
+            AddFakeOrderItem("Smashed Avocado On Toast", "SAOT", ItemType.Food);
         }
 
         public void Dispose()
