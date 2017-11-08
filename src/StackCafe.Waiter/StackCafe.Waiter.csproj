@@ -92,6 +92,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandHandler\CheckPendingOrderCommandHandler.cs" />
     <Compile Include="Ef\WaiterContext.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Rules\WhenAnOrderIsPaidFor\CheckWhetherItHasAlreadyBeenMade.cs" />
