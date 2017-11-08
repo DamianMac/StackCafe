@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
 using Nimbus.MessageContracts;
 
 namespace StackCafe.MessageContracts.Events
@@ -9,17 +10,27 @@ namespace StackCafe.MessageContracts.Events
         {
         }
 
-        public OrderPlacedEvent(Guid orderId, string itemName, string itemType, string customerName)
+        public OrderPlacedEvent(Guid orderId, string customerName, List<Item> items)
         {
             OrderId = orderId;
-            ItemName = itemName;
-            ItemType = itemType;
             CustomerName = customerName;
+            Items = items;
+
         }
 
         public Guid OrderId { get; set; }
-        public string ItemName { get; set; }
-        public string ItemType { get; set; }
+
         public string CustomerName { get; set; }
+
+        public List<Item> Items = new List<Item>();
+    }
+
+    public class Item
+    {
+        public string ItemName { get; set; }
+
+        public int ItemPrepTime { get; set; }
+
+        public string ItemType { get; set; }
     }
 }

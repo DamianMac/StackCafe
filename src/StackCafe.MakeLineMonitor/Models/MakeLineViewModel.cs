@@ -1,4 +1,4 @@
-﻿namespace StackCafe.MakeLineMonitor.Models
+namespace StackCafe.MakeLineMonitor.Models
 {
     public class MakeLineViewModel
     {

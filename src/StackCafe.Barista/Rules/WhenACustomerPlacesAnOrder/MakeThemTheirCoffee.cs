@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using Nimbus;
 using Nimbus.Handlers;
@@ -20,11 +20,15 @@ namespace StackCafe.Barista.Rules.WhenACustomerPlacesAnOrder
 
         public async Task Handle(OrderPlacedEvent busEvent)
         {
-            _logger.Debug("{OrderStatus} {Coffee} for {Customer}", "Making", busEvent.ItemType, busEvent.CustomerName);
-            await Task.Delay(TimeSpan.FromSeconds(1));
-            _logger.Information("{OrderStatus} {Coffee} for {Customer}", "Made", busEvent.ItemType, busEvent.CustomerName);
+            //TODO this is so bad
+            _logger.Debug("{OrderStatus} {Coffee} for {Customer}", "Making", busEvent.Items[0].ItemName, busEvent.CustomerName);
+            _logger.Debug("{OrderStatus} {Food} for {Customer}", "Making", busEvent.Items[1].ItemName, busEvent.CustomerName);
 
-            await _bus.Publish(new OrderIsReadyEvent(busEvent.OrderId, busEvent.ItemType, busEvent.CustomerName));
+            await Task.Delay(TimeSpan.FromSeconds(1));
+            _logger.Information("{OrderStatus} {Coffee} for {Customer}", "Made", busEvent.Items[0].ItemName, busEvent.CustomerName);
+            _logger.Information("{OrderStatus} {Coffee} for {Customer}", "Made", busEvent.Items[1].ItemName, busEvent.CustomerName);
+
+            await _bus.Publish(new OrderIsReadyEvent(busEvent.OrderId, busEvent.CustomerName, busEvent.Items));
         }
     }
 }

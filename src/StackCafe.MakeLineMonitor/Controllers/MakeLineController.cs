@@ -1,4 +1,4 @@
-﻿using System.Web.Mvc;
+using System.Web.Mvc;
 using Serilog;
 using StackCafe.MakeLineMonitor.Models;
 using StackCafe.MakeLineMonitor.Services;
