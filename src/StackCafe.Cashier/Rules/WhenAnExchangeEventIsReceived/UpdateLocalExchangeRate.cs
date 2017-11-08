@@ -20,10 +20,10 @@ namespace StackCafe.Cashier.Rules.WhenAnExchangeEventIsReceived
 
         public Task Handle(CurrencyExchangeRateUpdatedEvent busEvent)
         {
-            if (busEvent.CurrencyExchangeRate.FromCurrency == Currency.AUD &&
-                busEvent.CurrencyExchangeRate.ToCurrency == Currency.BTC)
+            if (busEvent.CurrencyExchangeRate.FromCurrency == Currency.BTC &&
+                busEvent.CurrencyExchangeRate.ToCurrency == Currency.AUD)
             {
-                _btcCurrencyConverterService.AUDBTCRate = busEvent.CurrencyExchangeRate.Rate;
+                _btcCurrencyConverterService.AudToBtc = 1 / busEvent.CurrencyExchangeRate.Rate;
                 Serilog.Log.Information("Currency Exchange Rate Event Received");
             }
 

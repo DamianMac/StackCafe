@@ -6,6 +6,6 @@
 
         decimal ConvertToAUD(decimal amount);
 
-        decimal AUDBTCRate { get; set; }
+        decimal AudToBtc { get; set; }
     }
 }
