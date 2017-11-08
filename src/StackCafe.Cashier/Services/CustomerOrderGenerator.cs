@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Timers;
 using Nimbus;
 using StackCafe.MessageContracts.Commands;
+using StackCafe.MessageContracts.Requests;
 
 namespace StackCafe.Cashier.Services
 {
@@ -59,15 +60,25 @@ namespace StackCafe.Cashier.Services
             {
                 var coffee = _coffeeOrders[_random.Next(_coffeeOrders.Length)];
                 items.Add(coffee);
-
-                //var recommendation = await _bus.Request(new RecommendationRequest(customer, items));
-                var recommendations = await _recommendationService.AskForRecommendations(customer, items);
-                if (recommendations.Any())
-                    items.Add(recommendations.First());
             }
+
+            await UpdateWithRecommendation(customer, items);
 
             var command = new PlaceOrderCommand(Guid.NewGuid(), customer, items.ToArray());
             await _bus.Send(command);
+        }
+
+        private async Task UpdateWithRecommendation(string customer, List<string> items)
+        {
+            //var recommendation = await _bus.Request(new RecommendationRequest(customer, items));
+            var recommendations = await _recommendationService.AskForRecommendations(customer, items);
+            if (recommendations.Any())
+            {
+                var response = await _bus.Request(
+                    new RecommendationRequest() {Customer = customer, RecommendedItems = recommendations});
+                if (response.IsAccepted)
+                    items.AddRange(recommendations);
+            }
         }
     }
 }
