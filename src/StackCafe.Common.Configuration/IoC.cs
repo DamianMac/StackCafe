@@ -1,15 +1,14 @@
 ﻿using Autofac;
 using Autofac.Builder;
-using StackCafe.Common.AppDomainScanner;
 
-namespace StackCafe.Cashier
+namespace StackCafe.Common.Configuration
 {
     public static class IoC
     {
         public static IContainer LetThereBeIoC(ContainerBuildOptions containerBuildOptions = ContainerBuildOptions.None)
         {
             var builder = new ContainerBuilder();
-            builder.RegisterAssemblyModules(AppDomainScanner.MyAssemblies);
+            builder.RegisterAssemblyModules(AppDomainScanner.AppDomainScanner.MyAssemblies);
             return builder.Build(containerBuildOptions);
         }
     }

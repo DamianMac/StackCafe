@@ -92,7 +92,6 @@
     <Compile Include="ForceLoadStackMechanicsCommonConfiguration.cs" />
     <Compile Include="ForceLoadStackMechanicsCommonLogging.cs" />
     <Compile Include="ForceLoadStackMechanicsCommonMessageBus.cs" />
-    <Compile Include="IoC.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
