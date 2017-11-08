@@ -24,14 +24,25 @@ namespace StackCafe.Waiter.CommandHandler
         public async Task Handle(CheckPendingOrderCommand busCommand)
         {
             var order = _orderDeliveryService.GetOrderFromId(busCommand.OrderId);
+
+            if (order.Paid && order.Made)
+            {
+                _logger.Information("Order : {orderId} was completed successfully", busCommand.OrderId);
+            }
+
             if (order.Paid && !order.Made)
             {
-                var command = new MakeCoffeeCommand {OrderId = order.Id, CustomerName = order.CustomerName,CoffeeType = order.Coffee};
+                _logger.Information("Resending the make coffee command for order : {orderId}", busCommand.OrderId);
+
+                var command = new MakeCoffeeCommand { OrderId = order.Id, CustomerName = order.CustomerName, CoffeeType = order.Coffee };
 
                 await _bus.Send(command);
             }
 
+            if (!order.Paid && order.Made)
+            {
+                _logger.Information("Customer for Order Id : {orderId} left without paying", busCommand.OrderId);
+            }
         }
     }
-
 }

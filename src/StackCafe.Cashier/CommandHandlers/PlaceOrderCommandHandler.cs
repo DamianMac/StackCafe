@@ -25,7 +25,7 @@ namespace StackCafe.Cashier.CommandHandlers
             await _bus.Publish(new OrderPaidForEvent(busCommand.OrderId));
             
             //Instruct the barista to make a coffee.
-            await _bus.Send(new MakeCoffeeCommand() {OrderId = busCommand.OrderId});
+            await _bus.Send(new MakeCoffeeCommand() {OrderId = busCommand.OrderId,CoffeeType = busCommand.CoffeeType,CustomerName = busCommand.CustomerName});
 
             _logger.Information("{Customer} would like a {CoffeeType}", busCommand.CustomerName, busCommand.CoffeeType);
             await _bus.Publish(new OrderPlacedEvent(busCommand.OrderId, busCommand.CoffeeType, busCommand.CustomerName));

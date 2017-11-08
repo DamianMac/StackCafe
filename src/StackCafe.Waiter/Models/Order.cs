@@ -76,7 +76,7 @@ namespace StackCafe.Waiter.Models
 
         public void MarkAsPaid()
         {
-            if (!CanPay()) throw new Exception();
+            if (!CanPay()) return;
 
             Paid = true;
 
@@ -96,7 +96,7 @@ namespace StackCafe.Waiter.Models
 
         public void MarkAsMade()
         {
-            if (!CanMake()) throw new Exception();
+            if (!CanMake()) return;
 
             Made = true;
 

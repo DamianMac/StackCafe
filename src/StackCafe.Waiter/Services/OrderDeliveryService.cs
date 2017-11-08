@@ -30,7 +30,7 @@ namespace StackCafe.Waiter.Services
                 {
                     _logger.Information("{OrderId} can't be found.", orderId);
 
-                    throw new Exception();
+                    //throw new Exception();
                 }
 
                 return order;
@@ -82,6 +82,7 @@ namespace StackCafe.Waiter.Services
 
             HandleOrderOutcome(orderId);
         }
+
         private bool CheckWhetherWeShouldDeliver(Guid orderId)
         {
             try
@@ -126,7 +127,7 @@ namespace StackCafe.Waiter.Services
         private async Task ScheduleFutureCheckPendingOrder(Guid orderId)
         {
             var command = new CheckPendingOrderCommand(orderId);
-            await this.bus.SendAfter(command, new TimeSpan(hours: 0, minutes: 5, seconds: 0));
+            await this.bus.SendAfter(command, new TimeSpan(hours: 0, minutes: 1, seconds: 0));
 
             _logger.Information("{OrderId} isn't ready yet. Sending a message in to the future.", orderId);
         }
