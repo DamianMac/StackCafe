@@ -1,17 +1,22 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
+using Nimbus;
 using Serilog;
+using StackCafe.MessageContracts.Commands;
 using StackCafe.Waiter.Ef;
 
 namespace StackCafe.Waiter.Services
 {
     public class OrderDeliveryService : IOrderDeliveryService
     {
-        private readonly ILogger _logger;
+        private readonly Serilog.ILogger _logger;
+        private readonly IBus bus;
 
-        public OrderDeliveryService(ILogger logger)
+        public OrderDeliveryService(Serilog.ILogger logger, IBus bus)
         {
             _logger = logger;
+            this.bus = bus;
         }
 
         public void MarkAsPaid(Guid orderId)
@@ -36,7 +41,7 @@ namespace StackCafe.Waiter.Services
                 dbcontext.SaveChanges();
             }
 
-            CheckWhetherWeShouldDeliver(orderId);
+            HandleOrderOutcome(orderId);
         }
 
         public void MarkAsMade(Guid orderId)
@@ -61,10 +66,30 @@ namespace StackCafe.Waiter.Services
                 dbcontext.SaveChanges();
             }
 
-            CheckWhetherWeShouldDeliver(orderId);
+            HandleOrderOutcome(orderId);
         }
 
-        private void CheckWhetherWeShouldDeliver(Guid orderId)
+        private void HandleOrderOutcome(Guid orderId)
+        {
+            if (CheckWhetherWeShouldDeliver(orderId))
+            {
+                DeliverOrderToCustomer(orderId);
+            }
+            else
+            {
+                CheckPendingOrder(orderId).GetAwaiter().GetResult();
+            }
+        }
+
+        private async Task CheckPendingOrder(Guid orderId)
+        {
+            var command = new CheckPendingOrderCommand(orderId);
+            await this.bus.SendAfter(command, new TimeSpan(hours: 0, minutes: 5, seconds:0));
+
+            _logger.Information("{OrderId} isn't ready yet. Sending a message in to the future.", orderId);
+        }
+
+        private bool CheckWhetherWeShouldDeliver(Guid orderId)
         {
             using (var dbcontext = new WaiterContext())
             {
@@ -75,20 +100,22 @@ namespace StackCafe.Waiter.Services
                     if (!order.Made)
                     {
                         _logger.Information("{OrderId} isn't ready yet. We can't give it to the customer.", orderId);
-                        return;
+                        return false;
                     }
 
                     if (!order.Paid)
                     {
                         _logger.Information("{OrderId} hasn't been paid for yet. We can't give it to the customer.", orderId);
-                        return;
+                        return false;
                     }
 
-                    DeliverOrderToCustomer(orderId);
+                    return true;
                 }
                 else
                 {
                     _logger.Information("{OrderId} can't be fount.", orderId);
+
+                    return false;
                 }
             }
         }
