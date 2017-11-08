@@ -17,10 +17,6 @@ namespace StackCafe.Waiter.Rules.WhenAnOrderItemIsReady
         public Task Handle(OrderItemCompleteEvent busEvent)
         {
             _orderDeliveryService.MarkItemAsMade(busEvent.OrderId, busEvent.ItemCode);
-            if (_orderDeliveryService.HasBeenMade(busEvent.OrderId))
-            {
-                _orderDeliveryService.MarkAsMade(busEvent.OrderId);
-            }
             return Task.CompletedTask;
         }
     }

@@ -29,9 +29,9 @@ namespace StackCafe.Chef.Rules.WhenAFoodItemIsPlaced
 
             // TODO: support multiple food items
             var foodItem = busCommand.Items.First();
-            _logger.Information("Preparing food item {Food}, this will take {FoodPrepTime} seconds", foodItem.ItemCode, foodItem.ItemPrepTime);
+            _logger.Information("Preparing food item {Food} for order {OrderId}, this will take {FoodPrepTime} seconds", foodItem.ItemCode, busCommand.OrderId, foodItem.ItemPrepTime);
             await Task.Delay(TimeSpan.FromSeconds(foodItem.ItemPrepTime));
-            _logger.Information("Food item {Food} has been prepared", foodItem.ItemCode);
+            _logger.Information("Food item {Food} for order {OrderId} has been prepared", foodItem.ItemCode, busCommand.OrderId);
 
             var orderItemComplete = new OrderItemCompleteEvent
             {

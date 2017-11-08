@@ -30,9 +30,9 @@ namespace StackCafe.Barista.Rules.WhenADrinkItemIsPlaced
 
             // TODO: support multiple food items
             var drinkItem = busCommand.Items.First();
-            _logger.Information("Preparing drink item {Drink}, this will take {DrinkPrepTime} seconds", drinkItem.ItemCode, drinkItem.ItemPrepTime);
+            _logger.Information("Preparing drink item {Drink} for order {OrderId}, this will take {DrinkPrepTime} seconds", drinkItem.ItemCode, busCommand.OrderId, drinkItem.ItemPrepTime);
             await Task.Delay(TimeSpan.FromSeconds(drinkItem.ItemPrepTime));
-            _logger.Information("Drink item {Drink} has been prepared", drinkItem.ItemCode);
+            _logger.Information("Drink item {Drink} for order {OrderId} has been prepared", drinkItem.ItemCode, busCommand.OrderId);
 
             var orderItemComplete = new OrderItemCompleteEvent
             {

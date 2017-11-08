@@ -21,6 +21,11 @@ namespace StackCafe.Waiter.Services
 
         public void AddUnmadeOrder(Guid orderId, List<string> items)
         {
+            if (_madeOrderIds.Contains(orderId))
+            {
+                return;
+            }
+
             if (!_orderlessItems.ContainsKey(orderId))
             {
                 _incompleteOrderIds.Add(orderId, items);
@@ -33,6 +38,7 @@ namespace StackCafe.Waiter.Services
             var remaining = items.Except(alreadyCompleteItems);
             if (!remaining.Any())
             {
+                CheckWhetherWeShouldDeliver(orderId);
                 _madeOrderIds.Add(orderId);
                 return;
             }
@@ -42,12 +48,19 @@ namespace StackCafe.Waiter.Services
         public void MarkItemAsMade(Guid orderId, string itemCode)
         {
             var remainingItems = _incompleteOrderIds.ContainsKey(orderId) ? _incompleteOrderIds[orderId] : null;
-            if (remainingItems == null || remainingItems.Any())
+            if (remainingItems == null)
+            {
+                // TODO: do this properly
+                _orderlessItems.Add(orderId, new List<string> { itemCode });
+                return;
+            }
+            if (remainingItems.Any())
             {
                 _incompleteOrderIds.Remove(orderId);
                 if (!_madeOrderIds.Contains(orderId))
                 {
                     _madeOrderIds.Add(orderId);
+                    CheckWhetherWeShouldDeliver(orderId);
                 }
                 return;
             }
@@ -63,6 +76,7 @@ namespace StackCafe.Waiter.Services
             {
                 _incompleteOrderIds.Remove(orderId);
                 _madeOrderIds.Add(orderId);
+                CheckWhetherWeShouldDeliver(orderId);
                 return;
             }
             _incompleteOrderIds[orderId] = remainingItems;
