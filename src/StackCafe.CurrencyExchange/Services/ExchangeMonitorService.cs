@@ -2,13 +2,10 @@
 using System.Threading.Tasks;
 using System.Timers;
 using Nimbus;
-<<<<<<< HEAD
 using StackCafe.MessageContracts.Commands;
 using StackCafe.CurrencyTicker.Services.Coindesk;
 using System.Net;
-=======
 using StackCafe.MessageContracts.Events;
->>>>>>> ee0f4f9e4c12492bd515dd58b6905bd5fa1c84bf
 
 namespace StackCafe.CurrencyTicker.Services
 {
@@ -53,7 +50,7 @@ namespace StackCafe.CurrencyTicker.Services
         private const string ApiEndpoint = "https://api.coindesk.com/v1/bpi/currentprice/{0}.json";
         private const string Aud = "AUD";
 
-        private async decimal GetThePrice()
+        private async Task<CurrencyExchangeRate> GetThePrice()
         {
             var endpointUrl = string.Format(ApiEndpoint, Aud);
 
@@ -62,7 +59,7 @@ namespace StackCafe.CurrencyTicker.Services
             var apiResponse = await webClient.DownloadStringTaskAsync(endpointUrl);
 
             var responseObject = Newtonsoft.Json.JsonConvert.DeserializeObject<CoindeskApiResponseObject>(apiResponse);
-            return new CurrencyExchangeRate((decimal)(_random.NextDouble() * 0.001), Currency.BTC);
+            return new CurrencyExchangeRate((decimal)(_random.NextDouble() * 0.001), Currency.BTC, Currency.AUD, DateTimeOffset.Now);
         }
 
         private async Task LetEveryoneKnowTheCurrentPrice(CurrencyExchangeRate price)
