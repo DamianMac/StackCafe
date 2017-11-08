@@ -6,6 +6,7 @@ using StackCafe.MessageContracts.Commands;
 using StackCafe.CurrencyTicker.Services.Coindesk;
 using System.Net;
 using StackCafe.MessageContracts.Events;
+using System.Linq;
 
 namespace StackCafe.CurrencyTicker.Services
 {
@@ -38,7 +39,7 @@ namespace StackCafe.CurrencyTicker.Services
         {
             var timer = (Timer)sender;
 #pragma warning disable 4014
-            var price = await GetThePrice();
+            var price = await GetThePrice(Currency.AUD);
             LetEveryoneKnowTheCurrentPrice(price);
 #pragma warning restore 4014
             timer.Interval = 10000;
@@ -48,18 +49,22 @@ namespace StackCafe.CurrencyTicker.Services
 
 
         private const string ApiEndpoint = "https://api.coindesk.com/v1/bpi/currentprice/{0}.json";
-        private const string Aud = "AUD";
+        private Currency[] ExchangeRates = { Currency.AUD };
 
-        private async Task<CurrencyExchangeRate> GetThePrice()
-        {
-            var endpointUrl = string.Format(ApiEndpoint, Aud);
+        private async Task<CurrencyExchangeRate> GetThePrice(Currency currencyCode)
+        {           
+            var endpointUrl = string.Format(ApiEndpoint, currencyCode);
 
             var webClient = new WebClient();
 
             var apiResponse = await webClient.DownloadStringTaskAsync(endpointUrl);
 
-            var responseObject = Newtonsoft.Json.JsonConvert.DeserializeObject<CoindeskApiResponseObject>(apiResponse);
-            return new CurrencyExchangeRate((decimal)responseObject.bpi.AUD.rate_float, Currency.BTC, Currency.AUD, responseObject.time.updatedISO);
+            var jObject = Newtonsoft.Json.Linq.JObject.Parse(apiResponse);
+
+            var rate = (double)jObject.SelectToken(string.Format("bpi.{0}.rate_float", currencyCode));
+            var time = (DateTimeOffset)jObject.SelectToken("time.updatedISO");
+                       
+            return new CurrencyExchangeRate((decimal)rate, Currency.BTC, currencyCode, time);
         }
 
         private async Task LetEveryoneKnowTheCurrentPrice(CurrencyExchangeRate price)
