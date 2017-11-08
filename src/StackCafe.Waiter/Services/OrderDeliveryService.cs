@@ -77,14 +77,14 @@ namespace StackCafe.Waiter.Services
             }
             else
             {
-                CheckPendingOrder(orderId).GetAwaiter().GetResult();
+                ScheduleFutureCheckPendingOrder(orderId).GetAwaiter().GetResult();
             }
         }
 
-        private async Task CheckPendingOrder(Guid orderId)
+        private async Task ScheduleFutureCheckPendingOrder(Guid orderId)
         {
             var command = new CheckPendingOrderCommand(orderId);
-            await this.bus.SendAfter(command, new TimeSpan(hours: 0, minutes: 5, seconds:0));
+            await this.bus.SendAfter(command, new TimeSpan(hours: 0, minutes: 5, seconds: 0));
 
             _logger.Information("{OrderId} isn't ready yet. Sending a message in to the future.", orderId);
         }
@@ -95,34 +95,25 @@ namespace StackCafe.Waiter.Services
             {
                 var order = dbcontext.Orders.AsNoTracking().Where(x => x.Id == orderId).FirstOrDefault();
 
-                if (order != null)
-                {
-                    if (!order.Made)
-                    {
-                        _logger.Information("{OrderId} isn't ready yet. We can't give it to the customer.", orderId);
-                        return false;
-                    }
-
-                    if (!order.Paid)
-                    {
-                        _logger.Information("{OrderId} hasn't been paid for yet. We can't give it to the customer.", orderId);
-                        return false;
-                    }
-
-                    return true;
-                }
-                else
+                if (order == null)
                 {
                     _logger.Information("{OrderId} can't be fount.", orderId);
 
                     return false;
                 }
+
+                return order.CanBeDelivered();
             }
         }
 
         private void DeliverOrderToCustomer(Guid orderId)
         {
-            _logger.Information("Delivering {OrderId} to the customer.", orderId);
+
+            using (var dbcontext = new WaiterContext())
+            {
+                var order = dbcontext.Orders.AsNoTracking().Where(x => x.Id == orderId).FirstOrDefault();
+                order.MarkAsDelivered();
+            }
         }
     }
 }
