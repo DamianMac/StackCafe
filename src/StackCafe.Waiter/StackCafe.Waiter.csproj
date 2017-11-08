@@ -65,11 +65,11 @@
     </Reference>
     <Reference Include="StackExchange.Redis, Version=1.0.316.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\StackExchange.Redis.1.0.488\lib\net45\StackExchange.Redis.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
     <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Runtime.Serialization" />
@@ -86,6 +86,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Rules\WhenAnOrderIsPaidFor\CheckWhetherItHasAlreadyBeenMade.cs" />
+    <Compile Include="Rules\WhenAnOrderItemIsReady\CheckWhetherOrderIsReady.cs" />
     <Compile Include="Services\IOrderDeliveryService.cs" />
     <Compile Include="Services\OrderDeliveryService.cs" />
     <Compile Include="AutofacModules\ServicesModule.cs" />
@@ -95,7 +96,7 @@
     <Compile Include="IoC.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Rules\WhenAnOrderIsReady\CheckWhetherItHasBeenPaidFor.cs" />
+    <Compile Include="Rules\WhenAnOrderIsPlaced\MakeMentalNoteOfItsContents.cs" />
     <Compile Include="WaiterService.cs" />
   </ItemGroup>
   <ItemGroup>
