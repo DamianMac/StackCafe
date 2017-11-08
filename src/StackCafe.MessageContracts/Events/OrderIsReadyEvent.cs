@@ -9,15 +9,15 @@ namespace StackCafe.MessageContracts.Events
         {
         }
 
-        public OrderIsReadyEvent(Guid orderId, string coffeeType, string customerName)
+        public OrderIsReadyEvent(Guid orderId,  string customerName, string[] items)
         {
             OrderId = orderId;
-            CoffeeType = coffeeType;
             CustomerName = customerName;
+            Items = items;
         }
 
         public Guid OrderId { get; set; }
-        public string CoffeeType { get; set; }
         public string CustomerName { get; set; }
+        public string[] Items { get; }
     }
 }

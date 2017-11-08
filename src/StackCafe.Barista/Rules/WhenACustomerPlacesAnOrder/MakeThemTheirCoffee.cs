@@ -20,11 +20,11 @@ namespace StackCafe.Barista.Rules.WhenACustomerPlacesAnOrder
 
         public async Task Handle(OrderPlacedEvent busEvent)
         {
-            _logger.Debug("{OrderStatus} {Coffee} for {Customer}", "Making", busEvent.CoffeeType, busEvent.CustomerName);
+            _logger.Debug("{OrderStatus} {@Items} for {Customer}", "Making", busEvent.Items, busEvent.CustomerName);
             await Task.Delay(TimeSpan.FromSeconds(1));
-            _logger.Information("{OrderStatus} {Coffee} for {Customer}", "Made", busEvent.CoffeeType, busEvent.CustomerName);
+            _logger.Information("{OrderStatus} {Items} for {Customer}", "Made", busEvent.Items, busEvent.CustomerName);
 
-            await _bus.Publish(new OrderIsReadyEvent(busEvent.OrderId, busEvent.CoffeeType, busEvent.CustomerName));
+            await _bus.Publish(new OrderIsReadyEvent(busEvent.OrderId, busEvent.CustomerName, busEvent.Items));
         }
     }
 }

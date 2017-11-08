@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Timers;
 using Nimbus;
@@ -16,6 +18,7 @@ namespace StackCafe.Cashier.Services
         private readonly Random _random = new Random();
 
         private Timer _timer;
+        private IRecommendationService _recommendationService;
 
         public CustomerOrderGenerator(IBus bus)
         {
@@ -48,8 +51,20 @@ namespace StackCafe.Cashier.Services
         private async Task PlaceFakeOrder()
         {
             var customer = _customerNames[_random.Next(_customerNames.Length)];
-            var coffee = _coffeeOrders[_random.Next(_coffeeOrders.Length)];
-            var command = new PlaceOrderCommand(Guid.NewGuid(), customer, coffee);
+
+            var items = new List<string>();
+            for (var i = 0; i < 3; i++)
+            {
+                var coffee = _coffeeOrders[_random.Next(_coffeeOrders.Length)];
+                items.Add(coffee);
+
+                //var recommendation = await _bus.Request(new RecommendationRequest(customer, items));
+                var recommendations = await _recommendationService.AskForRecommendations(customer, items);
+                if (recommendations.Any())
+                    items.Add(recommendations.First());
+            }
+
+            var command = new PlaceOrderCommand(Guid.NewGuid(), customer, items.ToArray());
             await _bus.Send(command);
         }
     }
