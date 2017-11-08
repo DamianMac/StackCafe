@@ -37,31 +37,6 @@ namespace StackCafe.Waiter.Services
             }
         }
 
-        public void MarkAsPaid(Guid orderId)
-        {
-            using (var dbcontext = new WaiterContext())
-            {
-                var order = dbcontext.Orders.Where(x => x.Id == orderId).FirstOrDefault();
-
-                if (order == null)
-                {
-                    dbcontext.Orders.Add(new Models.Order()
-                    {
-                        Id = orderId,
-                        Paid = true
-                    });
-                }
-                else
-                {
-                    order.Paid = true;
-                }
-
-                dbcontext.SaveChanges();
-            }
-
-            HandleOrderOutcome(orderId);
-        }
-
         public void MarkAsMade(Guid orderId)
         {
             using (var dbcontext = new WaiterContext())
@@ -87,26 +62,30 @@ namespace StackCafe.Waiter.Services
             HandleOrderOutcome(orderId);
         }
 
-        private void HandleOrderOutcome(Guid orderId)
+        public void MarkAsPaid(Guid orderId)
         {
-            if (CheckWhetherWeShouldDeliver(orderId))
+            using (var dbcontext = new WaiterContext())
             {
-                DeliverOrderToCustomer(orderId);
+                var order = dbcontext.Orders.Where(x => x.Id == orderId).FirstOrDefault();
+
+                if (order == null)
+                {
+                    dbcontext.Orders.Add(new Models.Order()
+                    {
+                        Id = orderId,
+                        Paid = true
+                    });
+                }
+                else
+                {
+                    order.Paid = true;
+                }
+
+                dbcontext.SaveChanges();
             }
-            else
-            {
-                ScheduleFutureCheckPendingOrder(orderId).GetAwaiter().GetResult();
-            }
+
+            HandleOrderOutcome(orderId);
         }
-
-        private async Task ScheduleFutureCheckPendingOrder(Guid orderId)
-        {
-            var command = new CheckPendingOrderCommand(orderId);
-            await this.bus.SendAfter(command, new TimeSpan(hours: 0, minutes: 5, seconds: 0));
-
-            _logger.Information("{OrderId} isn't ready yet. Sending a message in to the future.", orderId);
-        }
-
         private bool CheckWhetherWeShouldDeliver(Guid orderId)
         {
             try
@@ -134,6 +113,26 @@ namespace StackCafe.Waiter.Services
 
                 dbcontext.SaveChanges();
             }
+        }
+
+        private void HandleOrderOutcome(Guid orderId)
+        {
+            if (CheckWhetherWeShouldDeliver(orderId))
+            {
+                DeliverOrderToCustomer(orderId);
+            }
+            else
+            {
+                ScheduleFutureCheckPendingOrder(orderId).GetAwaiter().GetResult();
+            }
+        }
+
+        private async Task ScheduleFutureCheckPendingOrder(Guid orderId)
+        {
+            var command = new CheckPendingOrderCommand(orderId);
+            await this.bus.SendAfter(command, new TimeSpan(hours: 0, minutes: 5, seconds: 0));
+
+            _logger.Information("{OrderId} isn't ready yet. Sending a message in to the future.", orderId);
         }
     }
 }

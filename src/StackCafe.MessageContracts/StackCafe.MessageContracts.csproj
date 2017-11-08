@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\CheckPendingOrderCommand.cs" />
+    <Compile Include="Commands\MakeCoffeeCommand.cs" />
     <Compile Include="Commands\PayForOrderCommand.cs" />
     <Compile Include="Commands\PlaceOrderCommand.cs" />
     <Compile Include="Events\CustomerSignedUpEvent.cs" />
