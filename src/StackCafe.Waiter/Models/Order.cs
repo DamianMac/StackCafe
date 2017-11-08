@@ -7,17 +7,17 @@ namespace StackCafe.Waiter.Models
     public class Order
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public Guid Id { get;  set; }
+        public virtual Guid Id { get; protected set; }
 
-        public bool Paid { get;  set; }
+        public virtual bool Paid { get; protected set; }
 
-        public bool Made { get;  set; }
+        public virtual bool Made { get; protected set; }
 
-        public string Coffee { get;  set; }
+        public virtual string Coffee { get; protected set; }
 
-        public string CustomerName { get;  set; }
+        public virtual string CustomerName { get; protected set; }
 
-        public bool IsDelivered { get; private set; }
+        public virtual bool IsDelivered { get; protected set; }
 
         public bool CanBeDelivered()
         {
