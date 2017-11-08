@@ -5,6 +5,7 @@ using Nimbus;
 using Serilog;
 using StackCafe.MessageContracts.Commands;
 using StackCafe.Waiter.Ef;
+using StackCafe.Waiter.Models;
 
 namespace StackCafe.Waiter.Services
 {
@@ -17,6 +18,23 @@ namespace StackCafe.Waiter.Services
         {
             _logger = logger;
             this.bus = bus;
+        }
+
+        public Order GetOrderFromId(Guid orderId)
+        {
+            using (var dbcontext = new WaiterContext())
+            {
+                var order = dbcontext.Orders.AsNoTracking().Where(x => x.Id == orderId).FirstOrDefault();
+
+                if (order == null)
+                {
+                    _logger.Information("{OrderId} can't be found.", orderId);
+
+                    throw new Exception();
+                }
+
+                return order;
+            }
         }
 
         public void MarkAsPaid(Guid orderId)
@@ -91,28 +109,30 @@ namespace StackCafe.Waiter.Services
 
         private bool CheckWhetherWeShouldDeliver(Guid orderId)
         {
-            using (var dbcontext = new WaiterContext())
+            try
             {
-                var order = dbcontext.Orders.AsNoTracking().Where(x => x.Id == orderId).FirstOrDefault();
-
-                if (order == null)
-                {
-                    _logger.Information("{OrderId} can't be fount.", orderId);
-
-                    return false;
-                }
+                var order = this.GetOrderFromId(orderId);
 
                 return order.CanBeDelivered();
+            }
+            catch (Exception)
+            {
+                return false;
             }
         }
 
         private void DeliverOrderToCustomer(Guid orderId)
         {
-
             using (var dbcontext = new WaiterContext())
             {
-                var order = dbcontext.Orders.AsNoTracking().Where(x => x.Id == orderId).FirstOrDefault();
-                order.MarkAsDelivered();
+                var order = dbcontext.Orders.Where(x => x.Id == orderId).FirstOrDefault();
+
+                if (order != null)
+                {
+                    order.MarkAsDelivered();
+                }
+
+                dbcontext.SaveChanges();
             }
         }
     }

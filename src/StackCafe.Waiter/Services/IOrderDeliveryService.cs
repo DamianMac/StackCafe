@@ -1,4 +1,5 @@
 ﻿using System;
+using StackCafe.Waiter.Models;
 
 namespace StackCafe.Waiter.Services
 {
@@ -7,5 +8,7 @@ namespace StackCafe.Waiter.Services
         void MarkAsPaid(Guid orderId);
 
         void MarkAsMade(Guid orderId);
+
+        Order GetOrderFromId(Guid orderId);
     }
 }
