@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace StackCafe.Cashier.Services
 {
-    internal interface IRecommendationService
+    public interface IRecommendationService
     {
         Task<string[]> AskForRecommendations(string customer, List<string> items);
     }

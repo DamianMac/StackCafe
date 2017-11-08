@@ -20,9 +20,10 @@ namespace StackCafe.Cashier.Services
         private Timer _timer;
         private IRecommendationService _recommendationService;
 
-        public CustomerOrderGenerator(IBus bus)
+        public CustomerOrderGenerator(IBus bus, IRecommendationService recommendationService)
         {
             _bus = bus;
+            _recommendationService = recommendationService;
         }
 
         public void Dispose()

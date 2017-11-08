@@ -18,6 +18,6 @@ namespace StackCafe.MessageContracts.Events
 
         public Guid OrderId { get; set; }
         public string CustomerName { get; set; }
-        public string[] Items { get; }
+        public string[] Items { get; set; }
     }
 }
