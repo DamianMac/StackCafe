@@ -109,6 +109,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutofacModules\ServicesModule.cs" />
     <Compile Include="CurrencyHistoryService.cs" />
     <Compile Include="ForceLoadStackMechanicsCommonConfiguration.cs" />
     <Compile Include="ForceLoadStackMechanicsCommonLogging.cs" />
@@ -118,13 +119,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rules\WhenExchangeRateChanges\StoreTheExchangeRate.cs" />
     <Compile Include="Services\ExchangeRateRepository.cs" />
+    <Compile Include="Services\IExchangeRateRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="AutofacModules\" />
     <Folder Include="Configuration\" />
   </ItemGroup>
   <ItemGroup>
