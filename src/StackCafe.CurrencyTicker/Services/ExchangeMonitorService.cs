@@ -64,7 +64,7 @@ namespace StackCafe.CurrencyTicker.Services
 
         private async Task LetEveryoneKnowTheCurrentPrice(CurrencyExchangeRate price)
         {
-            var @event = new CurrencyExchangeRateEvent(price);
+            var @event = new CurrencyExchangeRateUpdatedEvent(price);
             await _bus.Publish(@event);
         }
     }

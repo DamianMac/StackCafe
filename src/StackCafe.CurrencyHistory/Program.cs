@@ -12,10 +12,10 @@ namespace StackCafe.CurrencyHistory
             {
                 var serviceName = DefaultSettingsReader.Get<ApplicationName>();
 
-                x.Service<CurrencyTickerService>(sc =>
+                x.Service<CurrencyHistoryService>(sc =>
                 {
                     sc
-                        .ConstructUsing(() => new CurrencyTickerService())
+                        .ConstructUsing(() => new CurrencyHistoryService())
                         .WhenStarted(s => s.Start())
                         .WhenStopped(s => s.Stop())
                         ;
