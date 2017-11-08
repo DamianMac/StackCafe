@@ -86,6 +86,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Rules\WhenAnOrderIsPaidFor\CheckWhetherItHasAlreadyBeenMade.cs" />
+    <Compile Include="Rules\WhenAnOrderItemIsReady\CheckWhetherOrderIsReady.cs" />
     <Compile Include="Services\IOrderDeliveryService.cs" />
     <Compile Include="Services\OrderDeliveryService.cs" />
     <Compile Include="AutofacModules\ServicesModule.cs" />
@@ -95,7 +96,7 @@
     <Compile Include="IoC.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Rules\WhenAnOrderIsReady\CheckWhetherItHasBeenPaidFor.cs" />
+    <Compile Include="Rules\WhenAnOrderIsPlaced\MakeMentalNoteOfItsContents.cs" />
     <Compile Include="WaiterService.cs" />
   </ItemGroup>
   <ItemGroup>
