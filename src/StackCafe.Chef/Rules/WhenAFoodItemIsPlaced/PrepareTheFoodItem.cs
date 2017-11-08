@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Nimbus;
@@ -39,7 +39,7 @@ namespace StackCafe.Chef.Rules.WhenAFoodItemIsPlaced
                 ItemCode = foodItem.ItemCode
             };
 
-            _bus.Publish(orderItemComplete);
+            await _bus.Publish(orderItemComplete);
         }
     }
 }
