@@ -1,4 +1,5 @@
-﻿@model StackCafe.MakeLineMonitor.Models.MakeLineViewModel
+﻿@using Microsoft.Ajax.Utilities
+@model StackCafe.MakeLineMonitor.Models.MakeLineViewModel
 @{
     ViewBag.Title = "Make Line Monitor";
 }
@@ -12,7 +13,14 @@
 
 <div class="jumbotron">
 
-    <h1>Welcome to Stack Cafe - @Model.view</h1>
+    @if (!Model.view.IsNullOrWhiteSpace())
+    {
+        <h1>Welcome to Stack Cafe - @Model.view</h1>
+    }
+    else
+    {
+        <h1>Welcome to Stack Cafe</h1>
+    }
 
     <p class="lead">Now go and make coffee.</p>
     <p>
@@ -26,15 +34,19 @@
     </form>
 
 </div>
-<div class="row">
-    <div class="col-sm-12">
-        <h2>Make line monitor</h2>
-        <p>
-            Make the coffees in order from left to right. Poke the button on the screen when you've made the coffee.
-        </p>
+@if (!Model.view.IsNullOrWhiteSpace())
+{
+    <div class="row">
+        <div class="col-sm-12">
+            <h2>Make line monitor</h2>
+            <p>
+                Make the @Model.view.ToLowerInvariant() in order from left to right. Poke the button on the screen when you've made the coffee.
+            </p>
+        </div>
     </div>
-</div>
-<div class="row" id="items"></div>
+    <div class="row" id="items"></div>
+}
+
 
 @section scripts
 {
