@@ -42,14 +42,14 @@ namespace StackCafe.CurrencyTicker.Services
             timer.Enabled = true;
         }
 
-        private CurrencyAmount GetThePrice()
+        private CurrencyExchangeRate GetThePrice()
         {
-            return new CurrencyAmount((decimal)(_random.NextDouble() * 0.001), Currency.BTC);
+            return new CurrencyExchangeRate((decimal)(_random.NextDouble() * 0.001), Currency.BTC);
         }
 
-        private async Task LetEveryoneKnowTheCurrentPrice(CurrencyAmount price)
+        private async Task LetEveryoneKnowTheCurrentPrice(CurrencyExchangeRate price)
         {
-            var @event = new CurrentPriceEvent(price);
+            var @event = new CurrencyExchangeRateEvent(price);
             await _bus.Publish(@event);
         }
     }
