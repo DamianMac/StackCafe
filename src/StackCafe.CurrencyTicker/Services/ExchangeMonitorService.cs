@@ -13,7 +13,7 @@ namespace StackCafe.CurrencyTicker.Services
     public class ExchangeMonitorService : IDisposable
     {
         private readonly IBus _bus;
-        private readonly Random _random = new Random();
+
 
         private Timer _timer;
 
@@ -31,7 +31,7 @@ namespace StackCafe.CurrencyTicker.Services
         {
             _timer = new Timer();
             _timer.Elapsed += OnTimerElapsed;
-            _timer.Interval = 1;
+            _timer.Interval = 10000;
             _timer.Enabled = true;
         }
 
@@ -39,8 +39,23 @@ namespace StackCafe.CurrencyTicker.Services
         {
             var timer = (Timer)sender;
 #pragma warning disable 4014
-            var price = await GetThePrice(Currency.AUD);
-            LetEveryoneKnowTheCurrentPrice(price);
+            foreach (Currency currency in Enum.GetValues(typeof(Currency)))
+            {
+                if (currency != Currency.BTC)
+                {
+                    try
+                    {
+                        var price = await GetThePrice(currency);
+                        LetEveryoneKnowTheCurrentPrice(price);
+                    }
+                    catch (Exception)
+                    {
+
+                        throw;
+                    }
+
+                }
+            }
 #pragma warning restore 4014
             timer.Interval = 10000;
             timer.Enabled = true;
@@ -49,21 +64,21 @@ namespace StackCafe.CurrencyTicker.Services
 
 
         private const string ApiEndpoint = "https://api.coindesk.com/v1/bpi/currentprice/{0}.json";
-        private Currency[] ExchangeRates = { Currency.AUD };
+
 
         private async Task<CurrencyExchangeRate> GetThePrice(Currency currencyCode)
-        {           
+        {
             var endpointUrl = string.Format(ApiEndpoint, currencyCode);
-
-            var webClient = new WebClient();
-
-            var apiResponse = await webClient.DownloadStringTaskAsync(endpointUrl);
-
+            string apiResponse;
+            using (var webClient = new WebClient())
+            {
+                apiResponse = await webClient.DownloadStringTaskAsync(endpointUrl);
+            }
             var jObject = Newtonsoft.Json.Linq.JObject.Parse(apiResponse);
 
             var rate = (double)jObject.SelectToken(string.Format("bpi.{0}.rate_float", currencyCode));
             var time = (DateTimeOffset)jObject.SelectToken("time.updatedISO");
-                       
+
             return new CurrencyExchangeRate((decimal)rate, Currency.BTC, currencyCode, time);
         }
 

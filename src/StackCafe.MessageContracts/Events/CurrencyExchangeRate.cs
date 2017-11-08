@@ -32,6 +32,9 @@ namespace StackCafe.MessageContracts.Events
     public enum Currency
     {
         AUD,
+        USD,
+        CAD,
+        GBP,        
         BTC
     }
 }
