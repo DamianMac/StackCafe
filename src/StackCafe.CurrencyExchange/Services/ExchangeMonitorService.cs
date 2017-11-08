@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using System.Timers;
 using Nimbus;
-using StackCafe.MessageContracts.Commands;
 using StackCafe.MessageContracts.Events;
 
 namespace StackCafe.CurrencyTicker.Services
