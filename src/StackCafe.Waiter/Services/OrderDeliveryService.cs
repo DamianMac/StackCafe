@@ -14,6 +14,8 @@ namespace StackCafe.Waiter.Services
         private readonly Dictionary<Guid, List<string>> _incompleteOrderIds = new Dictionary<Guid, List<string>>();
         private readonly Dictionary<Guid, List<string>> _orderlessItems = new Dictionary<Guid, List<string>>();
 
+        private object incompleteLock = new object();
+
         public OrderDeliveryService(ILogger logger)
         {
             _logger = logger;
@@ -21,7 +23,10 @@ namespace StackCafe.Waiter.Services
 
         public void AddUnmadeOrder(Guid orderId, List<string> items)
         {
-            _incompleteOrderIds.Add(orderId, items);
+            lock (incompleteLock)
+            {
+                _incompleteOrderIds.Add(orderId, items);
+            }
         }
 
         public void MarkItemAsMade(Guid orderId, string itemCode)

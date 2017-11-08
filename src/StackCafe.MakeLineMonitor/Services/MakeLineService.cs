@@ -27,6 +27,11 @@ namespace StackCafe.MakeLineMonitor.Services
 
         public void Remove(Guid orderId, string itemCode)
         {
+            if (!Items.ContainsKey(orderId))
+            {
+                return;
+            }
+
             lock (ItemsLock)
             {
                 var item = Items[orderId].First(i => i.Code == itemCode);
