@@ -4,7 +4,7 @@ using StackCafe.MessageContracts.Events;
 
 namespace StackCafe.MessageContracts.Requests
 {
-    public class GetCurrentExchangeRateRequest : IBusRequest<GetCurrentExchangeRateRequest, GetCurrentExchanggeRateResponse>
+    public class GetCurrentExchangeRateRequest : IBusRequest<GetCurrentExchangeRateRequest, GetCurrentExchangeRateResponse>
     {
         public GetCurrentExchangeRateRequest(Currency fromCurrency, Currency toCurrency)
         {
