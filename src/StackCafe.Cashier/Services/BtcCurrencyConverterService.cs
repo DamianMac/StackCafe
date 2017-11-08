@@ -10,17 +10,14 @@ namespace StackCafe.Cashier.Services
     {
         public decimal ConvertToBTC(decimal amount)
         {
-            return amount * GetAUDInBTC();
+            return amount * AUDBTCRate;
         }
 
         public decimal ConvertToAUD(decimal amount)
         {
-            return amount / GetAUDInBTC();
+            return amount / AUDBTCRate;
         }
 
-        public decimal GetAUDInBTC()
-        {
-            return 1M / 9000M;
-        }
+        public decimal AUDBTCRate { get; set; }
     }
 }
