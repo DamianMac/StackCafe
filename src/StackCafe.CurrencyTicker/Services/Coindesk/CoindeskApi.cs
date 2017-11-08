@@ -9,7 +9,7 @@ namespace StackCafe.CurrencyTicker.Services.Coindesk
     public class Time
     {
         public string updated { get; set; }
-        public DateTime updatedISO { get; set; }
+        public DateTimeOffset updatedISO { get; set; }
         public string updateduk { get; set; }
     }
 

@@ -41,7 +41,7 @@ namespace StackCafe.CurrencyTicker.Services
             var price = await GetThePrice();
             LetEveryoneKnowTheCurrentPrice(price);
 #pragma warning restore 4014
-            timer.Interval = 1;
+            timer.Interval = 10000;
             timer.Enabled = true;
         }
 
@@ -59,7 +59,7 @@ namespace StackCafe.CurrencyTicker.Services
             var apiResponse = await webClient.DownloadStringTaskAsync(endpointUrl);
 
             var responseObject = Newtonsoft.Json.JsonConvert.DeserializeObject<CoindeskApiResponseObject>(apiResponse);
-            return new CurrencyExchangeRate((decimal)responseObject.bpi.AUD.rate_float, Currency.BTC, Currency.AUD, new DateTimeOffset(responseObject.time.updatedISO, TimeSpan.Zero));
+            return new CurrencyExchangeRate((decimal)responseObject.bpi.AUD.rate_float, Currency.BTC, Currency.AUD, responseObject.time.updatedISO);
         }
 
         private async Task LetEveryoneKnowTheCurrentPrice(CurrencyExchangeRate price)
