@@ -109,9 +109,15 @@ namespace StackCafe.Cashier.Services
                 }
             };
 
-            var command = new PlaceOrderCommand(Guid.NewGuid(), customer, itemsToSend);
-
+            var orderId = Guid.NewGuid();
+            var command = new PlaceOrderCommand(orderId, customer, itemsToSend);
             await _bus.Send(command);
+
+            var foodCommand = new PlaceFoodOrderCommand(orderId, itemsToSend.Where(i => i.ItemType == ItemType.Food.ToString()).ToList());
+            await _bus.Send(foodCommand);
+
+            var drinkCommand = new PlaceDrinkOrderCommand(orderId, itemsToSend.Where(i => i.ItemType == ItemType.Drink.ToString()).ToList());
+            await _bus.Send(drinkCommand);
         }
 
         private static void AddFakeOrderItem(string name, string code, ItemType type)

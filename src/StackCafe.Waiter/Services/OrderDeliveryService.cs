@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Serilog;
 
 namespace StackCafe.Waiter.Services
@@ -10,9 +11,61 @@ namespace StackCafe.Waiter.Services
         private readonly List<Guid> _madeOrderIds = new List<Guid>();
         private readonly List<Guid> _paidOrderIds = new List<Guid>();
 
+        private readonly Dictionary<Guid, List<string>> _incompleteOrderIds = new Dictionary<Guid, List<string>>();
+        private readonly Dictionary<Guid, List<string>> _orderlessItems = new Dictionary<Guid, List<string>>();
+
         public OrderDeliveryService(ILogger logger)
         {
             _logger = logger;
+        }
+
+        public void AddUnmadeOrder(Guid orderId, List<string> items)
+        {
+            if (!_orderlessItems.ContainsKey(orderId))
+            {
+                _incompleteOrderIds.Add(orderId, items);
+                return;
+            }
+
+            var alreadyCompleteItems = _orderlessItems[orderId];
+            _orderlessItems.Remove(orderId);
+
+            var remaining = items.Except(alreadyCompleteItems);
+            if (!remaining.Any())
+            {
+                _madeOrderIds.Add(orderId);
+                return;
+            }
+            _incompleteOrderIds.Add(orderId, items);
+        }
+
+        public void MarkItemAsMade(Guid orderId, string itemCode)
+        {
+            var remainingItems = _incompleteOrderIds.ContainsKey(orderId) ? _incompleteOrderIds[orderId] : null;
+            if (remainingItems == null || remainingItems.Any())
+            {
+                _incompleteOrderIds.Remove(orderId);
+                if (!_madeOrderIds.Contains(orderId))
+                {
+                    _madeOrderIds.Add(orderId);
+                }
+                return;
+            }
+
+            if (!remainingItems.Contains(itemCode))
+            {
+                _logger.Warning("Duplicate item {ItemCode} for order {OrderId}. What a waste...", itemCode, orderId);
+            }
+
+            // TODO: support quantity
+            remainingItems.Remove(itemCode);
+            if (!remainingItems.Any())
+            {
+                _incompleteOrderIds.Remove(orderId);
+                _madeOrderIds.Add(orderId);
+                return;
+            }
+            _incompleteOrderIds[orderId] = remainingItems;
         }
 
         public void MarkAsPaid(Guid orderId)
@@ -31,6 +84,11 @@ namespace StackCafe.Waiter.Services
         {
             var hasBeenPaid = _paidOrderIds.Contains(orderId);
             return hasBeenPaid;
+        }
+
+        public bool HasBeenMade(Guid orderId)
+        {
+            return _madeOrderIds.Contains(orderId);
         }
 
         private void CheckWhetherWeShouldDeliver(Guid orderId)
