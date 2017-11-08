@@ -10,9 +10,9 @@ namespace StackCafe.Cashier.Services
 {
     public class CustomerOrderGenerator : IDisposable
     {
-        private static readonly double _interval = TimeSpan.FromSeconds(5).TotalMilliseconds;
-        private static readonly string[] _customerNames = {"Damian", "Nick", "Andrew"};
-        private static readonly string[] _coffeeOrders = {"Extra shot flat white", "Doppio", "Flat white"};
+        private static double _interval = TimeSpan.FromSeconds(5).TotalMilliseconds;
+        private static readonly string[] _customerNames = {"Damian", "Nick", "Andrew", "Yann", "Minna", "Terry"};
+        private static readonly string[] _coffeeOrders = {"Extra shot flat white", "Doppio", "Flat white", "Muffin (Chocolate)", "Bliss Ball", "Toastie", "Big Biscuit", "Mocha", "Croissant" };
 
         private readonly IBus _bus;
         private readonly Random _random = new Random();
@@ -45,6 +45,7 @@ namespace StackCafe.Cashier.Services
 #pragma warning disable 4014
             PlaceFakeOrder();
 #pragma warning restore 4014
+            _interval = TimeSpan.FromSeconds(_random.Next(1, 10)).TotalMilliseconds;
             timer.Interval = _interval;
             timer.Enabled = true;
         }
@@ -54,7 +55,7 @@ namespace StackCafe.Cashier.Services
             var customer = _customerNames[_random.Next(_customerNames.Length)];
 
             var items = new List<string>();
-            for (var i = 0; i < 3; i++)
+            for (var i = 0; i < _random.Next(1, 5); i++)
             {
                 var coffee = _coffeeOrders[_random.Next(_coffeeOrders.Length)];
                 items.Add(coffee);

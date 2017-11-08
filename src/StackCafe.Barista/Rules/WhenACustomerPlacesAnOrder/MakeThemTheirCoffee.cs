@@ -11,6 +11,7 @@ namespace StackCafe.Barista.Rules.WhenACustomerPlacesAnOrder
     {
         private readonly IBus _bus;
         private readonly ILogger _logger;
+        private static Random random = new Random();
 
         public MakeThemTheirCoffee(IBus bus, ILogger logger)
         {
@@ -21,7 +22,7 @@ namespace StackCafe.Barista.Rules.WhenACustomerPlacesAnOrder
         public async Task Handle(OrderPlacedEvent busEvent)
         {
             _logger.Debug("{OrderStatus} {@Items} for {Customer}", "Making", busEvent.Items, busEvent.CustomerName);
-            await Task.Delay(TimeSpan.FromSeconds(1));
+            await Task.Delay(TimeSpan.FromSeconds(random.Next(1, 20)));
             _logger.Information("{OrderStatus} {Items} for {Customer}", "Made", busEvent.Items, busEvent.CustomerName);
 
             await _bus.Publish(new OrderIsReadyEvent(busEvent.OrderId, busEvent.CustomerName, busEvent.Items));

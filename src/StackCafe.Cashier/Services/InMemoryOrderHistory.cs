@@ -14,13 +14,23 @@ namespace StackCafe.Cashier.Services
 
         public string GetFavoriteItem(string customer)
         {
+            return this.GetFavouriteItems(customer).FirstOrDefault();
+        }
+
+        public string GetFavouriteItemExcludingCurrentOrderItems(string customer, string[] currentOrderItems)
+        {
+            return this.GetFavouriteItems(customer).Except(currentOrderItems).FirstOrDefault();
+        }
+
+        private IEnumerable<string> GetFavouriteItems(string customer)
+        {
             List<string> items;
-            if (storage.TryGetValue(customer, out items))
+            if (storage.TryGetValue(customer, out items) && items != null)
             {
-                return items.GroupBy(x => x).OrderByDescending(g => g.Count()).FirstOrDefault()?.FirstOrDefault();
+                return items.GroupBy(x => x).OrderByDescending(g => g.Count()).Where(g => g.Any()).Select(g => g.First());
             }
 
-            return null;
+            return Enumerable.Empty<string>();
         }
     }
 }

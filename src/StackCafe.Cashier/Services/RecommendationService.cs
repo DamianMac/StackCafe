@@ -18,7 +18,7 @@ namespace StackCafe.Cashier.Services
 
         public Task<string[]> AskForRecommendations(string customer, List<string> items)
         {
-            var favoriteItem = _orderHistory.GetFavoriteItem(customer);
+            var favoriteItem = _orderHistory.GetFavouriteItemExcludingCurrentOrderItems(customer, items.ToArray());
             if (!string.IsNullOrEmpty(favoriteItem))
             {
                 Log.Information("Found favorite {FavoriteItem} to {Customer}", favoriteItem, customer);
