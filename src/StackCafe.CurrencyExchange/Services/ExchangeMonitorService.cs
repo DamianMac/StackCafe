@@ -34,11 +34,11 @@ namespace StackCafe.CurrencyTicker.Services
             _timer.Enabled = true;
         }
 
-        private void OnTimerElapsed(object sender, ElapsedEventArgs e)
+        private async void OnTimerElapsed(object sender, ElapsedEventArgs e)
         {
             var timer = (Timer)sender;
 #pragma warning disable 4014
-            var price = GetThePrice();
+            var price = await GetThePrice();
             LetEveryoneKnowTheCurrentPrice(price);
 #pragma warning restore 4014
             timer.Interval = 1;
